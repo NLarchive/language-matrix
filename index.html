@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="theme-color" content="#007AFF">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <title>Janulus Matrix - Language Sentence Builder</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/matrix_table.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Janulus Matrix</h1>
+            <select id="matrix-select" class="matrix-select">
+                <option value="">Loading...</option>
+            </select>
+        </div>
+    </header>
+
+    <main>
+        <div class="sentence-builder">
+            <div class="sentence-display">
+                <div class="sentence-content">
+                    <div class="sentence-chinese" id="sentence-chinese">Select words from the columns below to build a sentence</div>
+                    <div class="sentence-pinyin" id="sentence-pinyin"></div>
+                    <div class="sentence-english" id="sentence-english"></div>
+                </div>
+                <button id="play-sentence-btn" class="btn btn-play" aria-label="Play sentence audio" title="Play sentence audio">
+                    <svg class="audio-icon" viewBox="0 0 24 24" width="28" height="28">
+                        <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM16.5 7.16v9.68c2.25-1.51 3.5-4.19 3.5-4.84s-1.25-3.33-3.5-4.84z"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="controls">
+                <button id="clear-btn" class="btn btn-secondary">Clear Selection</button>
+            </div>
+        </div>
+
+        <div class="matrix-table-container">
+            <div id="matrix-container">
+                <div class="loading">Loading matrix</div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Word Detail Modal -->
+    <div id="word-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modal-content">
+                <!-- Modal content will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="js/main.js"></script>
+    <script>
+        // Keyboard shortcut to show cache settings (Ctrl+Shift+C)
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.shiftKey && e.code === 'KeyC') {
+                e.preventDefault();
+                import('./js/utils/cacheManager.js').then(({ CacheManager }) => {
+                    CacheManager.showSettingsPanel();
+                });
+            }
+        });
+    </script>
+</body>
+</html>

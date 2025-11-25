@@ -1,0 +1,11 @@
+Category,Description,ColorCode
+Pronoun,Who is doing the action (I/you/he/she/we/they),#FF6B6B
+Verb,What action is being done (eat/go/have/be),#4ECDC4
+Noun,The thing or object involved (book/water/home),#95E1D3
+Time,When the action happens (yesterday/today/tomorrow),#F38181
+Location,Where the action takes place (here/there/home),#AA96DA
+Particle,Grammar particles that modify meaning,#FCBAD3
+Quantifier,Numbers and classifiers (one/two),#FFFFD2
+Conjunction,Words that connect clauses (and/but/or),#A8E6CF
+Adverb,Words that modify verbs (very/also/already),#DDA0DD
+Connector,Formal connectors and prepositions,#87CEEB

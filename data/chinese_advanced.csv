@@ -1,0 +1,63 @@
+Category,Word,Pinyin,English,POS,Role,Common_Usage,Example_Phrase
+Pronoun,彼此,bǐcǐ,each other,PRON,reciprocal,Mutual reference,彼此帮助。
+Pronoun,本人,běnrén,myself,PRON,formal,Formal self,本人同意。
+Pronoun,任何,rènhé,any,PRON,indefinite,Universal quantifier,任何问题。
+Pronoun,某,mǒu,certain,PRON,indefinite,Unspecified,某人说。
+Pronoun,其他,qítā,other,PRON,indefinite,Remaining,其他的人。
+Verb,认为,rènwéi,believe/consider,VERB,cognition,Opinion formal,我认为对。
+Verb,发现,fāxiàn,discover,VERB,cognition,Discovery,发现问题。
+Verb,理解,lǐjiě,understand,VERB,cognition,Comprehension,理解意思。
+Verb,分析,fēnxī,analyze,VERB,cognition,Analysis,分析情况。
+Verb,讨论,tǎolùn,discuss,VERB,communication,Discussion,讨论问题。
+Verb,解释,jiěshì,explain,VERB,communication,Explanation,解释原因。
+Verb,表示,biǎoshì,express/indicate,VERB,communication,Expression,表示同意。
+Verb,证明,zhèngmíng,prove,VERB,cognition,Verification,证明观点。
+Verb,导致,dǎozhì,lead to/cause,VERB,causation,Causative,导致失败。
+Verb,影响,yǐngxiǎng,influence,VERB,causation,Effect,影响结果。
+Verb,促进,cùjìn,promote,VERB,causation,Enhancement,促进发展。
+Verb,实现,shíxiàn,realize/achieve,VERB,achievement,Accomplishment,实现目标。
+Verb,获得,huòdé,obtain,VERB,acquisition,Attainment,获得成功。
+Verb,提供,tígōng,provide,VERB,transfer,Supply,提供帮助。
+Verb,采取,cǎiqǔ,adopt/take,VERB,action,Implementation,采取措施。
+Noun,观点,guāndiǎn,viewpoint,NOUN,abstract,Opinion,不同观点。
+Noun,原因,yuányīn,reason/cause,NOUN,abstract,Causation,主要原因。
+Noun,结果,jiéguǒ,result,NOUN,abstract,Outcome,最后结果。
+Noun,方法,fāngfǎ,method,NOUN,abstract,Approach,好方法。
+Noun,过程,guòchéng,process,NOUN,abstract,Procedure,学习过程。
+Noun,情况,qíngkuàng,situation,NOUN,abstract,Circumstance,目前情况。
+Noun,关系,guānxì,relationship,NOUN,abstract,Connection,人际关系。
+Noun,经验,jīngyàn,experience,NOUN,abstract,Knowledge,丰富经验。
+Noun,目标,mùbiāo,goal/objective,NOUN,abstract,Aim,最终目标。
+Noun,责任,zérèn,responsibility,NOUN,abstract,Duty,重要责任。
+Time,目前,mùqián,currently,NOUN,time,Present formal,目前为止。
+Time,此时,cǐshí,at this moment,NOUN,time,Present formal,此时此刻。
+Time,当时,dāngshí,at that time,NOUN,time,Past reference,当时不知道。
+Time,最终,zuìzhōng,finally,NOUN,time,Conclusion,最终成功。
+Time,随时,suíshí,at any time,NOUN,time,Indefinite,随时联系。
+Connector,然而,ránér,however,CONJ,contrast,Formal contrast,然而失败了。
+Connector,尽管,jǐnguǎn,although,CONJ,concession,Concessive,尽管困难。
+Connector,由于,yóuyú,due to,CONJ,cause,Formal cause,由于时间。
+Connector,根据,gēnjù,according to,PREP,basis,Reference,根据情况。
+Connector,通过,tōngguò,through,PREP,means,Method,通过努力。
+Connector,关于,guānyú,regarding,PREP,topic,About topic,关于问题。
+Connector,对于,duìyú,as for,PREP,topic,Regarding,对于这件事。
+Connector,除了,chúle,except/besides,PREP,exception,Exclusion,除了他。
+Connector,为了,wèile,in order to,PREP,purpose,Purpose,为了成功。
+Connector,作为,zuòwéi,as/being,PREP,role,Capacity,作为老师。
+Adverb,逐渐,zhújiàn,gradually,ADV,manner,Progressive,逐渐改变。
+Adverb,不断,bùduàn,continuously,ADV,manner,Continuous,不断努力。
+Adverb,完全,wánquán,completely,ADV,degree,Totality,完全同意。
+Adverb,相当,xiāngdāng,quite/rather,ADV,degree,Considerable,相当好。
+Adverb,显然,xiǎnrán,obviously,ADV,evidentiality,Evidence,显然正确。
+Adverb,确实,quèshí,indeed,ADV,evidentiality,Confirmation,确实如此。
+Adverb,必须,bìxū,must,ADV,modality,Necessity,必须做。
+Adverb,往往,wǎngwǎng,often,ADV,frequency,Tendency,往往如此。
+Adverb,几乎,jīhū,almost,ADV,approximation,Near totality,几乎完成。
+Adverb,从而,cóngér,thereby,ADV,result,Consequence,从而成功。
+Particle,而,ér,and/but,PART,connector,Literary connector,努力而成功。
+Particle,之,zhī,of/it,PART,literary,Literary possessive,学习之道。
+Particle,所,suǒ,that which,PART,nominalizer,Nominalization,所说的。
+Particle,者,zhě,one who,PART,nominalizer,Agent marker,学者。
+Quantifier,各,gè,each/every,DET,distributor,Distribution,各种问题。
+Quantifier,整,zhěng,whole,DET,totality,Entirety,整个过程。
+Quantifier,另,lìng,another,DET,alternative,Different,另一个方法。
