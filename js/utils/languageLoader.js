@@ -139,6 +139,40 @@ export class LanguageLoader {
     }
 
     /**
+     * Check whether a CSV file exists for a given languagePath and level
+     * @param {string} languagePath
+     * @param {string} level
+     * @returns {Promise<boolean>} true if any of the candidate paths exists (response.ok)
+     */
+    async isLevelAvailable(languagePath, level) {
+        try {
+            const fileNames = [
+                `data/languages/${languagePath}/${level}.csv`,
+                `data/${languagePath}/${level}.csv`,
+                `data/${languagePath}_${level}.csv`,
+                `data/${languagePath}-${level}.csv`,
+                `data/${level}.csv`
+            ];
+
+            for (const filePath of fileNames) {
+                try {
+                    const response = await fetch(filePath, { method: 'GET' });
+                    if (response && response.ok) {
+                        return true;
+                    }
+                } catch (e) {
+                    // ignore and try next
+                    continue;
+                }
+            }
+            return false;
+        } catch (error) {
+            console.error('[LanguageLoader] isLevelAvailable error:', error);
+            return false;
+        }
+    }
+
+    /**
      * Load all levels for a language and merge them
      * @param {string} languagePath - Language folder (e.g., 'chinese')
      * @param {Array<string>} levels - Array of levels to load (e.g., ['basic', 'intermediate', 'advanced'])
@@ -220,6 +254,47 @@ export class LanguageLoader {
         } catch (error) {
             console.error('[LanguageLoader] Error getting available levels:', error);
             return [];
+        }
+    }
+
+    /**
+     * Check whether a matrix (entry from matrix_index) is available.
+     * For merged matrices, require all includeLevels to be present (so 'All Levels' only shows when fully available).
+     * For single-file matrices, check that the file exists under data/ or data/languages locations.
+     * @param {Object} matrixInfo
+     * @returns {Promise<boolean>} whether matrix is available
+     */
+    async isMatrixAvailable(matrixInfo) {
+        try {
+            if (!matrixInfo) return false;
+
+            // merged: ensure all levels exist
+            if (matrixInfo.type === 'merged' && Array.isArray(matrixInfo.includeLevels)) {
+                const languagePath = matrixInfo.languagePath || (matrixInfo.language ? matrixInfo.language.split('-')[0] : 'chinese');
+                // require every level present so 'all' matrix is meaningful
+                for (const level of matrixInfo.includeLevels) {
+                    const ok = await this.isLevelAvailable(languagePath, level);
+                    if (!ok) return false;
+                }
+                return true;
+            }
+
+            // single file matrix
+            if (matrixInfo.file && typeof matrixInfo.file === 'string') {
+                const candidate = `data/${matrixInfo.file}`;
+                try {
+                    const resp = await fetch(candidate, { method: 'GET' });
+                    return !!(resp && resp.ok);
+                } catch (e) {
+                    return false;
+                }
+            }
+
+            // If no file and not merged, missing configuration
+            return false;
+        } catch (error) {
+            console.error('[LanguageLoader] isMatrixAvailable error:', error);
+            return false;
         }
     }
 

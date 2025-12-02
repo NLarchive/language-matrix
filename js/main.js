@@ -79,8 +79,8 @@ class JanulusMatrixApp {
             // Set category config for sentence display
             this.sentenceDisplay.setCategoryConfig(this.categoryConfig);
             
-            // Populate matrix selector
-            this.populateMatrixSelector();
+            // Populate matrix selector (only show matrices that actually exist on disk)
+            await this.populateMatrixSelector();
             
             // Load first matrix by default
             if (this.matrixIndex.length > 0) {
@@ -117,16 +117,34 @@ class JanulusMatrixApp {
         return languageMap[languageCode] || languageCode.split('-')[0].toLowerCase();
     }
 
-    populateMatrixSelector() {
+    async populateMatrixSelector() {
         const select = document.getElementById('matrix-select');
         select.innerHTML = '';
-        
-        this.matrixIndex.forEach(matrix => {
+
+        for (const matrix of this.matrixIndex) {
+            try {
+                const available = await languageLoader.isMatrixAvailable(matrix);
+                if (!available) {
+                    console.warn(`[JanulusMatrixApp] Skipping unavailable matrix ${matrix.id}`);
+                    continue;
+                }
+
+                const option = document.createElement('option');
+                option.value = matrix.id;
+                option.textContent = matrix.name;
+                select.appendChild(option);
+            } catch (e) {
+                console.warn('[JanulusMatrixApp] Error checking availability for matrix', matrix.id, e);
+            }
+        }
+
+        // If nothing added, show a friendly placeholder option
+        if (select.children.length === 0) {
             const option = document.createElement('option');
-            option.value = matrix.id;
-            option.textContent = matrix.name;
+            option.value = '';
+            option.textContent = 'No matrices available';
             select.appendChild(option);
-        });
+        }
     }
 
     async loadSelectedMatrix(matrixId) {
