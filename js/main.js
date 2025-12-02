@@ -1,4 +1,5 @@
 import { parseCSV, groupVocabByCategory, getCategoryConfig, loadMatrixIndex, loadMatrix } from './utils/csvLoader.js';
+import { languageLoader } from './utils/languageLoader.js';
 import { MatrixTableBuilder } from './components/MatrixTableBuilder.js';
 import { SentenceDisplay } from './components/SentenceDisplay.js';
 import { audioCache } from './utils/audioCache.js';
@@ -8,6 +9,7 @@ class JanulusMatrixApp {
         this.matrixIndex = [];
         this.currentMatrix = null;
         this.currentLevel = 'basic'; // Track current matrix level
+        this.currentLanguage = 'chinese'; // Track current language
         this.categoryConfig = {};
         this.sentenceDisplay = null;
         this.matrixBuilder = null;
@@ -27,6 +29,8 @@ class JanulusMatrixApp {
             'sentence-english',
             () => this.currentLevel // Pass callback to get current level
         );
+        // Set language callback for audio paths
+        this.sentenceDisplay.setCurrentLanguageCallback(() => this.currentLanguage);
         
         // Initialize matrix builder
         this.matrixBuilder = new MatrixTableBuilder('matrix-container', 
@@ -42,7 +46,33 @@ class JanulusMatrixApp {
                 fetch('data/categories_config.csv')
             ]);
             
-            this.matrixIndex = matrixIndex;
+            // Normalize matrix index: treat literal 'null'/'undefined' strings as actual null
+            this.matrixIndex = matrixIndex.map(mi => {
+                if (mi && (mi.file === 'null' || mi.file === 'undefined')) {
+                    console.warn(`[JanulusMatrixApp] Normalizing matrix_index entry '${mi.id}': converting file string '${mi.file}' to null`);
+                    mi.file = null;
+                }
+                return mi;
+            });
+
+            // Validate loaded matrix index entries and surface misconfigurations early
+            const invalidEntries = this.matrixIndex.filter(mi => {
+                if (!mi) return true;
+                // merged matrices must declare includeLevels
+                if (mi.type === 'merged') {
+                    return !Array.isArray(mi.includeLevels) || mi.includeLevels.length === 0;
+                }
+                // single file matrices must provide a valid filename
+                if (!mi.file || typeof mi.file !== 'string' || mi.file.trim() === '' || mi.file === 'null' || mi.file === 'undefined') {
+                    return true;
+                }
+                return false;
+            });
+
+            if (invalidEntries.length > 0) {
+                console.warn('[JanulusMatrixApp] Found misconfigured matrix_index.json entries:', invalidEntries.map(e => e && e.id));
+                // keep going — but the error will be thrown when attempting to load an invalid matrix.
+            }
             const configText = await configResponse.text();
             this.categoryConfig = getCategoryConfig(parseCSV(configText));
             
@@ -66,6 +96,27 @@ class JanulusMatrixApp {
         }
     }
 
+    /**
+     * Get language folder path from language code
+     * @param {string} languageCode - ISO language code (e.g., 'zh-CN', 'es-ES')
+     * @returns {string} Language folder name
+     */
+    getLanguagePathFromCode(languageCode) {
+        const languageMap = {
+            'zh-CN': 'chinese',
+            'zh-TW': 'chinese',
+            'es-ES': 'spanish',
+            'es-MX': 'spanish',
+            'fr-FR': 'french',
+            'de-DE': 'german',
+            'ja-JP': 'japanese',
+            'ko-KR': 'korean',
+            'en-US': 'english',
+            'en-GB': 'english'
+        };
+        return languageMap[languageCode] || languageCode.split('-')[0].toLowerCase();
+    }
+
     populateMatrixSelector() {
         const select = document.getElementById('matrix-select');
         select.innerHTML = '';
@@ -87,17 +138,44 @@ class JanulusMatrixApp {
             '<div class="loading">Loading matrix</div>';
         
         try {
-            const vocabList = await loadMatrix(matrixInfo.file);
+            let vocabList;
+            
+            // Check if this is a merged/all-levels matrix
+            if (matrixInfo.type === 'merged' && Array.isArray(matrixInfo.includeLevels) && matrixInfo.includeLevels.length > 0) {
+                // Load all specified levels dynamically
+                // Use languagePath from config, or derive from language code
+                const languagePath = matrixInfo.languagePath || this.getLanguagePathFromCode(matrixInfo.language);
+                console.log(`[JanulusMatrixApp] Loading merged matrix for ${languagePath} with levels:`, matrixInfo.includeLevels);
+                vocabList = await languageLoader.loadAllLevels(
+                    languagePath,
+                    matrixInfo.includeLevels,
+                    {
+                        sortBy: 'level',
+                        orderLevel: matrixInfo.includeLevels
+                    }
+                );
+            } else if (matrixInfo.file && typeof matrixInfo.file === 'string' && matrixInfo.file !== 'null' && matrixInfo.file !== 'undefined') {
+                // Load single level CSV file
+                vocabList = await loadMatrix(matrixInfo.file);
+            } else {
+                // Misconfigured matrix entry: file is missing or invalid
+                throw new Error(`Matrix entry '${matrixInfo.id}' is missing a valid 'file' or 'includeLevels' configuration.`);
+            }
+            
             const vocabData = groupVocabByCategory(vocabList);
             
             // Update current level and inform audio system
             this.currentLevel = matrixInfo.level;
+            this.currentLanguage = matrixInfo.languagePath || this.getLanguagePathFromCode(matrixInfo.language);
             if (window.audioCache) {
                 window.audioCache.setCurrentLevel(matrixInfo.level);
+                if (typeof window.audioCache.setCurrentLanguage === 'function') {
+                    window.audioCache.setCurrentLanguage(this.currentLanguage);
+                }
             }
             
-            // Render the matrix
-            this.matrixBuilder.render(vocabData, this.categoryConfig, matrixInfo.level);
+            // Render the matrix with language info for audio paths
+            this.matrixBuilder.render(vocabData, this.categoryConfig, matrixInfo.level, this.currentLanguage);
             
             // Clear sentence display
             this.sentenceDisplay.clear();
@@ -160,6 +238,8 @@ class JanulusMatrixApp {
         }
     }
 }
+// Export the class for unit tests
+export { JanulusMatrixApp };
 
 // Initialize app when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {

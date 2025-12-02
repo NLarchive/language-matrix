@@ -4,9 +4,18 @@ export class SentenceDisplay {
         this.pinyinEl = document.getElementById(pinyinId);
         this.englishEl = document.getElementById(englishId);
         this.currentLevelCallback = currentLevelCallback;
+        this.currentLanguageCallback = null; // Will be set via setter
         this.categoryConfig = categoryConfig;
         this.emptyMessage = 'Select words from the columns below to build a sentence';
         this.currentSentenceWords = []; // Store words for playback on demand
+    }
+
+    /**
+     * Set the current language callback
+     * @param {Function} callback - Callback to get current language
+     */
+    setCurrentLanguageCallback(callback) {
+        this.currentLanguageCallback = callback;
     }
 
     /**
@@ -98,21 +107,37 @@ export class SentenceDisplay {
         
         for (const wordObj of wordObjects) {
             const word = wordObj.Word;
-            // Use word's level if available, otherwise use current matrix level
-            const level = wordObj.Level || currentLevel;
-            
-            // Only search in the specified level - no cross-level fallback
-            const path = `assets/audio/${level}/${word}.mp3`;
+            const wordLevel = wordObj.Level ? wordObj.Level.toString().toLowerCase() : null;
+            const current = currentLevel ? currentLevel.toString().toLowerCase() : null;
+
+            // Build candidate levels in order of preference
+            const candidates = [];
+            if (wordLevel && wordLevel !== 'all' && wordLevel !== 'all_levels') candidates.push(wordLevel);
+            if (current && current !== 'all' && current !== 'all_levels') candidates.push(current);
+            ['basic', 'intermediate', 'advanced'].forEach(l => { if (!candidates.includes(l)) candidates.push(l); });
+
             if (window.audioCache) {
-                try {
-                    const blob = await window.audioCache.getAudio(path, level, true);
-                    if (blob) {
-                        audioBlobs.push(blob);
-                    } else {
-                        console.warn('[SentenceDisplay] Audio not found for:', word, 'in level:', level);
+                let found = false;
+                // Get current language from callback or default to chinese
+                const currentLanguage = this.currentLanguageCallback ? this.currentLanguageCallback() : 'chinese';
+                
+                for (const lvl of candidates) {
+                    // Try language-aware path first, then legacy path
+                    const langPath = `assets/audio/${currentLanguage}/${lvl}/${word}.mp3`;
+                    const legacyPath = `assets/audio/${lvl}/${word}.mp3`;
+                    
+                    for (const path of [langPath, legacyPath]) {
+                        try {
+                            const blob = await window.audioCache.getAudio(path, lvl, true);
+                            if (blob) { audioBlobs.push(blob); found = true; break; }
+                        } catch (e) {
+                            // try next path
+                        }
                     }
-                } catch (e) {
-                    console.warn('[SentenceDisplay] Error loading audio for:', word, e.message);
+                    if (found) break;
+                }
+                if (!found) {
+                    console.warn('[SentenceDisplay] Audio not found for:', word, 'in any level candidates');
                 }
             }
         }

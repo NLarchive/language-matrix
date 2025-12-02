@@ -5,6 +5,7 @@ export class MatrixTableBuilder {
         this.selectedWords = {};
         this.categoryOrder = [];
         this.currentLevel = 'basic'; // default level
+        this.currentLanguage = 'chinese'; // default language
     }
 
     /**
@@ -21,10 +22,11 @@ export class MatrixTableBuilder {
         return luminance > 0.5 ? '#000000' : '#FFFFFF';
     }
 
-    render(vocabData, categoryConfig, level = 'basic') {
+    render(vocabData, categoryConfig, level = 'basic', language = 'chinese') {
         this.container.innerHTML = '';
         this.selectedWords = {};
         this.currentLevel = level;
+        this.currentLanguage = language;
         
         const { grouped: vocabMatrix, categoryOrder } = vocabData;
         this.categoryOrder = categoryOrder;
@@ -164,27 +166,51 @@ export class MatrixTableBuilder {
     }
 
     async playAudio(wordData) {
-        const level = wordData.Level || this.currentLevel;
-        const path = `assets/audio/${level}/${wordData.Word}.mp3`;
-        
+        // Build a prioritized list of candidate levels to try for audio
+        // Use the word's own level first when present, otherwise use the current matrix level.
+        // If the selected matrix is a combined/all level (e.g., 'all' or 'all_levels') then
+        // we prefer the word's level; if missing, fall back to a fixed order.
+        const current = (this.currentLevel || '').toString().toLowerCase();
+        const wordLevel = wordData.Level ? wordData.Level.toString().toLowerCase() : null;
+
+        const candidates = [];
+        if (wordLevel && wordLevel !== 'all' && wordLevel !== 'all_levels') candidates.push(wordLevel);
+        if (current && current !== 'all' && current !== 'all_levels') candidates.push(current);
+
+        // final fallback order if nothing matched or file missing
+        ['basic', 'intermediate', 'advanced'].forEach(l => {
+            if (!candidates.includes(l)) candidates.push(l);
+        });
+
         if (window.audioCache) {
-            try {
-                const blob = await window.audioCache.getAudio(path, level, true);
-                if (blob) {
-                    const url = URL.createObjectURL(blob);
-                    const audio = new Audio(url);
-                    audio.onended = () => URL.revokeObjectURL(url);
-                    audio.onerror = () => URL.revokeObjectURL(url);
-                    audio.play().catch(e => console.log("Audio playback failed:", e));
-                } else {
-                    console.warn('[MatrixTableBuilder] Audio not found:', path);
+            for (const lvl of candidates) {
+                // Use language-aware path: assets/audio/{language}/{level}/{word}.mp3
+                // Fall back to old path for backward compatibility: assets/audio/{level}/{word}.mp3
+                const langPath = `assets/audio/${this.currentLanguage}/${lvl}/${wordData.Word}.mp3`;
+                const legacyPath = `assets/audio/${lvl}/${wordData.Word}.mp3`;
+                
+                for (const path of [langPath, legacyPath]) {
+                    try {
+                        const blob = await window.audioCache.getAudio(path, lvl, true);
+                        if (blob) {
+                            const url = URL.createObjectURL(blob);
+                            const audio = new Audio(url);
+                            audio.onended = () => URL.revokeObjectURL(url);
+                            audio.onerror = () => URL.revokeObjectURL(url);
+                            audio.play().catch(e => console.log("Audio playback failed:", e));
+                            return;
+                        }
+                    } catch (e) {
+                        // continue to next path
+                    }
                 }
-            } catch (e) {
-                console.log("Audio playback failed:", e);
             }
+
+            console.warn('[MatrixTableBuilder] Audio not found for word in any level:', wordData.Word);
         } else {
-            // Fallback if audioCache not available
-            const audio = new Audio(path);
+            // Fallback if audioCache is not available -- try current or basic
+            const fallbackLevel = wordLevel || current || 'basic';
+            const audio = new Audio(`assets/audio/${fallbackLevel}/${wordData.Word}.mp3`);
             audio.play().catch(e => console.log("Audio playback failed:", e));
         }
     }

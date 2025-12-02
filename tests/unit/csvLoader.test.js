@@ -292,5 +292,19 @@ Pronoun,我,wǒ,I`;
             expect(result).toHaveLength(1);
             expect(result[0].Word).toBe('我');
         });
+
+        test('should throw when filename is null or literal "null"', async () => {
+            // simulate fetch to ensure it's not called
+            global.fetch.mockImplementation(() => { throw new Error('should not be called'); });
+
+            // null value
+            await expect(loadMatrix(null)).rejects.toThrow();
+
+            // literal string 'null'
+            await expect(loadMatrix('null')).rejects.toThrow();
+
+            // literal string 'undefined'
+            await expect(loadMatrix('undefined')).rejects.toThrow();
+        });
     });
 });

@@ -10,7 +10,7 @@
  * - HTML pages: Network-first with cache fallback
  */
 
-const CACHE_VERSION = 'v1';
+const CACHE_VERSION = 'v2';
 const CACHE_NAME = `janulus-matrix-${CACHE_VERSION}`;
 const AUDIO_CACHE_NAME = `janulus-audio-${CACHE_VERSION}`;
 
@@ -124,7 +124,13 @@ self.addEventListener('fetch', (event) => {
         return;
     }
 
-    // CSV and JSON data files - stale-while-revalidate
+    // Treat matrix_index.json as network-first so clients always get latest configuration
+    if (url.pathname.endsWith('/data/matrix_index.json') || url.pathname.endsWith('/matrix_index.json')) {
+        event.respondWith(networkFirst(request, CACHE_NAME));
+        return;
+    }
+
+    // CSV and JSON data files - stale-while-revalidate for most data, but matrix_index handled above
     if (request.url.includes('/data/') || request.url.endsWith('.csv') || request.url.endsWith('.json')) {
         event.respondWith(staleWhileRevalidate(request, CACHE_NAME));
         return;

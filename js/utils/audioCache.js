@@ -12,6 +12,7 @@ class AudioCache {
         this.cacheDb = null;
         this.dbReady = this.initDB();
         this.currentLevel = 'basic'; // Track current matrix level
+        this.currentLanguage = 'chinese'; // Track current language for audio path resolution
     }
 
     /**
@@ -20,6 +21,16 @@ class AudioCache {
      */
     setCurrentLevel(level) {
         this.currentLevel = level;
+    }
+
+    /**
+     * Set the current language folder used for audio path resolution
+     * @param {string} language e.g. 'chinese', 'spanish'
+     */
+    setCurrentLanguage(language) {
+        if (typeof language === 'string' && language.trim() !== '') {
+            this.currentLanguage = language;
+        }
     }
 
     /**
@@ -76,8 +87,33 @@ class AudioCache {
                 return cached;
             }
 
-            // Try service worker cache (strict level: no fallback to other paths)
-            let cacheAudio = await this.getFromCache(normalizedPath);
+            // Build candidate paths to try. Prefer language-aware structure then fall back to legacy structure.
+            const basename = normalizedPath.split('/').pop();
+            const levelSegment = level || this.currentLevel || 'basic';
+            const candidates = [];
+
+            // If caller provided a fully qualified path (already contains language), preserve it
+            if (normalizedPath.includes(`/assets/audio/${this.currentLanguage}/`)) {
+                candidates.push(normalizedPath);
+            } else {
+                // prefer assets/audio/{language}/{level}/{file}
+                candidates.push(`assets/audio/${this.currentLanguage}/${levelSegment}/${basename}`);
+                // then legacy assets/audio/{level}/{file}
+                candidates.push(`assets/audio/${levelSegment}/${basename}`);
+                // then original path (in case caller supplied something else)
+                if (!candidates.includes(normalizedPath)) candidates.push(normalizedPath);
+            }
+
+            // Try service worker cache across candidates (strictLevel will short-circuit to first candidate only)
+            let cacheAudio = null;
+            for (const candidate of candidates) {
+                cacheAudio = await this.getFromCache(candidate);
+                if (cacheAudio) break;
+                // Also try with leading slash
+                cacheAudio = await this.getFromCache('/' + candidate);
+                if (cacheAudio) break;
+                if (strictLevel) break; // only check the preferred path when strict
+            }
             
             // If not found and not strict level, try with leading slash
             if (!cacheAudio && !strictLevel) {
@@ -85,19 +121,40 @@ class AudioCache {
             }
             
             if (cacheAudio) {
-                // Store in IndexedDB for faster future access
+                // Store in IndexedDB for faster future access (use the matched candidate path)
                 await this.saveToIndexedDB(normalizedPath, cacheAudio, level);
                 return cacheAudio;
             }
 
             // Fetch from network with timeout - only from the specified path
-            const blob = await this.fetchWithTimeout(normalizedPath, CACHE_TIMEOUT);
+            // Try network fetch across candidate paths (do not attempt every variation in strict mode)
+            let blob = null;
+            for (const candidate of candidates) {
+                try {
+                    blob = await this.fetchWithTimeout(candidate, CACHE_TIMEOUT);
+                    if (blob) {
+                        // cache the found path
+                        await Promise.all([
+                            this.saveToCache(candidate, blob),
+                            this.saveToIndexedDB(candidate, blob, level)
+                        ]);
+                        break;
+                    }
+                } catch (e) {
+                    // try next candidate
+                    if (strictLevel) break;
+                    continue;
+                }
+            }
             
             // Cache the audio
-            await Promise.all([
-                this.saveToCache(normalizedPath, blob),
-                this.saveToIndexedDB(normalizedPath, blob, level)
-            ]);
+            // If blob found above it was already cached; if not, attempt to store under normalizedPath
+            if (blob) {
+                await Promise.all([
+                    this.saveToCache(normalizedPath, blob),
+                    this.saveToIndexedDB(normalizedPath, blob, level)
+                ]).catch(() => {});
+            }
 
             return blob;
 
@@ -330,7 +387,7 @@ class AudioCache {
 
         for (const hanzi of hanziList) {
             try {
-                const audioPath = `assets/audio/${level}/${hanzi}.mp3`;
+                const audioPath = `assets/audio/${this.currentLanguage}/${level}/${hanzi}.mp3`;
                 await this.getAudio(audioPath, level);
                 results.push({ hanzi, success: true });
             } catch (error) {

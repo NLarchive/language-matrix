@@ -1,10 +1,22 @@
 [
     {
+        "id": "chinese_all_levels",
+        "name": "Chinese - All Levels (HSK 1-6)",
+        "description": "Complete vocabulary across all proficiency levels from Basic to Advanced",
+        "file": null,
+        "language": "zh-CN",
+        "languagePath": "chinese",
+        "level": "all_levels",
+        "type": "merged",
+        "includeLevels": ["basic", "intermediate", "advanced"]
+    },
+    {
         "id": "chinese_basic",
         "name": "Chinese - Basic (HSK 1-2)",
         "description": "Essential vocabulary for beginners: pronouns, common verbs, basic nouns",
         "file": "chinese_basic.csv",
         "language": "zh-CN",
+        "languagePath": "chinese",
         "level": "basic"
     },
     {
@@ -13,6 +25,7 @@
         "description": "Modal verbs, conjunctions, adverbs, question words, more vocabulary",
         "file": "chinese_intermediate.csv",
         "language": "zh-CN",
+        "languagePath": "chinese",
         "level": "intermediate"
     },
     {
@@ -21,6 +34,45 @@
         "description": "Formal vocabulary, abstract nouns, literary particles, academic connectors",
         "file": "chinese_advanced.csv",
         "language": "zh-CN",
+        "languagePath": "chinese",
+        "level": "advanced"
+    },
+    {
+        "id": "spanish_all_levels",
+        "name": "Spanish - All Levels (A1-C2)",
+        "description": "Complete Spanish vocabulary across all proficiency levels from Basic to Advanced",
+        "file": null,
+        "language": "es-ES",
+        "languagePath": "spanish",
+        "level": "all_levels",
+        "type": "merged",
+        "includeLevels": ["basic", "intermediate", "advanced"]
+    },
+    {
+        "id": "spanish_basic",
+        "name": "Spanish - Basic (A1-A2)",
+        "description": "Essential vocabulary: pronouns, common verbs, basic nouns, adjectives, numbers",
+        "file": "languages/spanish/basic.csv",
+        "language": "es-ES",
+        "languagePath": "spanish",
+        "level": "basic"
+    },
+    {
+        "id": "spanish_intermediate", 
+        "name": "Spanish - Intermediate (B1-B2)",
+        "description": "Modal verbs, conjunctions, adverbs, question words, prepositions",
+        "file": "languages/spanish/intermediate.csv",
+        "language": "es-ES",
+        "languagePath": "spanish",
+        "level": "intermediate"
+    },
+    {
+        "id": "spanish_advanced",
+        "name": "Spanish - Advanced (C1-C2)",
+        "description": "Formal vocabulary, abstract nouns, literary connectors, academic verbs",
+        "file": "languages/spanish/advanced.csv",
+        "language": "es-ES",
+        "languagePath": "spanish",
         "level": "advanced"
     }
 ]

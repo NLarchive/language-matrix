@@ -14,6 +14,8 @@
     --shadow-md: 0 4px 16px rgba(0,0,0,0.1);
     --transition-fast: 0.15s ease;
     --transition-normal: 0.25s ease;
+    --min-ui-font: 16px; /* enforced minimum UI font size */
+    --min-hanzi-font: 20px; /* minimum Hanzi font size */
 }
 
 * {
@@ -23,7 +25,7 @@
 }
 
 html {
-    font-size: 16px;
+    font-size: 16px; /* baseline */
     -webkit-text-size-adjust: 100%;
 }
 
@@ -453,4 +455,14 @@ main {
     .word-detail-english {
         font-size: 18px;
     }
+}
+
+/* Ensure minimum readable font sizes for UI text across the app */
+body, button, input, select, textarea, .matrix-table, .sentence-display, .sentence-content {
+    font-size: var(--min-ui-font);
+}
+
+/* Ensure sentence text and important hanzi words are larger */
+.sentence-chinese, .sentence-chinese span, .word-chinese, .word-detail-chinese {
+    font-size: clamp(var(--min-hanzi-font), 4vw, 36px) !important;
 }
