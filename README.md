@@ -1,4 +1,5 @@
 # Janulus Matrix - Chinese Language Learning Web App
+https://nlarchive.github.io/language-matrix/
 
 A progressive web application (PWA) for learning Chinese vocabulary with interactive matrix selection, sentence generation, and integrated audio playback. Designed for offline-first functionality with comprehensive caching for educational deployment.
 
