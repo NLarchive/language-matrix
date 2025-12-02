@@ -82,9 +82,13 @@ class JanulusMatrixApp {
             // Populate matrix selector (only show matrices that actually exist on disk)
             await this.populateMatrixSelector();
             
-            // Load first matrix by default
-            if (this.matrixIndex.length > 0) {
-                await this.loadSelectedMatrix(this.matrixIndex[0].id);
+            // Load first available matrix by default (after selector population)
+            const selectEl = document.getElementById('matrix-select');
+            if (selectEl && selectEl.options && selectEl.options.length > 0) {
+                const firstVal = selectEl.options[0].value;
+                if (firstVal) {
+                    await this.loadSelectedMatrix(firstVal);
+                }
             }
             
             // Bind events
