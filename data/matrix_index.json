@@ -14,7 +14,7 @@
         "id": "chinese_basic",
         "name": "Chinese - Basic (HSK 1-2)",
         "description": "Essential vocabulary for beginners: pronouns, common verbs, basic nouns",
-        "file": "chinese_basic.csv",
+        "file": "languages/chinese/basic.csv",
         "language": "zh-CN",
         "languagePath": "chinese",
         "level": "basic"
@@ -23,7 +23,7 @@
         "id": "chinese_intermediate", 
         "name": "Chinese - Intermediate (HSK 3-4)",
         "description": "Modal verbs, conjunctions, adverbs, question words, more vocabulary",
-        "file": "chinese_intermediate.csv",
+        "file": "languages/chinese/intermediate.csv",
         "language": "zh-CN",
         "languagePath": "chinese",
         "level": "intermediate"
@@ -32,7 +32,7 @@
         "id": "chinese_advanced",
         "name": "Chinese - Advanced (HSK 5-6)",
         "description": "Formal vocabulary, abstract nouns, literary particles, academic connectors",
-        "file": "chinese_advanced.csv",
+        "file": "languages/chinese/advanced.csv",
         "language": "zh-CN",
         "languagePath": "chinese",
         "level": "advanced"

@@ -73,7 +73,7 @@ export class MatrixTableBuilder {
                 if (words && i < words.length) {
                     const wordData = words[i];
                     const cell = this.createWordCell(wordData, category);
-                    td.appendChild(cell);
+                    if (cell) td.appendChild(cell);
                 }
                 
                 row.appendChild(td);
@@ -100,6 +100,11 @@ export class MatrixTableBuilder {
     }
 
     createWordCell(wordData, category) {
+        // Defensive: if the data is missing or malformed, skip rendering this cell
+        if (!wordData || !wordData.Word) {
+            console.warn('[MatrixTableBuilder] Skipping invalid wordData:', wordData, 'category:', category);
+            return null;
+        }
         const cell = document.createElement('div');
         cell.className = 'word-cell';
         

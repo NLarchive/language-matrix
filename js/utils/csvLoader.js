@@ -109,6 +109,9 @@ export async function loadMatrix(filename) {
     }
     
     const response = await fetch(`data/${filename}`);
+    if (!response.ok) {
+        throw new Error(`Failed to fetch data/${filename}: HTTP ${response.status}`);
+    }
     const text = await response.text();
     const data = parseCSV(text);
     
