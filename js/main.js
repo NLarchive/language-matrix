@@ -73,22 +73,20 @@ class JanulusMatrixApp {
                 console.warn('[JanulusMatrixApp] Found misconfigured matrix_index.json entries:', invalidEntries.map(e => e && e.id));
                 // keep going — but the error will be thrown when attempting to load an invalid matrix.
             }
+            // Filter matrixIndex to only matrices that actually have data available
+            this.matrixIndex = await this.filterAvailableMatrices(this.matrixIndex);
             const configText = await configResponse.text();
             this.categoryConfig = getCategoryConfig(parseCSV(configText));
             
             // Set category config for sentence display
             this.sentenceDisplay.setCategoryConfig(this.categoryConfig);
             
-            // Populate matrix selector (only show matrices that actually exist on disk)
-            await this.populateMatrixSelector();
+            // Populate matrix selector
+            this.populateMatrixSelector();
             
-            // Load first available matrix by default (after selector population)
-            const selectEl = document.getElementById('matrix-select');
-            if (selectEl && selectEl.options && selectEl.options.length > 0) {
-                const firstVal = selectEl.options[0].value;
-                if (firstVal) {
-                    await this.loadSelectedMatrix(firstVal);
-                }
+            // Load first matrix by default
+            if (this.matrixIndex.length > 0) {
+                await this.loadSelectedMatrix(this.matrixIndex[0].id);
             }
             
             // Bind events
@@ -98,6 +96,64 @@ class JanulusMatrixApp {
             console.error("Failed to initialize:", error);
             this.showError(error.message);
         }
+    }
+
+    /**
+     * Validate matrix index entries by ensuring the CSVs or language levels are actually available.
+     * - For merged matrices, try to loadAllLevels via languageLoader and only keep entries that return data.
+     * - For file-based matrices, attempt to fetch the configured CSV path and keep entries that respond OK.
+     * @param {Array} entries
+     * @returns {Promise<Array>} filtered entries
+     */
+    async filterAvailableMatrices(entries) {
+        const available = [];
+
+        for (const mi of entries) {
+            if (!mi) continue;
+            try {
+                if (mi.type === 'merged' && Array.isArray(mi.includeLevels) && mi.includeLevels.length > 0) {
+                    // prefer languagePath if present
+                    const languagePath = mi.languagePath || this.getLanguagePathFromCode(mi.language);
+                    const data = await languageLoader.loadAllLevels(languagePath, mi.includeLevels);
+                    if (Array.isArray(data) && data.length > 0) {
+                        available.push(mi);
+                    } else {
+                        console.warn(`[JanulusMatrixApp] Skipping merged matrix '${mi.id}' - no data found for language '${languagePath}'`);
+                    }
+                } else if (mi.file && typeof mi.file === 'string') {
+                    // normalize file path to data/*
+                    const filePath = mi.file.startsWith('data/') ? mi.file : `data/${mi.file}`;
+
+                    // Try a lightweight existence check (HEAD), fallback to GET
+                    let ok = false;
+                    try {
+                        const headResp = await fetch(filePath, { method: 'HEAD' });
+                        ok = headResp && headResp.ok;
+                    } catch (e) {
+                        // HEAD might fail in some environments — try GET
+                        try {
+                            const getResp = await fetch(filePath);
+                            ok = getResp && getResp.ok;
+                        } catch (err) {
+                            ok = false;
+                        }
+                    }
+
+                    if (ok) {
+                        available.push(mi);
+                    } else {
+                        console.warn(`[JanulusMatrixApp] Skipping matrix '${mi.id}' - configured file '${filePath}' not found`);
+                    }
+                } else {
+                    // misconfigured single-file entry with no file and not merged — exclude
+                    console.warn(`[JanulusMatrixApp] Excluding '${mi.id}' - no file and not a merged matrix`);
+                }
+            } catch (error) {
+                console.warn('[JanulusMatrixApp] Error validating matrix entry', mi && mi.id, error && error.message);
+            }
+        }
+
+        return available;
     }
 
     /**
@@ -121,34 +177,16 @@ class JanulusMatrixApp {
         return languageMap[languageCode] || languageCode.split('-')[0].toLowerCase();
     }
 
-    async populateMatrixSelector() {
+    populateMatrixSelector() {
         const select = document.getElementById('matrix-select');
         select.innerHTML = '';
-
-        for (const matrix of this.matrixIndex) {
-            try {
-                const available = await languageLoader.isMatrixAvailable(matrix);
-                if (!available) {
-                    console.warn(`[JanulusMatrixApp] Skipping unavailable matrix ${matrix.id}`);
-                    continue;
-                }
-
-                const option = document.createElement('option');
-                option.value = matrix.id;
-                option.textContent = matrix.name;
-                select.appendChild(option);
-            } catch (e) {
-                console.warn('[JanulusMatrixApp] Error checking availability for matrix', matrix.id, e);
-            }
-        }
-
-        // If nothing added, show a friendly placeholder option
-        if (select.children.length === 0) {
+        
+        this.matrixIndex.forEach(matrix => {
             const option = document.createElement('option');
-            option.value = '';
-            option.textContent = 'No matrices available';
+            option.value = matrix.id;
+            option.textContent = matrix.name;
             select.appendChild(option);
-        }
+        });
     }
 
     async loadSelectedMatrix(matrixId) {
