@@ -307,12 +307,12 @@ export class WordComposer {
     }
 
     handleDragOver(e) {
-        e.preventDefault();
+        if (e.cancelable) e.preventDefault();
         e.dataTransfer.dropEffect = 'move';
     }
 
     handleDragEnter(e) {
-        e.preventDefault();
+        if (e.cancelable) e.preventDefault();
         e.target.classList.add('drag-over');
     }
 
@@ -321,7 +321,7 @@ export class WordComposer {
     }
 
     handleDrop(e) {
-        e.preventDefault();
+        if (e.cancelable) e.preventDefault();
         e.target.classList.remove('drag-over');
         
         const radical = e.dataTransfer.getData('text/plain');
@@ -338,7 +338,7 @@ export class WordComposer {
         const card = e.target.closest('.radical-card');
         
         if (card) {
-            e.preventDefault();
+            if (e.cancelable) e.preventDefault();
             card.classList.add('touch-dragging');
             this.touchDragData = {
                 element: card,
@@ -362,7 +362,7 @@ export class WordComposer {
 
     handleTouchMove(e) {
         if (!this.touchDragData) return;
-        e.preventDefault();
+        if (e.cancelable) e.preventDefault();
         
         const touch = e.touches[0];
         if (this.touchDragData.ghost) {
