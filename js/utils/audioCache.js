@@ -147,12 +147,14 @@ class AudioCache {
             }
             
             if (cacheAudio) {
-                // Store in IndexedDB for faster future access (use the matched candidate path)
-                await this.saveToIndexedDB(normalizedPath, cacheAudio, level);
+                // Note: Skipping IndexedDB save for cached audio to avoid potential serialization issues
+                // await this.saveToIndexedDB(normalizedPath, cacheAudio, level);
                 // Also record under a sanitized path key so later lookups for sanitized filenames succeed
                 try {
                     const sanitizedKey = normalizedPath.replace(basename, sanitizedEncoded);
-                    if (sanitizedKey !== normalizedPath) await this.saveToIndexedDB(sanitizedKey, cacheAudio, level);
+                    if (sanitizedKey !== normalizedPath) {
+                        // await this.saveToIndexedDB(sanitizedKey, cacheAudio, level);
+                    }
                 } catch (e) { /* ignore */ }
                 return cacheAudio;
             }
@@ -263,6 +265,11 @@ class AudioCache {
     saveToIndexedDB(path, blob, level = 'basic') {
         return new Promise((resolve) => {
             if (!this.cacheDb) {
+                resolve();
+                return;
+            }
+
+            if (!blob || !(blob instanceof Blob)) {
                 resolve();
                 return;
             }
