@@ -243,6 +243,7 @@ export class WordComposer {
             card.addEventListener('touchstart', (e) => this.handleTouchStart(e), { passive: false });
             card.addEventListener('touchmove', (e) => this.handleTouchMove(e), { passive: false });
             card.addEventListener('touchend', (e) => this.handleTouchEnd(e));
+            card.addEventListener('touchcancel', (e) => this.handleTouchEnd(e));
         });
         
         // Drop zones (slots) - only if word is not complete
@@ -334,6 +335,15 @@ export class WordComposer {
 
     // Touch handlers for mobile support
     handleTouchStart(e) {
+        // Clean up any existing touch drag data
+        if (this.touchDragData) {
+            if (this.touchDragData.ghost) {
+                this.touchDragData.ghost.remove();
+            }
+            this.touchDragData.element.classList.remove('touch-dragging');
+            this.touchDragData = null;
+        }
+        
         const touch = e.touches[0];
         const card = e.target.closest('.radical-card');
         
@@ -347,12 +357,19 @@ export class WordComposer {
                 startY: touch.clientY
             };
             
-            // Create ghost element
+            // Create ghost element. Remove any classes that might add transitions
+            // so the ghost will follow the finger immediately and without easing.
             const ghost = card.cloneNode(true);
+            ghost.classList.remove('radical-card', 'dragging', 'touch-dragging', 'draggable', 'used');
             ghost.classList.add('touch-ghost');
             ghost.style.position = 'fixed';
-            ghost.style.left = `${touch.clientX - 30}px`;
-            ghost.style.top = `${touch.clientY - 30}px`;
+            // Use transform (translate3d) for smooth, GPU-accelerated motion and
+            // ensure no transition is applied to avoid 'resistance' on first move.
+            ghost.style.left = '0px';
+            ghost.style.top = '0px';
+            ghost.style.transform = `translate3d(${touch.clientX - 30}px, ${touch.clientY - 30}px, 0)`;
+            ghost.style.transition = 'none';
+            ghost.style.willChange = 'transform';
             ghost.style.pointerEvents = 'none';
             ghost.style.zIndex = '10000';
             document.body.appendChild(ghost);
@@ -366,8 +383,8 @@ export class WordComposer {
         
         const touch = e.touches[0];
         if (this.touchDragData.ghost) {
-            this.touchDragData.ghost.style.left = `${touch.clientX - 30}px`;
-            this.touchDragData.ghost.style.top = `${touch.clientY - 30}px`;
+            // Move with translate3d for smooth, immediate motion
+            this.touchDragData.ghost.style.transform = `translate3d(${touch.clientX - 30}px, ${touch.clientY - 30}px, 0)`;
         }
         
         // Check if over a slot

@@ -576,6 +576,7 @@ body, button, input, select, textarea, .matrix-table, .sentence-display, .senten
     text-align: center;
     cursor: pointer;
     transition: all var(--transition-fast);
+    touch-action: none;
 }
 
 .radical-card:hover {
@@ -1097,6 +1098,10 @@ body, button, input, select, textarea, .matrix-table, .sentence-display, .senten
     padding: 10px 16px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
     opacity: 0.9;
+    /* Ensure instant movement and GPU compositing */
+    transition: none !important;
+    will-change: transform;
+    touch-action: none;
 }
 
 /* Composer Result */
