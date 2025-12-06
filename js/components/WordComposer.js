@@ -412,6 +412,40 @@ export class WordComposer {
         if (slot) {
             const slotIndex = parseInt(slot.dataset.index);
             this.placeRadical(this.touchDragData.radical, slotIndex);
+        } else if (this.touchDragData && this.touchDragData.ghost) {
+            // If we didn't hit a slot by elementFromPoint, allow fuzzy placement
+            // — accept the slot that contains a large portion of the ghost element
+            // (e.g. 50% overlap). This makes touch drops easier when user doesn't
+            // perfectly center the ghost.
+            try {
+                const ghostRect = this.touchDragData.ghost.getBoundingClientRect();
+                const ghostArea = Math.max(0, ghostRect.width) * Math.max(0, ghostRect.height);
+                if (ghostArea > 0) {
+                    let bestSlot = null;
+                    let bestRatio = 0;
+                    const slots = Array.from(this.container.querySelectorAll('.radical-slot:not(.filled)'));
+                    for (const s of slots) {
+                        const r = s.getBoundingClientRect();
+                        const ix = Math.max(0, Math.min(r.right, ghostRect.right) - Math.max(r.left, ghostRect.left));
+                        const iy = Math.max(0, Math.min(r.bottom, ghostRect.bottom) - Math.max(r.top, ghostRect.top));
+                        const area = ix * iy;
+                        const ratio = area / ghostArea; // fraction of ghost inside slot
+                        if (ratio > bestRatio) {
+                            bestRatio = ratio;
+                            bestSlot = s;
+                        }
+                    }
+
+                    // threshold: at least 45% of the ghost must overlap the slot
+                    const MIN_OVERLAP = 0.45;
+                    if (bestSlot && bestRatio >= MIN_OVERLAP) {
+                        const slotIndex = parseInt(bestSlot.dataset.index);
+                        if (!isNaN(slotIndex)) this.placeRadical(this.touchDragData.radical, slotIndex);
+                    }
+                }
+            } catch (e) {
+                // Ignore calculation errors — fallback is no-op
+            }
         }
         
         // Cleanup
