@@ -6,6 +6,36 @@ export class MatrixTableBuilder {
         this.categoryOrder = [];
         this.currentLevel = 'basic'; // default level
         this.currentLanguage = 'chinese'; // default language
+        this.radicals = []; // Radicals data for modal display
+        this.radicalsLanguage = 'chinese';
+        this.wordRadicals = {}; // Word-to-radical mappings
+        this.radicalLoader = null; // Reference to radicalLoader for variant matching
+    }
+
+    /**
+     * Set radicals data for modal display
+     * @param {Array} radicals - Array of radical objects
+     * @param {string} language - Language path
+     */
+    setRadicals(radicals, language = 'chinese') {
+        this.radicals = radicals || [];
+        this.radicalsLanguage = language;
+    }
+
+    /**
+     * Set word-radical mappings for modal display
+     * @param {Object} wordRadicals - Object mapping words to their radicals
+     */
+    setWordRadicals(wordRadicals) {
+        this.wordRadicals = wordRadicals || {};
+    }
+
+    /**
+     * Set radical loader reference for variant matching and meaning lookup
+     * @param {RadicalLoader} loader - RadicalLoader instance
+     */
+    setRadicalLoader(loader) {
+        this.radicalLoader = loader;
     }
 
     /**
@@ -115,7 +145,7 @@ export class MatrixTableBuilder {
         
         btn.innerHTML = `
             <div class="word-chinese">${wordData.Word}</div>
-            <div class="word-pinyin">${wordData.Pinyin || ''}</div>
+            <div class="word-pinyin">${wordData.Pinyin || wordData.Reading || wordData.Romanization || ''}</div>
             <div class="word-english">${wordData.English || ''}</div>
             <div class="word-actions">
                 <button class="audio-mini-btn" data-audio="${wordData.Word}" aria-label="Play audio">
@@ -170,6 +200,17 @@ export class MatrixTableBuilder {
         this.onWordSelect(this.selectedWords, this.categoryOrder);
     }
 
+    /**
+     * Sanitize word for use as filename by replacing invalid characters
+     * @param {string} word - The word to sanitize
+     * @returns {string} Sanitized filename-safe word
+     */
+    sanitizeFilename(word) {
+        if (!word || typeof word !== 'string') return '';
+        // Map problematic filename characters to underscore to match asset naming used elsewhere
+        return word.replace(/[\/\\:*?"<>|]/g, '_').trim();
+    }
+
     async playAudio(wordData) {
         // Build a prioritized list of candidate levels to try for audio
         // Use the word's own level first when present, otherwise use the current matrix level.
@@ -191,18 +232,40 @@ export class MatrixTableBuilder {
             for (const lvl of candidates) {
                 // Use language-aware path: assets/audio/{language}/{level}/{word}.mp3
                 // Fall back to old path for backward compatibility: assets/audio/{level}/{word}.mp3
-                const langPath = `assets/audio/${this.currentLanguage}/${lvl}/${wordData.Word}.mp3`;
-                const legacyPath = `assets/audio/${lvl}/${wordData.Word}.mp3`;
+                // prefer audio path matching the configured audio folder in audioCache (may be capitalized)
+                const audioFolder = (window.audioCache && window.audioCache.currentLanguage) ? window.audioCache.currentLanguage : this.currentLanguage;
+                const sanitizedWord = this.sanitizeFilename(wordData.Word);
+                const encodedName = encodeURIComponent(sanitizedWord);
+                const langPath = `assets/audio/${audioFolder}/${lvl}/${encodedName}.mp3`;
+                const legacyPath = `assets/audio/${lvl}/${encodedName}.mp3`;
                 
                 for (const path of [langPath, legacyPath]) {
                     try {
                         const blob = await window.audioCache.getAudio(path, lvl, true);
                         if (blob) {
                             const url = URL.createObjectURL(blob);
-                            const audio = new Audio(url);
+                            const audio = new Audio();
+                            audio.preload = 'auto';
+                            
+                            // Use both canplaythrough and loadeddata for maximum compatibility
+                            let ready = false;
+                            const playWhenReady = () => {
+                                if (ready) return;
+                                ready = true;
+                                // 200ms delay to ensure audio context is fully initialized
+                                setTimeout(() => {
+                                    audio.play().catch(e => console.log("Audio playback failed:", e));
+                                }, 200);
+                            };
+                            
+                            audio.oncanplaythrough = playWhenReady;
+                            audio.onloadeddata = playWhenReady;
                             audio.onended = () => URL.revokeObjectURL(url);
                             audio.onerror = () => URL.revokeObjectURL(url);
-                            audio.play().catch(e => console.log("Audio playback failed:", e));
+                            
+                            // Set source after handlers are attached
+                            audio.src = url;
+                            audio.load();
                             return;
                         }
                     } catch (e) {
@@ -215,7 +278,8 @@ export class MatrixTableBuilder {
         } else {
             // Fallback if audioCache is not available -- try current or basic
             const fallbackLevel = wordLevel || current || 'basic';
-            const audio = new Audio(`assets/audio/${fallbackLevel}/${wordData.Word}.mp3`);
+            const sanitizedWord = this.sanitizeFilename(wordData.Word);
+            const audio = new Audio(`assets/audio/${fallbackLevel}/${sanitizedWord}.mp3`);
             audio.play().catch(e => console.log("Audio playback failed:", e));
         }
     }
@@ -224,10 +288,39 @@ export class MatrixTableBuilder {
         const modal = document.getElementById('word-modal');
         const modalContent = document.getElementById('modal-content');
         
+        // Find radicals in this character
+        const foundRadicals = this.findRadicalsInWord(wordData.Word);
+        let radicalsHtml = '';
+        
+        if (foundRadicals.length > 0) {
+            radicalsHtml = `
+                <div class="word-detail-radicals">
+                    <h4 class="radicals-section-title">Component Radicals</h4>
+                    <div class="radicals-in-word">
+                        ${foundRadicals.map(r => `
+                            <div class="radical-chip" title="${r.Meaning || ''}">
+                                <span class="radical-chip-char">${r.Radical}</span>
+                                <span class="radical-chip-info">
+                                    <span class="radical-chip-pinyin">${r.Pinyin || r.Reading || r.Romanization || ''}</span>
+                                    <span class="radical-chip-meaning">${this.truncateText(r.Meaning || '', 15)}</span>
+                                </span>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        } else if (this.radicals.length > 0) {
+            radicalsHtml = `
+                <div class="word-detail-radicals">
+                    <p class="no-radicals-found">No direct radical match found for this character.</p>
+                </div>
+            `;
+        }
+        
         modalContent.innerHTML = `
             <div class="word-detail">
                 <div class="word-detail-chinese">${wordData.Word}</div>
-                <div class="word-detail-pinyin">${wordData.Pinyin || ''}</div>
+                <div class="word-detail-pinyin">${wordData.Pinyin || wordData.Reading || wordData.Romanization || ''}</div>
                 <div class="word-detail-english">${wordData.English || ''}</div>
                 
                 <div class="word-detail-info">
@@ -253,6 +346,8 @@ export class MatrixTableBuilder {
                     </div>
                 </div>
                 
+                ${radicalsHtml}
+                
                 <div class="word-detail-audio">
                     <button class="audio-btn" onclick="this.closest('.modal').querySelector('.close').click(); setTimeout(() => document.querySelector('[data-audio=\\'${wordData.Word}\\']').click(), 100)">
                         <svg viewBox="0 0 24 24" width="20" height="20">
@@ -275,6 +370,61 @@ export class MatrixTableBuilder {
                 modal.style.display = 'none';
             }
         };
+    }
+
+    /**
+     * Find radicals in a word/character
+     * Uses word-radical mappings from vocabulary CSVs
+     * Looks up meanings dynamically from radicals.csv via radicalLoader
+     * @param {string} word - The word to analyze
+     * @returns {Array} Array of radical objects with meanings from radicals.csv
+     */
+    findRadicalsInWord(word) {
+        const found = [];
+        
+        // Check if we have a word-radical mapping from vocabulary CSV
+        if (this.wordRadicals && this.wordRadicals[word]) {
+            const mapping = this.wordRadicals[word];
+            
+            // For each radical from vocabulary CSV, look up meaning from radicals.csv
+            mapping.radicals.forEach((radical) => {
+                let radicalInfo = null;
+                
+                // Use radicalLoader for proper variant matching if available
+                if (this.radicalLoader) {
+                    radicalInfo = this.radicalLoader.getRadicalInfo(radical, this.currentLanguage);
+                }
+                
+                // Fallback to direct array lookup if radicalLoader not available
+                if (!radicalInfo && this.radicals && this.radicals.length > 0) {
+                    radicalInfo = this.radicals.find(r => r.Radical === radical);
+                }
+                
+                found.push({
+                    Radical: radical,
+                    Pinyin: radicalInfo?.Pinyin || '',
+                    Meaning: radicalInfo?.Meaning || '',
+                    Description: radicalInfo?.Description || '',
+                    fromRadicalsCSV: !!radicalInfo
+                });
+            });
+            return found;
+        }
+        
+        // STRICT MODE: Only use explicit mapping from vocabulary CSVs
+        // If no mapping exists, return empty array.
+        return found;
+    }
+
+    /**
+     * Truncate text with ellipsis
+     * @param {string} text - Text to truncate
+     * @param {number} maxLength - Maximum length
+     * @returns {string} Truncated text
+     */
+    truncateText(text, maxLength) {
+        if (!text || text.length <= maxLength) return text;
+        return text.substring(0, maxLength) + '...';
     }
 
     clearSelection() {

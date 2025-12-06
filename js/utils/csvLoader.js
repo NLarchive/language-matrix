@@ -1,6 +1,61 @@
+/**
+ * Parse a CSV line handling quoted fields with commas
+ * RFC 4180 compliant parser for proper quote handling
+ * @param {string} line - CSV line to parse
+ * @returns {Array<string>} Array of field values
+ */
+function parseCSVLine(line) {
+    const result = [];
+    let current = '';
+    let inQuotes = false;
+    let i = 0;
+    
+    while (i < line.length) {
+        const char = line[i];
+        
+        if (inQuotes) {
+            if (char === '"') {
+                // Check for escaped quote (double quote)
+                if (i + 1 < line.length && line[i + 1] === '"') {
+                    current += '"';
+                    i += 2;
+                    continue;
+                } else {
+                    // End of quoted field
+                    inQuotes = false;
+                    i++;
+                    continue;
+                }
+            } else {
+                current += char;
+                i++;
+            }
+        } else {
+            if (char === '"') {
+                // Start of quoted field
+                inQuotes = true;
+                i++;
+            } else if (char === ',') {
+                // Field separator
+                result.push(current.trim());
+                current = '';
+                i++;
+            } else {
+                current += char;
+                i++;
+            }
+        }
+    }
+    
+    // Push the last field
+    result.push(current.trim());
+    
+    return result;
+}
+
 export function parseCSV(csvText) {
     const lines = csvText.trim().split('\n');
-    const headers = lines[0].split(',').map(h => h.trim());
+    const headers = parseCSVLine(lines[0]);
     
     const result = [];
     
@@ -8,11 +63,11 @@ export function parseCSV(csvText) {
         const currentLine = lines[i].trim();
         if (!currentLine) continue;
         
-        const values = currentLine.split(',');
+        const values = parseCSVLine(currentLine);
         
         const obj = {};
         headers.forEach((header, index) => {
-            obj[header] = values[index] ? values[index].trim() : '';
+            obj[header] = values[index] !== undefined ? values[index] : '';
         });
         
         result.push(obj);
@@ -118,7 +173,7 @@ export async function loadMatrix(filename) {
     // Determine level from filename (e.g., 'chinese_basic.csv' -> 'basic')
     // Be defensive: ensure filename is a string and contains expected parts before manipulating it.
     const safeFilename = String(filename);
-    // Extract base filename (e.g., 'chinese_basic.csv' or 'basic.csv' or 'languages/spanish/basic.csv')
+    // Extract base filename (e.g., 'chinese_basic.csv' or 'basic.csv' or 'languages/Japanese/basic.csv')
     const baseName = safeFilename.split('/').pop();
     // Remove the extension and split on common separators to infer the level name
     const baseNoExt = baseName.replace(/\.csv$/i, '').toLowerCase();

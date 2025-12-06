@@ -1,0 +1,62 @@
+Category,Word,Romanization,English,POS,Role,Common_Usage,Example_Phrase,Components,word_n_components
+Pronoun,그녀들,geunyeodeul,they(f),PRON,personal,Formal feminine,그녀들이 왔다.,그+녀+들,3
+Pronoun,각각,gakgak,each,PRON,distributive,Distribution,각각 다르다.,각+각,2
+Pronoun,모든,modeun,all/every,PRON,universal,Comprehensive,모든 가능성,모+든,2
+Pronoun,어느,eoneu,some/any,PRON,indefinite,Formal choice,어느 날,어+느,2
+Verb,연구하다,yeonguhada,research,VERB,action,Academic,과학을 연구하다.,연+구+하+다,4
+Verb,발표하다,balpyohada,present/announce,VERB,action,Academic,논문을 발표하다.,발+표+하+다,4
+Verb,검토하다,geomtohada,examine,VERB,action,Formal,제안을 검토하다.,검+토+하+다,4
+Verb,실시하다,silsihada,implement,VERB,action,Formal,계획을 실시하다.,실+시+하+다,4
+Verb,제안하다,jeanhada,propose,VERB,action,Business,새 방법을 제안하다.,제+안+하+다,4
+Verb,확인하다,hwaginhada,confirm,VERB,action,Business,예약을 확인하다.,확+인+하+다,4
+Verb,설명하다,seolmyeonghada,explain,VERB,action,Communication,자세히 설명하다.,설+명+하+다,4
+Verb,참가하다,chamgahada,participate,VERB,action,Social,회의에 참가하다.,참+가+하+다,4
+Verb,성공하다,seonggonghada,succeed,VERB,result,Achievement,시험에 성공하다.,성+공+하+다,4
+Verb,실패하다,silpaehada,fail,VERB,result,Negative outcome,계획이 실패하다.,실+패+하+다,4
+Verb,존재하다,jonjaehada,exist,VERB,state,Abstract,문제가 존재하다.,존+재+하+다,4
+Verb,변화하다,byeonhwahada,change,VERB,action,Transformation,상황이 변화하다.,변+화+하+다,4
+Verb,증가하다,jeunggahada,increase,VERB,action,Quantity,인구가 증가하다.,증+가+하+다,4
+Verb,감소하다,gamsohada,decrease,VERB,action,Quantity,비용이 감소하다.,감+소+하+다,4
+Verb,발생하다,balsaenghada,occur,VERB,action,Events,사고가 발생하다.,발+생+하+다,4
+Verb,영향을 주다,yeonghyangeul juda,influence,VERB,action,Impact,결과에 영향을 주다.,영+향+을+주+다,5
+Noun,연구,yeongu,research,NOUN,object,Academic,연구를 계속하다.,연+구,2
+Noun,발전,baljeon,development,NOUN,object,Abstract,경제 발전,발+전,2
+Noun,환경,hwangyeong,environment,NOUN,object,Abstract,환경을 보호하다.,환+경,2
+Noun,사회,sahoe,society,NOUN,object,Abstract,사회 문제,사+회,2
+Noun,경제,gyeongje,economy,NOUN,object,Abstract,경제 성장,경+제,2
+Noun,정치,jeongchi,politics,NOUN,object,Abstract,정치에 관심이 있다.,정+치,2
+Noun,문화,munhwa,culture,NOUN,object,Abstract,한국 문화,문+화,2
+Noun,기술,gisul,technology,NOUN,object,Abstract,최신 기술,기+술,2
+Noun,정보,jeongbo,information,NOUN,object,Abstract,정보를 모으다.,정+보,2
+Noun,관계,gwangye,relationship,NOUN,object,Abstract,좋은 관계,관+계,2
+Noun,원인,wonin,cause,NOUN,object,Abstract,원인을 찾다.,원+인,2
+Noun,결과,gyeolgwa,result,NOUN,object,Abstract,좋은 결과,결+과,2
+Noun,목적,mokjeok,purpose,NOUN,object,Abstract,목적을 달성하다.,목+적,2
+Noun,방법,bangbeop,method,NOUN,object,Abstract,새로운 방법,방+법,2
+Noun,이유,iyu,reason,NOUN,object,Abstract,이유를 설명하다.,이+유,2
+Noun,가능성,ganeungseong,possibility,NOUN,object,Abstract,가능성이 있다.,가+능+성,3
+Noun,책임,chaegim,responsibility,NOUN,object,Abstract,책임을 지다.,책+임,2
+Noun,기회,gihoe,opportunity,NOUN,object,Abstract,좋은 기회,기+회,2
+Noun,상황,sanghwang,situation,NOUN,object,Abstract,현재 상황,상+황,2
+Noun,입장,ipjang,position/standpoint,NOUN,object,Abstract,나의 입장,입+장,2
+Noun,영향,yeonghyang,influence,NOUN,object,Abstract,나쁜 영향,영+향,2
+Noun,효과,hyogwa,effect,NOUN,object,Abstract,효과가 있다.,효+과,2
+Adjective,중요하다,jungyohada,important,ADJ,descriptor,Formal,중요한 문제,중+요+하+다,4
+Adjective,필요하다,piryohada,necessary,ADJ,descriptor,Formal,필요한 정보,필+요+하+다,4
+Adjective,복잡하다,bokjaphada,complex,ADJ,descriptor,Formal,복잡한 문제,복+잡+하+다,4
+Adjective,단순하다,dansunhada,simple,ADJ,descriptor,Formal,단순한 이유,단+순+하+다,4
+Adjective,명확하다,myeonghwakhada,clear,ADJ,descriptor,Formal,명확한 설명,명+확+하+다,4
+Conjunction,따라서,ttaraseo,therefore,CONJ,connector,Formal,따라서 결론은 명확하다.,따+라+서,3
+Conjunction,반면에,banmyeone,on the other hand,CONJ,connector,Formal,반면에 다른 의견도 있다.,반+면+에,3
+Conjunction,단,dan,however/provided,CONJ,connector,Formal,단 조건이 있다.,단,1
+Conjunction,즉,jeuk,in other words,CONJ,connector,Explanation,즉 불가능하다.,즉,1
+Conjunction,곧,got,namely,CONJ,connector,Definition,곧 성공이다.,곧,1
+Conjunction,게다가,gedaga,furthermore,CONJ,connector,Addition,게다가 문제가 있다.,게+다+가,3
+Conjunction,또한,ttohan,also,CONJ,connector,Addition,또한 와 주세요.,또+한,2
+Adverb,특히,teukhi,especially,ADV,modifier,Emphasis,특히 중요하다.,특+히,2
+Adverb,반드시,bandeusi,necessarily,ADV,modifier,Formal,반드시 해야 한다.,반+드+시,3
+Adverb,기본적으로,gibonjeoguro,basically,ADV,modifier,Formal,기본적으로 찬성이다.,기+본+적+으+로,5
+Adverb,일반적으로,ilbanjeoguro,generally,ADV,modifier,Formal,일반적으로 맞다.,일+반+적+으+로,5
+Adverb,실제로,siljaero,actually,ADV,modifier,Reality,실제로 만났다.,실+제+로,3
+Adverb,매우,maeu,extremely,ADV,modifier,Emphasis,매우 중요하다.,매+우,2
+Adverb,완전히,wanjeonhi,completely,ADV,modifier,Totality,완전히 이해했다.,완+전+히,3

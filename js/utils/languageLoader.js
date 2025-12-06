@@ -63,7 +63,7 @@ export class LanguageLoader {
             'zh-TW': 'Chinese (Traditional)',
             'en-US': 'English',
             'en-GB': 'English (British)',
-            'es-ES': 'Spanish',
+            'es-ES': 'Japanese',
             'fr-FR': 'French',
             'de-DE': 'German',
             'ja-JP': 'Japanese',

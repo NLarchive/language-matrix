@@ -70,8 +70,9 @@ export class SentenceDisplay {
                 chineseSpans.push(span);
                 
                 wordObjects.push(word);
-                if (word.Pinyin) {
-                    pinyinWords.push(word.Pinyin);
+                const pronunciation = word.Pinyin || word.Reading || word.Romanization;
+                if (pronunciation) {
+                    pinyinWords.push(pronunciation);
                 }
                 if (word.English) {
                     englishWords.push(word.English);
@@ -118,13 +119,19 @@ export class SentenceDisplay {
 
             if (window.audioCache) {
                 let found = false;
-                // Get current language from callback or default to chinese
-                const currentLanguage = this.currentLanguageCallback ? this.currentLanguageCallback() : 'chinese';
+                // Get current audio folder (prefer audioCache currentLanguage which matches asset folders)
+                const currentLanguage = (window.audioCache && window.audioCache.currentLanguage)
+                    ? window.audioCache.currentLanguage
+                    : (this.currentLanguageCallback ? this.currentLanguageCallback() : 'chinese');
                 
                 for (const lvl of candidates) {
                     // Try language-aware path first, then legacy path
-                    const langPath = `assets/audio/${currentLanguage}/${lvl}/${word}.mp3`;
-                    const legacyPath = `assets/audio/${lvl}/${word}.mp3`;
+                    const safeWord = (window.audioCache && typeof window.audioCache.sanitizeFilename === 'function')
+                        ? window.audioCache.sanitizeFilename(word)
+                        : String(word);
+                    const encodedWord = encodeURIComponent(safeWord);
+                    const langPath = `assets/audio/${currentLanguage}/${lvl}/${encodedWord}.mp3`;
+                    const legacyPath = `assets/audio/${lvl}/${encodedWord}.mp3`;
                     
                     for (const path of [langPath, legacyPath]) {
                         try {
@@ -148,31 +155,49 @@ export class SentenceDisplay {
             
             try {
                 const url = URL.createObjectURL(blob);
-                const audio = new Audio(url);
+                const audio = new Audio();
+                audio.preload = 'auto';
                 
                 await new Promise((resolve) => {
-                    audio.onended = () => {
+                    const cleanup = () => {
                         try {
                             URL.revokeObjectURL(url);
                         } catch (e) {}
+                    };
+                    
+                    audio.onended = () => {
+                        cleanup();
                         resolve();
                     };
                     
                     audio.onerror = (error) => {
                         console.warn('[SentenceDisplay] Audio playback error:', error);
-                        try {
-                            URL.revokeObjectURL(url);
-                        } catch (e) {}
+                        cleanup();
                         resolve();
                     };
                     
-                    // Add small delay between words
-                    setTimeout(() => {
-                        audio.play().catch((err) => {
-                            console.warn('[SentenceDisplay] Failed to play audio:', err);
-                            resolve();
-                        });
-                    }, 100);
+                    // Wait for audio to be fully buffered before playing
+                    // Use both canplaythrough and loadeddata for maximum compatibility
+                    let ready = false;
+                    const playWhenReady = () => {
+                        if (ready) return;
+                        ready = true;
+                        // 200ms delay to ensure audio context is fully initialized
+                        setTimeout(() => {
+                            audio.play().catch((err) => {
+                                console.warn('[SentenceDisplay] Failed to play audio:', err);
+                                cleanup();
+                                resolve();
+                            });
+                        }, 200);
+                    };
+                    
+                    audio.oncanplaythrough = playWhenReady;
+                    audio.onloadeddata = playWhenReady;
+                    
+                    // Set source after handlers are attached
+                    audio.src = url;
+                    audio.load();
                 });
             } catch (error) {
                 console.warn('[SentenceDisplay] Error playing audio blob:', error);

@@ -25,12 +25,25 @@ class AudioCache {
 
     /**
      * Set the current language folder used for audio path resolution
-     * @param {string} language e.g. 'chinese', 'spanish'
+     * @param {string} language e.g. 'chinese', 'Japanese'
      */
     setCurrentLanguage(language) {
         if (typeof language === 'string' && language.trim() !== '') {
             this.currentLanguage = language;
         }
+    }
+
+    /**
+     * Convert an arbitrary string into a filename-safe representation.
+     * Replaces slashes and other unsafe filesystem characters with '-' and trims.
+     * @param {string} value
+     * @returns {string}
+     */
+    sanitizeFilename(value) {
+        if (!value || typeof value !== 'string') return '';
+        // Replace forward/back slashes and other common illegal filename characters with underscore
+        // Use underscore to match the filename normalization used by offline assets generation
+        return value.replace(/[\/\\:*?"<>|]/g, '_').trim();
     }
 
     /**
@@ -90,15 +103,28 @@ class AudioCache {
             // Build candidate paths to try. Prefer language-aware structure then fall back to legacy structure.
             const basename = normalizedPath.split('/').pop();
             const levelSegment = level || this.currentLevel || 'basic';
+            // If the basename was percent encoded (eg: %EC%9D%80%2F%EB%8A%94) try to decode for sanitization
+            let decodedBase = basename;
+            try { decodedBase = decodeURIComponent(basename); } catch (e) { /* leave as-is */ }
+            const sanitizedBase = this.sanitizeFilename(decodedBase);
+            const sanitizedEncoded = encodeURIComponent(sanitizedBase);
             const candidates = [];
 
             // If caller provided a fully qualified path (already contains language), preserve it
             if (normalizedPath.includes(`/assets/audio/${this.currentLanguage}/`)) {
+                // If caller passed an already-language-scoped path, try both the passed path and a sanitized sibling path
                 candidates.push(normalizedPath);
+                const sanitizedNormalized = normalizedPath.replace(basename, sanitizedEncoded);
+                if (!candidates.includes(sanitizedNormalized)) candidates.push(sanitizedNormalized);
             } else {
-                // prefer assets/audio/{language}/{level}/{file}
+                // prefer sanitized raw (unicode) then encoded forms of the filename so both forms are tried
+                candidates.push(`assets/audio/${this.currentLanguage}/${levelSegment}/${sanitizedBase}`);
+                candidates.push(`assets/audio/${this.currentLanguage}/${levelSegment}/${sanitizedEncoded}`);
+                // prefer sanitized legacy raw and encoded variants
+                candidates.push(`assets/audio/${levelSegment}/${sanitizedBase}`);
+                candidates.push(`assets/audio/${levelSegment}/${sanitizedEncoded}`);
+                // fallback to the original basename (encoded or not) for compatibility
                 candidates.push(`assets/audio/${this.currentLanguage}/${levelSegment}/${basename}`);
-                // then legacy assets/audio/{level}/{file}
                 candidates.push(`assets/audio/${levelSegment}/${basename}`);
                 // then original path (in case caller supplied something else)
                 if (!candidates.includes(normalizedPath)) candidates.push(normalizedPath);
@@ -123,6 +149,11 @@ class AudioCache {
             if (cacheAudio) {
                 // Store in IndexedDB for faster future access (use the matched candidate path)
                 await this.saveToIndexedDB(normalizedPath, cacheAudio, level);
+                // Also record under a sanitized path key so later lookups for sanitized filenames succeed
+                try {
+                    const sanitizedKey = normalizedPath.replace(basename, sanitizedEncoded);
+                    if (sanitizedKey !== normalizedPath) await this.saveToIndexedDB(sanitizedKey, cacheAudio, level);
+                } catch (e) { /* ignore */ }
                 return cacheAudio;
             }
 
@@ -138,6 +169,14 @@ class AudioCache {
                             this.saveToCache(candidate, blob),
                             this.saveToIndexedDB(candidate, blob, level)
                         ]);
+                        // Also cache under sanitized normalized key (so future lookups using sanitized names will hit)
+                        try {
+                            const sanitizedCandidateKey = candidate.replace(basename, sanitizedEncoded);
+                            if (sanitizedCandidateKey !== candidate) {
+                                await this.saveToCache(sanitizedCandidateKey, blob).catch(() => {});
+                                await this.saveToIndexedDB(sanitizedCandidateKey, blob, level).catch(() => {});
+                            }
+                        } catch (e) { /* ignore */ }
                         break;
                     }
                 } catch (e) {
@@ -154,6 +193,16 @@ class AudioCache {
                     this.saveToCache(normalizedPath, blob),
                     this.saveToIndexedDB(normalizedPath, blob, level)
                 ]).catch(() => {});
+                // Also record the sanitized form for later convenience
+                try {
+                    const sanitizedKey = normalizedPath.replace(basename, sanitizedEncoded);
+                    if (sanitizedKey !== normalizedPath) {
+                        await Promise.all([
+                            this.saveToCache(sanitizedKey, blob).catch(() => {}),
+                            this.saveToIndexedDB(sanitizedKey, blob, level).catch(() => {})
+                        ]);
+                    }
+                } catch (e) { /* no-op */ }
             }
 
             return blob;
@@ -387,7 +436,9 @@ class AudioCache {
 
         for (const hanzi of hanziList) {
             try {
-                const audioPath = `assets/audio/${this.currentLanguage}/${level}/${hanzi}.mp3`;
+                const sanitized = this.sanitizeFilename(hanzi);
+                const encoded = encodeURIComponent(sanitized);
+                const audioPath = `assets/audio/${this.currentLanguage}/${level}/${encoded}.mp3`;
                 await this.getAudio(audioPath, level);
                 results.push({ hanzi, success: true });
             } catch (error) {
@@ -398,6 +449,143 @@ class AudioCache {
 
         const successCount = results.filter(r => r.success).length;
         return results;
+    }
+
+    /**
+     * Preload all vocabulary audio for a language and level by reading the vocabulary CSV
+     * @param {string} language - Language folder (e.g., 'chinese')
+     * @param {string} level - Level ('basic', 'intermediate', 'advanced')
+     * @returns {Promise<Object>} Results with success/failure counts
+     */
+    async preloadVocabularyAudio(language, level) {
+        console.log(`[AudioCache] Starting vocabulary audio preload for ${language}/${level}...`);
+        
+        try {
+            // Fetch the vocabulary CSV for this level
+            const csvPath = `data/languages/${language}/${level}.csv`;
+            const response = await fetch(csvPath);
+            
+            if (!response.ok) {
+                console.warn(`[AudioCache] Could not fetch vocabulary file: ${csvPath}`);
+                return { success: 0, failed: 0, total: 0 };
+            }
+            
+            const csvText = await response.text();
+            const lines = csvText.trim().split('\n');
+            
+            if (lines.length < 2) {
+                return { success: 0, failed: 0, total: 0 };
+            }
+            
+            // Parse CSV header to find Word column using quote-aware parsing
+            const headers = this._parseCSVLine(lines[0]);
+            const wordIndex = headers.indexOf('Word');
+            
+            if (wordIndex === -1) {
+                console.warn('[AudioCache] No Word column found in vocabulary CSV');
+                return { success: 0, failed: 0, total: 0 };
+            }
+            
+            // Extract all words from the CSV using quote-aware parsing
+            const words = [];
+            for (let i = 1; i < lines.length; i++) {
+                const cols = this._parseCSVLine(lines[i]);
+                if (cols[wordIndex]) {
+                    words.push(cols[wordIndex]);
+                }
+            }
+            
+            console.log(`[AudioCache] Found ${words.length} words to preload for ${level}`);
+            
+            // Preload all audio files in parallel batches (5 at a time)
+            const batchSize = 5;
+            let successCount = 0;
+            let failedCount = 0;
+            
+            for (let i = 0; i < words.length; i += batchSize) {
+                const batch = words.slice(i, i + batchSize);
+                const promises = batch.map(async (word) => {
+                    try {
+                        // Sanitize word for use in file path (replace illegal chars then encode)
+                        const sanitizedWord = this.sanitizeFilename(word);
+                        const encodedWord = encodeURIComponent(sanitizedWord);
+                        const audioPath = `assets/audio/${language}/${level}/${encodedWord}.mp3`;
+                        await this.getAudio(audioPath, level);
+                        return { word, success: true };
+                    } catch (error) {
+                        return { word, success: false, error: error.message };
+                    }
+                });
+                
+                const results = await Promise.all(promises);
+                results.forEach(r => {
+                    if (r.success) successCount++;
+                    else failedCount++;
+                });
+            }
+            
+            console.log(`[AudioCache] Preload complete for ${level}: ${successCount} success, ${failedCount} failed`);
+            return { success: successCount, failed: failedCount, total: words.length };
+            
+        } catch (error) {
+            console.error(`[AudioCache] Error preloading vocabulary audio:`, error);
+            return { success: 0, failed: 0, total: 0, error: error.message };
+        }
+    }
+
+    /**
+     * Parse a CSV line handling quoted fields with commas (RFC 4180 compliant)
+     * @private
+     * @param {string} line - CSV line to parse
+     * @returns {Array<string>} Array of field values
+     */
+    _parseCSVLine(line) {
+        const result = [];
+        let current = '';
+        let inQuotes = false;
+        let i = 0;
+        
+        while (i < line.length) {
+            const char = line[i];
+            
+            if (inQuotes) {
+                if (char === '"') {
+                    // Check for escaped quote (double quote)
+                    if (i + 1 < line.length && line[i + 1] === '"') {
+                        current += '"';
+                        i += 2;
+                        continue;
+                    } else {
+                        // End of quoted field
+                        inQuotes = false;
+                        i++;
+                        continue;
+                    }
+                } else {
+                    current += char;
+                    i++;
+                }
+            } else {
+                if (char === '"') {
+                    // Start of quoted field
+                    inQuotes = true;
+                    i++;
+                } else if (char === ',') {
+                    // Field separator
+                    result.push(current.trim());
+                    current = '';
+                    i++;
+                } else {
+                    current += char;
+                    i++;
+                }
+            }
+        }
+        
+        // Push the last field
+        result.push(current.trim());
+        
+        return result;
     }
 }
 

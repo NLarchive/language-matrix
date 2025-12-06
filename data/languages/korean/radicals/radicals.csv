@@ -1,0 +1,245 @@
+Radical,Romanization,Description,Meaning,Set,Levels,UsageCount,MainRadical,Variants,Position,StrokeCount
+ㄱ,g/k,giyeok,기역; velar stop,jamo_basic,basic,20,,none,initial/final,1
+ㄴ,n,nieun,니은; nasal,jamo_basic,basic,18,,none,initial/final,1
+ㄷ,d/t,digeut,디귿; dental stop,jamo_basic,basic,15,,none,initial/final,1
+ㄹ,r/l,rieul,리을; liquid,jamo_basic,basic,16,,none,initial/final,1
+ㅁ,m,mieum,미음; nasal,jamo_basic,basic,14,,none,initial/final,1
+ㅂ,b/p,bieup,비읍; bilabial stop,jamo_basic,basic,12,,none,initial/final,1
+ㅅ,s,siot,시옷; fricative,jamo_basic,basic,18,,none,initial/final,1
+ㅇ,ng/silent,ieung,이응; velar nasal or silent,jamo_basic,basic,25,,none,initial/final,1
+ㅈ,j,jieut,지읒; affricate,jamo_basic,basic,10,,none,initial/final,1
+ㅊ,ch,chieut,치읓; aspirated affricate,jamo_basic,basic,8,,none,initial/final,1
+ㅋ,k,kieuk,키읔; aspirated velar,jamo_basic,basic,6,,none,initial/final,1
+ㅌ,t,tieut,티읕; aspirated dental,jamo_basic,basic,5,,none,initial/final,1
+ㅍ,p,pieup,피읖; aspirated bilabial,jamo_basic,basic,5,,none,initial/final,1
+ㅎ,h,hieut,히읗; glottal fricative,jamo_basic,basic,12,,none,initial/final,1
+ㄲ,kk,ssang-giyeok,쌍기역; tense velar,jamo_double,intermediate,4,,none,initial,2
+ㄸ,tt,ssang-digeut,쌍디귿; tense dental,jamo_double,intermediate,3,,none,initial,2
+ㅃ,pp,ssang-bieup,쌍비읍; tense bilabial,jamo_double,intermediate,3,,none,initial,2
+ㅆ,ss,ssang-siot,쌍시옷; tense fricative,jamo_double,intermediate,5,,none,initial/final,2
+ㅉ,jj,ssang-jieut,쌍지읒; tense affricate,jamo_double,intermediate,2,,none,initial,2
+ㅏ,a,a,아; open front vowel,jamo_vowel,basic,22,,none,medial,2
+ㅑ,ya,ya,야; palatalized a,jamo_vowel,basic,8,,none,medial,2
+ㅓ,eo,eo,어; mid back vowel,jamo_vowel,basic,20,,none,medial,2
+ㅕ,yeo,yeo,여; palatalized eo,jamo_vowel,basic,10,,none,medial,2
+ㅗ,o,o,오; close-mid back,jamo_vowel,basic,18,,none,medial,2
+ㅛ,yo,yo,요; palatalized o,jamo_vowel,basic,6,,none,medial,2
+ㅜ,u,u,우; close back vowel,jamo_vowel,basic,15,,none,medial,2
+ㅠ,yu,yu,유; palatalized u,jamo_vowel,basic,5,,none,medial,1
+ㅡ,eu,eu,으; close central,jamo_vowel,basic,14,,none,medial,2
+ㅣ,i,i,이; close front vowel,jamo_vowel,basic,22,,none,medial,2
+ㅐ,ae,ae,애; open-mid front,jamo_vowel,intermediate,10,,none,medial,2
+ㅒ,yae,yae,얘; palatalized ae,jamo_vowel,intermediate,3,,none,medial,2
+ㅔ,e,e,에; close-mid front,jamo_vowel,intermediate,12,,none,medial,2
+ㅖ,ye,ye,예; palatalized e,jamo_vowel,intermediate,4,,none,medial,2
+ㅘ,wa,wa,와; diphthong o+a,jamo_complex,intermediate,6,,none,medial,2
+ㅙ,wae,wae,왜; diphthong o+ae,jamo_complex,intermediate,2,,none,medial,2
+ㅚ,oe,oe,외; diphthong o+i,jamo_complex,intermediate,4,,none,medial,2
+ㅝ,wo,wo,워; diphthong u+eo,jamo_complex,intermediate,5,,none,medial,2
+ㅞ,we,we,웨; diphthong u+e,jamo_complex,intermediate,2,,none,medial,2
+ㅟ,wi,wi,위; diphthong u+i,jamo_complex,intermediate,5,,none,medial,2
+ㅢ,ui,ui,의; diphthong eu+i,jamo_complex,intermediate,8,,none,medial,2
+ㄳ,gs,giyeok-siot,기역시옷; final cluster,jamo_final,advanced,2,,none,final,1
+ㄵ,nj,nieun-jieut,니은지읒; final cluster,jamo_final,advanced,2,,none,final,1
+ㄶ,nh,nieun-hieut,니은히읗; final cluster,jamo_final,advanced,2,,none,final,1
+ㄺ,lg,rieul-giyeok,리을기역; final cluster,jamo_final,advanced,3,,none,final,1
+ㄻ,lm,rieul-mieum,리을미음; final cluster,jamo_final,advanced,3,,none,final,1
+ㄼ,lb,rieul-bieup,리을비읍; final cluster,jamo_final,advanced,2,,none,final,1
+ㄽ,ls,rieul-siot,리을시옷; final cluster,jamo_final,advanced,1,,none,final,1
+ㄾ,lt,rieul-tieut,리을티읕; final cluster,jamo_final,advanced,1,,none,final,1
+ㄿ,lp,rieul-pieup,리을피읖; final cluster,jamo_final,advanced,2,,none,final,1
+ㅀ,lh,rieul-hieut,리을히읗; final cluster,jamo_final,advanced,2,,none,final,1
+ㅄ,bs,bieup-siot,비읍시옷; final cluster,jamo_final,advanced,2,,none,final,1
+나,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+저,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+너,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+당,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+신,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+그,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+녀,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+우,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+리,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+들,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+이,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+다,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+있,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+없,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+가,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+오,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+먹,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+마,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+시,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+보,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+듣,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+말,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+하,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+읽,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+쓰,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+만,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+알,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+모,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+르,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+좋,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+아,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+사,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+람,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+것,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+책,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+물,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+밥,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+집,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+학,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+교,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+친,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+구,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+족,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+버,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+지,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+어,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+머,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+니,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+제,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+늘,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+내,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+일,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+침,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+후,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+녁,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+금,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+여,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+기,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+거,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+은,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+는,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+을,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+를,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+에,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+서,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+의,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+와,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+과,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+자,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+두,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+른,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+무,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+엇,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+누,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+디,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+떻,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+게,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+치,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+배,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+쉬,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+작,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+끝,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+용,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+팔,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+받,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+생,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+각,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+원,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+돕,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+해,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+크,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+새,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+롭,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+래,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+되,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+높,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+싸,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+렵,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+쉽,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+바,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+쁘,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+한,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+회,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+전,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+화,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+문,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+질,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+대,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+답,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+미,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+선,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+님,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+병,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+간,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+돈,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+번,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+주,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+음,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+난,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+매,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+끔,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+죠,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+요,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+까,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+고,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+조,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+벌,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+써,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+직,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+든,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+느,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+연,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+발,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+표,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+검,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+토,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+실,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+안,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+확,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+인,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+설,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+명,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+참,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+성,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+공,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+패,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+존,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+재,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+변,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+증,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+감,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+소,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+영,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+향,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+환,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+경,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+정,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+술,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+관,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+계,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+결,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+목,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+적,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+방,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+법,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+유,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+능,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+임,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+상,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+황,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+입,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+장,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+효,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+중,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+필,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+복,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+잡,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+단,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+순,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+따,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+라,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+반,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+면,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+즉,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+곧,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+또,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+특,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+히,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+드,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+본,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+으,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+로,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1
+완,,Syllable component from vocabulary,,syllable,basic,intermediate,advanced,1,,,,1

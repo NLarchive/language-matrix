@@ -1,0 +1,62 @@
+Category,Word,Reading,English,POS,Role,Common_Usage,Example_Phrase,Components,word_n_components
+Pronoun,彼女たち,かのじょたち,they(f),PRON,personal,Formal feminine,彼女たちが来た。,彼+女+た+ち,4
+Pronoun,それぞれ,それぞれ,each,PRON,distributive,Distribution,それぞれ違う。,そ+れ+ぞ+れ,4
+Pronoun,あらゆる,あらゆる,all/every,PRON,universal,Comprehensive,あらゆる可能性,あ+ら+ゆ+る,4
+Pronoun,いずれ,いずれ,either/sometime,PRON,indefinite,Formal choice,いずれ分かる。,い+ず+れ,3
+Verb,研究する,けんきゅうする,research,VERB,action,Academic,科学を研究する。,研+究+す+る,4
+Verb,発表する,はっぴょうする,present/announce,VERB,action,Academic,論文を発表する。,発+表+す+る,4
+Verb,検討する,けんとうする,examine,VERB,action,Formal,提案を検討する。,検+討+す+る,4
+Verb,実施する,じっしする,implement,VERB,action,Formal,計画を実施する。,実+施+す+る,4
+Verb,提案する,ていあんする,propose,VERB,action,Business,新しい方法を提案する。,提+案+す+る,4
+Verb,確認する,かくにんする,confirm,VERB,action,Business,予約を確認する。,確+認+す+る,4
+Verb,説明する,せつめいする,explain,VERB,action,Communication,詳しく説明する。,説+明+す+る,4
+Verb,参加する,さんかする,participate,VERB,action,Social,会議に参加する。,参+加+す+る,4
+Verb,成功する,せいこうする,succeed,VERB,result,Achievement,試験に成功する。,成+功+す+る,4
+Verb,失敗する,しっぱいする,fail,VERB,result,Negative outcome,計画が失敗する。,失+敗+す+る,4
+Verb,存在する,そんざいする,exist,VERB,state,Abstract,問題が存在する。,存+在+す+る,4
+Verb,変化する,へんかする,change,VERB,action,Transformation,状況が変化する。,変+化+す+る,4
+Verb,増加する,ぞうかする,increase,VERB,action,Quantity,人口が増加する。,増+加+す+る,4
+Verb,減少する,げんしょうする,decrease,VERB,action,Quantity,費用が減少する。,減+少+す+る,4
+Verb,発生する,はっせいする,occur,VERB,action,Events,事故が発生する。,発+生+す+る,4
+Verb,影響する,えいきょうする,influence,VERB,action,Impact,結果に影響する。,影+響+す+る,4
+Noun,研究,けんきゅう,research,NOUN,object,Academic,研究を続ける。,研+究,2
+Noun,発展,はってん,development,NOUN,object,Abstract,経済の発展,発+展,2
+Noun,環境,かんきょう,environment,NOUN,object,Abstract,環境を守る。,環+境,2
+Noun,社会,しゃかい,society,NOUN,object,Abstract,社会問題,社+会,2
+Noun,経済,けいざい,economy,NOUN,object,Abstract,経済成長,経+済,2
+Noun,政治,せいじ,politics,NOUN,object,Abstract,政治に興味がある。,政+治,2
+Noun,文化,ぶんか,culture,NOUN,object,Abstract,日本の文化,文+化,2
+Noun,技術,ぎじゅつ,technology,NOUN,object,Abstract,最新技術,技+術,2
+Noun,情報,じょうほう,information,NOUN,object,Abstract,情報を集める。,情+報,2
+Noun,関係,かんけい,relationship,NOUN,object,Abstract,良い関係,関+係,2
+Noun,原因,げんいん,cause,NOUN,object,Abstract,原因を調べる。,原+因,2
+Noun,結果,けっか,result,NOUN,object,Abstract,良い結果,結+果,2
+Noun,目的,もくてき,purpose,NOUN,object,Abstract,目的を達成する。,目+的,2
+Noun,方法,ほうほう,method,NOUN,object,Abstract,新しい方法,方+法,2
+Noun,理由,りゆう,reason,NOUN,object,Abstract,理由を説明する。,理+由,2
+Noun,可能性,かのうせい,possibility,NOUN,object,Abstract,可能性がある。,可+能+性,3
+Noun,責任,せきにん,responsibility,NOUN,object,Abstract,責任を取る。,責+任,2
+Noun,機会,きかい,opportunity,NOUN,object,Abstract,良い機会,機+会,2
+Noun,状況,じょうきょう,situation,NOUN,object,Abstract,現在の状況,状+況,2
+Noun,立場,たちば,position/standpoint,NOUN,object,Abstract,私の立場,立+場,2
+Noun,影響,えいきょう,influence,NOUN,object,Abstract,悪い影響,影+響,2
+Noun,効果,こうか,effect,NOUN,object,Abstract,効果がある。,効+果,2
+Adjective,重要,じゅうよう,important,ADJ,descriptor,Formal,重要な問題,重+要,2
+Adjective,必要,ひつよう,necessary,ADJ,descriptor,Formal,必要な情報,必+要,2
+Adjective,複雑,ふくざつ,complex,ADJ,descriptor,Formal,複雑な問題,複+雑,2
+Adjective,単純,たんじゅん,simple,ADJ,descriptor,Formal,単純な理由,単+純,2
+Adjective,明確,めいかく,clear,ADJ,descriptor,Formal,明確な説明,明+確,2
+Conjunction,したがって,したがって,therefore,CONJ,connector,Formal,したがって結論は明確だ。,し+た+が+っ+て,5
+Conjunction,一方,いっぽう,on the other hand,CONJ,connector,Formal,一方意見もある。,一+方,2
+Conjunction,ただし,ただし,however/provided,CONJ,connector,Formal,ただし条件がある。,た+だ+し,3
+Conjunction,つまり,つまり,in other words,CONJ,connector,Explanation,つまり不可能だ。,つ+ま+り,3
+Conjunction,すなわち,すなわち,namely,CONJ,connector,Definition,すなわち成功だ。,す+な+わ+ち,4
+Conjunction,さらに,さらに,furthermore,CONJ,connector,Addition,さらに問題がある。,さ+ら+に,3
+Conjunction,また,また,also/again,CONJ,connector,Addition,また来てください。,ま+た,2
+Adverb,特に,とくに,especially,ADV,modifier,Emphasis,特に重要だ。,特+に,2
+Adverb,必ずしも,かならずしも,not necessarily,ADV,modifier,Formal,必ずしも正しくない。,必+ず+し+も,4
+Adverb,基本的に,きほんてきに,basically,ADV,modifier,Formal,基本的に賛成だ。,基+本+的+に,4
+Adverb,一般的に,いっぱんてきに,generally,ADV,modifier,Formal,一般的に正しい。,一+般+的+に,4
+Adverb,実際に,じっさいに,actually,ADV,modifier,Reality,実際に会った。,実+際+に,3
+Adverb,非常に,ひじょうに,extremely,ADV,modifier,Emphasis,非常に重要だ。,非+常+に,3
+Adverb,完全に,かんぜんに,completely,ADV,modifier,Totality,完全に理解した。,完+全+に,3

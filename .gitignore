@@ -1,4 +1,7 @@
 verify_production.py
 tests/node_modules/
 docs/
-spanish
+plugins
+playwright-report
+test-results
+tools

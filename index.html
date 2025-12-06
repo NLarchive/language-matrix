@@ -45,9 +45,37 @@
             </div>
         </div>
 
-        <div class="matrix-table-container">
-            <div id="matrix-container">
-                <div class="loading">Loading matrix</div>
+        <!-- Tab Navigation -->
+        <div class="tab-navigation">
+            <button class="tab-btn active" data-tab="vocabulary">
+                <svg viewBox="0 0 24 24" width="18" height="18">
+                    <path fill="currentColor" d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9H9V9h10v2zm-4 4H9v-2h6v2zm4-8H9V5h10v2z"/>
+                </svg>
+                Vocabulary Matrix
+            </button>
+            <button class="tab-btn" data-tab="radicals">
+                <svg viewBox="0 0 24 24" width="18" height="18">
+                    <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                </svg>
+                Radicals & Components
+            </button>
+        </div>
+
+        <!-- Vocabulary Tab -->
+        <div id="vocabulary-tab" class="tab-content active">
+            <div class="matrix-table-container">
+                <div id="matrix-container">
+                    <div class="loading">Loading matrix</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Radicals Tab -->
+        <div id="radicals-tab" class="tab-content">
+            <div class="radicals-container">
+                <div id="radicals-content">
+                    <div class="loading">Loading radicals</div>
+                </div>
             </div>
         </div>
     </main>
