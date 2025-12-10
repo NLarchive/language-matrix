@@ -1,0 +1,27 @@
+{
+  "matrix_index": {
+    "required": ["language", "level", "type", "includeLevels", "languagePath", "audioPath"]
+  },
+  "categories_config": {
+    "required": ["Category", "Color", "Icon"]
+  },
+  "top_level": {
+    "vocab_csv": {
+      "required": ["Category", "Word", "Pinyin", "English", "POS", "Role", "Common_Usage", "Example_Phrase", "Radicals", "word_n_radicals"]
+    },
+    "config_csv": {
+      "required": ["Key", "Value"]
+    }
+  },
+  "vocabulary": {
+    "required": ["Category", "Word", "English"],
+    "alternates": {
+      "pronunciation": ["Pinyin", "Reading", "Romanization"],
+      "component_column": ["Radicals", "Components"]
+    },
+    "optional": ["Hiragana", "POS", "Role", "Common_Usage", "Example_Phrase", "word_n_radicals"]
+  },
+  "radicals": {
+    "required": ["Radical", "Pinyin", "Description", "Meaning", "Set", "Levels", "UsageCount", "MainRadical", "Variants", "StrokeCount"]
+  }
+}
