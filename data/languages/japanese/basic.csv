@@ -1,61 +1,61 @@
-Category,Word,Reading,English,POS,Role,Common_Usage,Example_Phrase,Components,word_n_components
-Pronoun,私,わたし,I,PRON,subject,Most common subject,私は学生です。,禾+ム,2
-Pronoun,あなた,あなた,you,PRON,subject/object,Second person polite,あなたは先生ですか。,あ+な+た,3
-Pronoun,彼,かれ,he,PRON,subject,Third person male,彼は医者です。,彳+皮,2
-Pronoun,彼女,かのじょ,she,PRON,subject,Third person female,彼女は看護師です。,彼+女,2
-Pronoun,私たち,わたしたち,we,PRON,subject,Plural first person,私たちは友達です。,私+た+ち,3
-Pronoun,あなたたち,あなたたち,you (pl),PRON,subject,Plural second person,あなたたちは学生ですか。,あ+な+た+た+ち,5
-Pronoun,彼ら,かれら,they,PRON,subject,Plural third person,彼らは会社員です。,彼+ら,2
-Verb,です,です,be (polite),VERB,copula,Polite copula,これは本です。,で+す,2
-Verb,だ,だ,be (casual),VERB,copula,Casual copula,これは本だ。,だ,1
-Verb,ある,ある,exist (inanimate),VERB,existence,Existential verb,本がある。,あ+る,2
-Verb,いる,いる,exist (animate),VERB,existence,Living beings,猫がいる。,い+る,2
-Verb,行く,いく,go,VERB,motion,Basic motion,学校に行く。,彳+亍,2
-Verb,来る,くる,come,VERB,motion,Irregular verb,友達が来る。,未+夂,2
-Verb,帰る,かえる,return,VERB,motion,Go back,家に帰る。,帰+る,2
-Verb,食べる,たべる,eat,VERB,action,Basic action,ご飯を食べる。,食+べ+る,3
-Verb,飲む,のむ,drink,VERB,action,Basic action,水を飲む。,飲+む,2
-Verb,見る,みる,see/look,VERB,action,Perception,映画を見る。,見+る,2
-Verb,聞く,きく,hear/ask,VERB,action,Perception,音楽を聞く。,耳+門+く,3
-Verb,話す,はなす,speak,VERB,communication,Basic speech,日本語を話す。,話+す,2
-Verb,読む,よむ,read,VERB,action,Reading,本を読む。,読+む,2
-Verb,書く,かく,write,VERB,action,Writing,手紙を書く。,書+く,2
-Verb,する,する,do,VERB,action,General action,勉強をする。,す+る,2
-Verb,作る,つくる,make,VERB,action,Creation,料理を作る。,作+る,2
-Verb,買う,かう,buy,VERB,action,Commerce,本を買う。,買+う,2
-Noun,人,ひと,person,NOUN,subject/object,Basic noun,あの人は誰？,人,1
-Noun,物,もの,thing,NOUN,object,General object,この物は何？,牛+勿,2
-Noun,本,ほん,book,NOUN,object,Common object,本を読む。,木+本,2
-Noun,水,みず,water,NOUN,object,Basic liquid,水を飲む。,水,1
-Noun,ご飯,ごはん,meal/rice,NOUN,object,Basic food,ご飯を食べる。,ご+飯,2
-Noun,家,いえ,home/house,NOUN,location,Basic place,家に帰る。,宀+豕,2
-Noun,学校,がっこう,school,NOUN,location,Common place,学校に行く。,学+校,2
-Noun,駅,えき,station,NOUN,location,Transportation,駅に行く。,馬+尺,2
-Noun,店,みせ,store/shop,NOUN,location,Commerce,店で買う。,广+占,2
-Noun,部屋,へや,room,NOUN,location,Living space,部屋にいる。,部+屋,2
-Time,昨日,きのう,yesterday,NOUN,time,Past time,昨日は休みだった。,昔+日,2
-Time,今日,きょう,today,NOUN,time,Present time,今日は月曜日です。,今+日,2
-Time,明日,あした,tomorrow,NOUN,time,Future time,明日会いましょう。,明+日,2
-Time,朝,あさ,morning,NOUN,time,Time of day,朝ご飯を食べる。,朝,1
-Time,午後,ごご,afternoon,NOUN,time,Time of day,午後に勉強する。,午+後,2
-Time,夜,よる,night,NOUN,time,Time of day,夜に寝る。,夜,1
-Time,今,いま,now,NOUN,time,Present moment,今何時？,今,1
-Location,ここ,ここ,here,PRON,location,Demonstrative,ここに本がある。,こ+こ,2
-Location,そこ,そこ,there,PRON,location,Demonstrative,そこに猫がいる。,そ+こ,2
-Location,あそこ,あそこ,over there,PRON,location,Demonstrative,あそこに学校がある。,あ+そ+こ,3
-Particle,は,は,TOP,PART,topic,Topic marker,私は学生です。,は,1
-Particle,が,が,SUBJ,PART,subject,Subject marker,猫がいる。,が,1
-Particle,を,を,OBJ,PART,object,Object marker,本を読む。,を,1
-Particle,に,に,LOC/TIME,PART,location,Location/time marker,学校に行く。,に,1
-Particle,で,で,LOC/MEANS,PART,location,Place of action,店で買う。,で,1
-Particle,の,の,POSS,PART,possession,Genitive marker,私の本。,の,1
-Particle,と,と,AND/WITH,PART,connector,Connection,友達と行く。,と,1
-Particle,から,から,FROM,PART,source,Starting point,東京から来た。,か+ら,2
-Particle,まで,まで,TO/UNTIL,PART,goal,Endpoint,駅まで歩く。,ま+で,2
-Particle,も,も,ALSO,PART,addition,Addition,私も行く。,も,1
-Quantifier,一,いち,one,NUM,quantity,Basic number,一つください。,一,1
-Quantifier,二,に,two,NUM,quantity,Basic number,二人います。,二,1
-Quantifier,三,さん,three,NUM,quantity,Basic number,三冊の本。,三,1
-Quantifier,つ,つ,CL:general,CL,classifier,General counter,一つ二つ。,つ,1
-Quantifier,人,にん,CL:person,CL,classifier,People counter,三人います。,人,1
-Quantifier,冊,さつ,CL:book,CL,classifier,Book counter,五冊の本。,冊,1
+Category,Word,Romanization,Hiragana,English,POS,Role,Common_Usage,Example_Phrase,Components,word_n_components
+Pronoun,私,watashi,わたし,I,PRON,subject,Most common subject,私は学生です。,禾+ム,2
+Pronoun,あなた,anata,あなた,you,PRON,subject/object,Second person polite,あなたは先生ですか。,あ+な+た,3
+Pronoun,彼,kare,かれ,he,PRON,subject,Third person male,彼は医者です。,彳+皮,2
+Pronoun,彼女,kanojo,かのじょ,she,PRON,subject,Third person female,彼女は看護師です。,彼+女,2
+Pronoun,私たち,watashitachi,わたしたち,we,PRON,subject,Plural first person,私たちは友達です。,私+た+ち,3
+Pronoun,あなたたち,anatatachi,あなたたち,you (pl),PRON,subject,Plural second person,あなたたちは学生ですか。,あ+な+た+た+ち,5
+Pronoun,彼ら,karera,かれら,they,PRON,subject,Plural third person,彼らは会社員です。,彼+ら,2
+Verb,です,desu,です,be (polite),VERB,copula,Polite copula,これは本です。,で+す,2
+Verb,だ,da,だ,be (casual),VERB,copula,Casual copula,これは本だ。,だ,1
+Verb,ある,aru,ある,exist (inanimate),VERB,existence,Existential verb,本がある。,あ+る,2
+Verb,いる,iru,いる,exist (animate),VERB,existence,Living beings,猫がいる。,い+る,2
+Verb,行く,iku,いく,go,VERB,motion,Basic motion,学校に行く。,彳+亍,2
+Verb,来る,kuru,くる,come,VERB,motion,Irregular verb,友達が来る。,未+夂,2
+Verb,帰る,kaeru,かえる,return,VERB,motion,Go back,家に帰る。,帰+る,2
+Verb,食べる,taberu,たべる,eat,VERB,action,Basic action,ご飯を食べる。,食+べ+る,3
+Verb,飲む,nomu,のむ,drink,VERB,action,Basic action,水を飲む。,飲+む,2
+Verb,見る,miru,みる,see/look,VERB,action,Perception,映画を見る。,見+る,2
+Verb,聞く,kiku,きく,hear/ask,VERB,action,Perception,音楽を聞く。,耳+門+く,3
+Verb,話す,hanasu,はなす,speak,VERB,communication,Basic speech,日本語を話す。,話+す,2
+Verb,読む,yomu,よむ,read,VERB,action,Reading,本を読む。,読+む,2
+Verb,書く,kaku,かく,write,VERB,action,Writing,手紙を書く。,書+く,2
+Verb,する,suru,する,do,VERB,action,General action,勉強をする。,す+る,2
+Verb,作る,tsukuru,つくる,make,VERB,action,Creation,料理を作る。,作+る,2
+Verb,買う,kau,かう,buy,VERB,action,Commerce,本を買う。,買+う,2
+Noun,人,hito,ひと,person,NOUN,subject/object,Basic noun,あの人は誰？,人,1
+Noun,物,mono,もの,thing,NOUN,object,General object,この物は何？,牛+勿,2
+Noun,本,hon,ほん,book,NOUN,object,Common object,本を読む。,木+本,2
+Noun,水,mizu,みず,water,NOUN,object,Basic liquid,水を飲む。,水,1
+Noun,ご飯,gohan,ごはん,meal/rice,NOUN,object,Basic food,ご飯を食べる。,ご+飯,2
+Noun,家,ie,いえ,home/house,NOUN,location,Basic place,家に帰る。,宀+豕,2
+Noun,学校,gakkou,がっこう,school,NOUN,location,Common place,学校に行く。,学+校,2
+Noun,駅,eki,えき,station,NOUN,location,Transportation,駅に行く。,馬+尺,2
+Noun,店,mise,みせ,store/shop,NOUN,location,Commerce,店で買う。,广+占,2
+Noun,部屋,heya,へや,room,NOUN,location,Living space,部屋にいる。,部+屋,2
+Time,昨日,kinou,きのう,yesterday,NOUN,time,Past time,昨日は休みだった。,昔+日,2
+Time,今日,kyou,きょう,today,NOUN,time,Present time,今日は月曜日です。,今+日,2
+Time,明日,ashita,あした,tomorrow,NOUN,time,Future time,明日会いましょう。,明+日,2
+Time,朝,asa,あさ,morning,NOUN,time,Time of day,朝ご飯を食べる。,朝,1
+Time,午後,gogo,ごご,afternoon,NOUN,time,Time of day,午後に勉強する。,午+後,2
+Time,夜,yoru,よる,night,NOUN,time,Time of day,夜に寝る。,夜,1
+Time,今,ima,いま,now,NOUN,time,Present moment,今何時？,今,1
+Location,ここ,koko,ここ,here,PRON,location,Demonstrative,ここに本がある。,こ+こ,2
+Location,そこ,soko,そこ,there,PRON,location,Demonstrative,そこに猫がいる。,そ+こ,2
+Location,あそこ,asoko,あそこ,over there,PRON,location,Demonstrative,あそこに学校がある。,あ+そ+こ,3
+Particle,は,wa,は,TOP,PART,topic,Topic marker,私は学生です。,は,1
+Particle,が,ga,が,SUBJ,PART,subject,Subject marker,猫がいる。,が,1
+Particle,を,wo,を,OBJ,PART,object,Object marker,本を読む。,を,1
+Particle,に,ni,に,LOC/TIME,PART,location,Location/time marker,学校に行く。,に,1
+Particle,で,de,で,LOC/MEANS,PART,location,Place of action,店で買う。,で,1
+Particle,の,no,の,POSS,PART,possession,Genitive marker,私の本。,の,1
+Particle,と,to,と,AND/WITH,PART,connector,Connection,友達と行く。,と,1
+Particle,から,kara,から,FROM,PART,source,Starting point,東京から来た。,か+ら,2
+Particle,まで,made,まで,TO/UNTIL,PART,goal,Endpoint,駅まで歩く。,ま+で,2
+Particle,も,mo,も,ALSO,PART,addition,Addition,私も行く。,も,1
+Quantifier,一,ichi,いち,one,NUM,quantity,Basic number,一つください。,一,1
+Quantifier,二,ni,に,two,NUM,quantity,Basic number,二人います。,二,1
+Quantifier,三,san,さん,three,NUM,quantity,Basic number,三冊の本。,三,1
+Quantifier,つ,tsu,つ,CL:general,CL,classifier,General counter,一つ二つ。,つ,1
+Quantifier,人,nin,にん,CL:person,CL,classifier,People counter,三人います。,人,1
+Quantifier,冊,satsu,さつ,CL:book,CL,classifier,Book counter,五冊の本。,冊,1

@@ -1,7 +1,7 @@
 {
   "template_type": "current_project_state",
   "version": "1.5",
-  "last_updated": "2025-12-06",
+  "last_updated": "2025-12-10",
   "project_name": "Janulus Matrix - Language Learning System",
   "description": "Interactive multi-language learning application with vocabulary matrix, radical components, word composer game, and audio support for Chinese, Japanese, and Korean",
   "start_date": "2025-10-01",
@@ -65,6 +65,17 @@
     }
   ],
   "recently_completed": [
+    {
+      "task": "Updated Japanese CSV files to use Romanization and added Hiragana column",
+      "completed_date": "2025-12-10",
+      "description": "Changed Japanese vocabulary CSV files to use 'Romanization' column with romaji instead of 'Reading' with hiragana. Added 'Hiragana' column for native script readings. Updated csv-schema.json to include 'Hiragana' as optional. This standardizes pronunciation columns across languages: Pinyin (Chinese), Romanization (Japanese/Korean).",
+      "files": [
+        "data/csv-schema.json",
+        "data/languages/japanese/basic.csv",
+        "data/languages/japanese/intermediate.csv",
+        "data/languages/japanese/advanced.csv"
+      ]
+    },
     {
       "task": "Fix Korean Radicals Display & Audio Issues (all_levels + folder mapping)",
       "completed_date": "2025-12-05",

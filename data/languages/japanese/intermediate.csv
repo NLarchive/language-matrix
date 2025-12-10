@@ -1,67 +1,67 @@
-Category,Word,Reading,English,POS,Role,Common_Usage,Example_Phrase,Components,word_n_components
-Pronoun,自分,じぶん,oneself,PRON,reflexive,Reflexive pronoun,自分でやる。,自+分,2
-Pronoun,皆,みんな,everyone,PRON,collective,Collective pronoun,皆が来た。,皆,1
-Pronoun,他人,たにん,others,PRON,indefinite,Other people,他人に頼らない。,他+人,2
-Pronoun,何,なに,what,PRON,interrogative,Question word,何を食べますか。,何,1
-Pronoun,誰,だれ,who,PRON,interrogative,Question word,誰が来ましたか。,誰,1
-Pronoun,どこ,どこ,where,PRON,interrogative,Question word,どこに行きますか。,ど+こ,2
-Pronoun,どう,どう,how,PRON,interrogative,Question word,どうしますか。,ど+う,2
-Verb,思う,おもう,think,VERB,cognition,Opinion verb,私は思う。,思+う,2
-Verb,欲しい,ほしい,want,VERB,desire,Desire adjective,水が欲しい。,欲+し+い,3
-Verb,できる,できる,can/able,VERB,modal,Ability modal,日本語ができる。,で+き+る,3
-Verb,知る,しる,know,VERB,cognition,Knowledge verb,彼を知っている。,知+る,2
-Verb,分かる,わかる,understand,VERB,cognition,Comprehension,意味が分かる。,分+か+る,3
-Verb,好き,すき,like,VERB,emotion,Preference,音楽が好きです。,好+き,2
-Verb,嫌い,きらい,dislike,VERB,emotion,Dislike,野菜が嫌いです。,嫌+い,2
-Verb,助ける,たすける,help,VERB,action,Assistance,友達を助ける。,助+け+る,3
-Verb,教える,おしえる,teach,VERB,action,Educational,日本語を教える。,教+え+る,3
-Verb,習う,ならう,learn,VERB,action,Educational,漢字を習う。,習+う,2
-Verb,働く,はたらく,work,VERB,action,Occupation,会社で働く。,働+く,2
-Verb,休む,やすむ,rest,VERB,action,Daily activity,土曜日に休む。,休+む,2
-Verb,始める,はじめる,begin,VERB,action,Temporal,授業を始める。,始+め+る,3
-Verb,終わる,おわる,end,VERB,action,Temporal,映画が終わる。,終+わ+る,3
-Verb,使う,つかう,use,VERB,action,General,パソコンを使う。,使+う,2
-Verb,売る,うる,sell,VERB,action,Commerce,車を売る。,売+る,2
-Verb,待つ,まつ,wait,VERB,action,Waiting,駅で待つ。,待+つ,2
-Verb,持つ,もつ,hold/have,VERB,possession,Ownership,傘を持つ。,持+つ,2
-Verb,送る,おくる,send,VERB,action,Transfer,手紙を送る。,送+る,2
-Verb,受ける,うける,receive,VERB,action,Reception,試験を受ける。,受+け+る,3
-Adjective,大きい,おおきい,big,ADJ,descriptor,Size,大きい家。,大+き+い,3
-Adjective,小さい,ちいさい,small,ADJ,descriptor,Size,小さい猫。,小+さ+い,3
-Adjective,新しい,あたらしい,new,ADJ,descriptor,Quality,新しい本。,新+し+い,3
-Adjective,古い,ふるい,old,ADJ,descriptor,Quality,古い車。,古+い,2
-Adjective,高い,たかい,tall/expensive,ADJ,descriptor,Size/Price,高いビル。,高+い,2
-Adjective,安い,やすい,cheap,ADJ,descriptor,Price,安い食べ物。,安+い,2
-Adjective,難しい,むずかしい,difficult,ADJ,descriptor,Difficulty,難しい問題。,難+し+い,3
-Adjective,易しい,やさしい,easy,ADJ,descriptor,Difficulty,易しい問題。,易+し+い,3
-Adjective,忙しい,いそがしい,busy,ADJ,descriptor,State,忙しい日。,忙+し+い,3
-Adjective,暇,ひま,free time,ADJ,descriptor,State,暇な時間。,暇,1
-Noun,会社,かいしゃ,company,NOUN,location,Occupation,会社に行く。,会+社,2
-Noun,仕事,しごと,work/job,NOUN,object,Occupation,仕事をする。,仕+事,2
-Noun,電話,でんわ,telephone,NOUN,object,Communication,電話をかける。,電+話,2
-Noun,問題,もんだい,problem,NOUN,object,Abstract,問題を解決する。,問+題,2
-Noun,質問,しつもん,question,NOUN,object,Communication,質問がある。,質+問,2
-Noun,答え,こたえ,answer,NOUN,object,Communication,答えを言う。,答+え,2
-Noun,意味,いみ,meaning,NOUN,abstract,Concept,意味が分かる。,意+味,2
-Noun,友達,ともだち,friend,NOUN,person,Relationship,友達と遊ぶ。,友+達,2
-Noun,先生,せんせい,teacher,NOUN,person,Profession,先生に聞く。,先+生,2
-Noun,学生,がくせい,student,NOUN,person,Status,学生です。,学+生,2
-Noun,医者,いしゃ,doctor,NOUN,person,Profession,医者に行く。,医+者,2
-Noun,病院,びょういん,hospital,NOUN,location,Institution,病院に行く。,病+院,2
-Noun,時間,じかん,time,NOUN,abstract,Concept,時間がない。,時+間,2
-Noun,お金,おかね,money,NOUN,object,Currency,お金がある。,お+金,2
-Time,今週,こんしゅう,this week,NOUN,time,Present,今週は忙しい。,今+週,2
-Time,来週,らいしゅう,next week,NOUN,time,Future,来週会いましょう。,来+週,2
-Time,先週,せんしゅう,last week,NOUN,time,Past,先週行った。,先+週,2
-Time,毎日,まいにち,every day,NOUN,time,Frequency,毎日勉強する。,毎+日,2
-Time,時々,ときどき,sometimes,NOUN,time,Frequency,時々映画を見る。,時+々,2
-Particle,ね,ね,CONFIRM,PART,confirmation,Seeking agreement,いい天気ですね。,ね,1
-Particle,よ,よ,ASSERT,PART,assertion,Emphasis,これは本だよ。,よ,1
-Particle,か,か,Q,PART,question,Question marker,行きますか。,か,1
-Conjunction,そして,そして,and then,CONJ,connector,Sequence,食べて、そして寝た。,そ+し+て,3
-Conjunction,でも,でも,but,CONJ,connector,Contrast,高い、でも買う。,で+も,2
-Conjunction,だから,だから,so/therefore,CONJ,connector,Result,雨だから行かない。,だ+か+ら,3
-Adverb,とても,とても,very,ADV,degree,Intensity,とても高い。,と+て+も,3
-Adverb,少し,すこし,a little,ADV,degree,Small amount,少し食べる。,少+し,2
-Adverb,もう,もう,already,ADV,completion,Completion,もう終わった。,も+う,2
-Adverb,まだ,まだ,still/not yet,ADV,continuation,Continuation,まだ食べていない。,ま+だ,2
+Category,Word,Romanization,Hiragana,English,POS,Role,Common_Usage,Example_Phrase,Components,word_n_components
+Pronoun,自分,jibun,じぶん,oneself,PRON,reflexive,Reflexive pronoun,自分でやる。,自+分,2
+Pronoun,皆,minna,みんな,everyone,PRON,collective,Collective pronoun,皆が来た。,皆,1
+Pronoun,他人,hito,たにん,others,PRON,indefinite,Other people,他人に頼らない。,他+人,2
+Pronoun,何,nani,なに,what,PRON,interrogative,Question word,何を食べますか。,何,1
+Pronoun,誰,dare,だれ,who,PRON,interrogative,Question word,誰が来ましたか。,誰,1
+Pronoun,どこ,doko,どこ,where,PRON,interrogative,Question word,どこに行きますか。,ど+こ,2
+Pronoun,どう,dou,どう,how,PRON,interrogative,Question word,どうしますか。,ど+う,2
+Verb,思う,omou,おもう,think,VERB,cognition,Opinion verb,私は思う。,思+う,2
+Verb,欲しい,hoshii,ほしい,want,VERB,desire,Desire adjective,水が欲しい。,欲+し+い,3
+Verb,できる,dekiru,できる,can/able,VERB,modal,Ability modal,日本語ができる。,で+き+る,3
+Verb,知る,shiru,しる,know,VERB,cognition,Knowledge verb,彼を知っている。,知+る,2
+Verb,分かる,wakaru,わかる,understand,VERB,cognition,Comprehension,意味が分かる。,分+か+る,3
+Verb,好き,suki,すき,like,VERB,emotion,Preference,音楽が好きです。,好+き,2
+Verb,嫌い,kirai,きらい,dislike,VERB,emotion,Dislike,野菜が嫌いです。,嫌+い,2
+Verb,助ける,tasukeru,たすける,help,VERB,action,Assistance,友達を助ける。,助+け+る,3
+Verb,教える,oshieru,おしえる,teach,VERB,action,Educational,日本語を教える。,教+え+る,3
+Verb,習う,narau,ならう,learn,VERB,action,Educational,漢字を習う。,習+う,2
+Verb,働く,hataraku,はたらく,work,VERB,action,Occupation,会社で働く。,働+く,2
+Verb,休む,yasumu,やすむ,rest,VERB,action,Daily activity,土曜日に休む。,休+む,2
+Verb,始める,hajimeru,はじめる,begin,VERB,action,Temporal,授業を始める。,始+め+る,3
+Verb,終わる,owaru,おわる,end,VERB,action,Temporal,映画が終わる。,終+わ+る,3
+Verb,使う,tsukau,つかう,use,VERB,action,General,パソコンを使う。,使+う,2
+Verb,売る,uru,うる,sell,VERB,action,Commerce,車を売る。,売+る,2
+Verb,待つ,matsu,まつ,wait,VERB,action,Waiting,駅で待つ。,待+つ,2
+Verb,持つ,motsu,もつ,hold/have,VERB,possession,Ownership,傘を持つ。,持+つ,2
+Verb,送る,okuru,おくる,send,VERB,action,Transfer,手紙を送る。,送+る,2
+Verb,受ける,ukeru,うける,receive,VERB,action,Reception,試験を受ける。,受+け+る,3
+Adjective,大きい,ookii,おおきい,big,ADJ,descriptor,Size,大きい家。,大+き+い,3
+Adjective,小さい,chiisai,ちいさい,small,ADJ,descriptor,Size,小さい猫。,小+さ+い,3
+Adjective,新しい,atarashii,あたらしい,new,ADJ,descriptor,Quality,新しい本。,新+し+い,3
+Adjective,古い,furui,ふるい,old,ADJ,descriptor,Quality,古い車。,古+い,2
+Adjective,高い,takai,たかい,tall/expensive,ADJ,descriptor,Size/Price,高いビル。,高+い,2
+Adjective,安い,yasui,やすい,cheap,ADJ,descriptor,Price,安い食べ物。,安+い,2
+Adjective,難しい,muzukashii,むずかしい,difficult,ADJ,descriptor,Difficulty,難しい問題。,難+し+い,3
+Adjective,易しい,yasashii,やさしい,easy,ADJ,descriptor,Difficulty,易しい問題。,易+し+い,3
+Adjective,忙しい,isogashii,いそがしい,busy,ADJ,descriptor,State,忙しい日。,忙+し+い,3
+Adjective,暇,hima,ひま,free time,ADJ,descriptor,State,暇な時間。,暇,1
+Noun,会社,kaisha,かいしゃ,company,NOUN,location,Occupation,会社に行く。,会+社,2
+Noun,仕事,shigoto,しごと,work/job,NOUN,object,Occupation,仕事をする。,仕+事,2
+Noun,電話,denwa,でんわ,telephone,NOUN,object,Communication,電話をかける。,電+話,2
+Noun,問題,mondai,もんだい,problem,NOUN,object,Abstract,問題を解決する。,問+題,2
+Noun,質問,shitsumon,しつもん,question,NOUN,object,Communication,質問がある。,質+問,2
+Noun,答え,kotae,こたえ,answer,NOUN,object,Communication,答えを言う。,答+え,2
+Noun,意味,imi,いみ,meaning,NOUN,abstract,Concept,意味が分かる。,意+味,2
+Noun,友達,tomodachi,ともだち,friend,NOUN,person,Relationship,友達と遊ぶ。,友+達,2
+Noun,先生,sensei,せんせい,teacher,NOUN,person,Profession,先生に聞く。,先+生,2
+Noun,学生,gakusei,がくせい,student,NOUN,person,Status,学生です。,学+生,2
+Noun,医者,isha,いしゃ,doctor,NOUN,person,Profession,医者に行く。,医+者,2
+Noun,病院,byouin,びょういん,hospital,NOUN,location,Institution,病院に行く。,病+院,2
+Noun,時間,jikan,じかん,time,NOUN,abstract,Concept,時間がない。,時+間,2
+Noun,お金,okane,おかね,money,NOUN,object,Currency,お金がある。,お+金,2
+Time,今週,konshuu,こんしゅう,this week,NOUN,time,Present,今週は忙しい。,今+週,2
+Time,来週,raishuu,らいしゅう,next week,NOUN,time,Future,来週会いましょう。,来+週,2
+Time,先週,senshuu,せんしゅう,last week,NOUN,time,Past,先週行った。,先+週,2
+Time,毎日,mainichi,まいにち,every day,NOUN,time,Frequency,毎日勉強する。,毎+日,2
+Time,時々,tokidoki,ときどき,sometimes,NOUN,time,Frequency,時々映画を見る。,時+々,2
+Particle,ね,ne,ね,CONFIRM,PART,confirmation,Seeking agreement,いい天気ですね。,ね,1
+Particle,よ,yo,よ,ASSERT,PART,assertion,Emphasis,これは本だよ。,よ,1
+Particle,か,ka,か,Q,PART,question,Question marker,行きますか。,か,1
+Conjunction,そして,soshite,そして,and then,CONJ,connector,Sequence,食べて、そして寝た。,そ+し+て,3
+Conjunction,でも,demo,でも,but,CONJ,connector,Contrast,高い、でも買う。,で+も,2
+Conjunction,だから,dakara,だから,so/therefore,CONJ,connector,Result,雨だから行かない。,だ+か+ら,3
+Adverb,とても,totemo,とても,very,ADV,degree,Intensity,とても高い。,と+て+も,3
+Adverb,少し,sukoshi,すこし,a little,ADV,degree,Small amount,少し食べる。,少+し,2
+Adverb,もう,mou,もう,already,ADV,completion,Completion,もう終わった。,も+う,2
+Adverb,まだ,mada,まだ,still/not yet,ADV,continuation,Continuation,まだ食べていない。,ま+だ,2

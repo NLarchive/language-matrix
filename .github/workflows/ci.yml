@@ -1,0 +1,28 @@
+name: CI
+
+on:
+  push:
+    branches: [ gh-pages ]
+  pull_request:
+    branches: [ gh-pages ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+
+    - name: Validate CSV Schema
+      run: node tools/validate-csv-schema.js
+
+    - name: Run Tests
+      run: |
+        cd tests
+        npm install
+        npm test
