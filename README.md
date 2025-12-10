@@ -1,21 +1,43 @@
-# Janulus Matrix - Chinese Language Learning Web App
+# Janulus Matrix - Multi-Language Learning System
 https://nlarchive.github.io/language-matrix/
 
 [![CI](https://github.com/NLarchive/language-matrix/workflows/CI/badge.svg)](https://github.com/NLarchive/language-matrix/actions)
 
-A progressive web application (PWA) for learning Chinese vocabulary with interactive matrix selection, sentence generation, and integrated audio playback. Designed for offline-first functionality with comprehensive caching for educational deployment.
+A progressive web application (PWA) for learning **Chinese, Japanese, and Korean** vocabulary with interactive matrix selection, radical/component decomposition, word composition games, and integrated audio playback. Designed for offline-first functionality with comprehensive caching for educational deployment.
+
+## Quick Start
+
+**Live Demo**: https://nlarchive.github.io/language-matrix/
+
+**Features at a Glance**:
+- 🗣️ **3 Languages**: Chinese (Mandarin), Japanese (Hiragana+Kanji), Korean (Hangul)
+- 📚 **567 Words**: 64-72 words per language across 3 proficiency levels
+- 🎮 **Word Composer Game**: Drag-and-drop word building from radicals/components
+- 🔊 **100% Audio Coverage**: 567 TTS audio files (MP3)
+- 📱 **Offline-First PWA**: Works completely offline after first load
+- 🎨 **Interactive Matrix**: Color-coded by grammar categories
+- ♿ **Accessible**: Touch-friendly, keyboard shortcuts, high contrast
 
 ## Features
 
 ### Core Functionality
 - **Interactive Vocabulary Matrix**: Select words from organized categories across three proficiency levels
-  - Basic (HSK 1-2): 39 words
-  - Intermediate (HSK 3-4): 63 words
-  - Advanced (HSK 5-6): 62 words
-- **Sentence Generation**: Creates sentences combining selected words with Chinese/Pinyin/English translations
+  - **Chinese (Mandarin)**
+    - Basic (HSK 1-2): 64 words
+    - Intermediate (HSK 3-4): 72 words
+    - Advanced (HSK 5-6): 65 words
+  - **Japanese (Hiragana + Kanji)**
+    - Basic: 60 words
+    - Intermediate: 66 words
+    - Advanced: 61 words
+  - **Korean (Hangul)**
+    - Basic: 53 words
+    - Intermediate: 64 words
+    - Advanced: 62 words
+- **Sentence Generation**: Creates sentences combining selected words with native script, romanization, and English translations
 - **Color-Coded Display**: Each word in sentences is colored by grammatical category for visual learning
 - **Audio Playback**: Sequential audio playback of selected words with automatic synchronization
-- **Multilingual Display**: Chinese characters, Pinyin romanization, and English translations
+- **Multilingual Display**: Native characters, Pinyin/Romanization, and English translations
 
 ### Offline & Caching
 - **Service Worker**: Complete offline functionality with intelligent request routing
