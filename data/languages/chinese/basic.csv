@@ -1,40 +1,40 @@
 Category,Word,Pinyin,English,POS,Role,Common_Usage,Example_Phrase,Radicals,word_n_radicals
-Pronoun,我,wǒ,I,PRON,subject,Most common subject,我吃苹果。
-Pronoun,你,nǐ,you,PRON,subject/object,Second person,你去学校。
-Pronoun,他,tā,he,PRON,subject,Third person male,他是学生。
-Pronoun,她,tā,she,PRON,subject,Third person female,她喜欢书。
-Pronoun,我们,wǒmen,we,PRON,subject,Plural first person,我们吃饭。
-Pronoun,你们,nǐmen,you (pl),PRON,subject,Plural second person,你们来这里。
-Pronoun,他们,tāmen,they,PRON,subject,Plural third person,他们看电影。
-Verb,是,shì,be,VERB,copula,Equative verb,我是老师。
-Verb,有,yǒu,have,VERB,possession,Existential verb,我有书。
-Verb,去,qù,go,VERB,motion,Basic motion,我去商店。
-Verb,来,lái,come,VERB,motion,Opposite of go,你来家。
-Verb,吃,chī,eat,VERB,action,Basic action,他吃饭。
-Verb,喝,hē,drink,VERB,action,Basic action,她喝水。
-Verb,看,kàn,see/look,VERB,action,Perception,我们看书。
-Verb,说,shuō,say,VERB,communication,Basic speech,你们说什么？
-Verb,做,zuò,do,VERB,action,General action,他们做作业。
-Noun,人,rén,person,NOUN,subject/object,Basic noun,人很多。
-Noun,东西,dōngxi,thing,NOUN,object,General object,我买东西。
-Noun,书,shū,book,NOUN,object,Common object,她看书。
-Noun,水,shuǐ,water,NOUN,object,Basic liquid,他喝水。
-Noun,饭,fàn,meal/food,NOUN,object,Basic food,我们吃饭。
-Noun,家,jiā,home,NOUN,location,Basic place,我在家。
-Noun,学校,xuéxiào,school,NOUN,location,Common place,他们去学校。
-Time,昨天,zuótiān,yesterday,NOUN,time,Past time,昨天我去了。
-Time,今天,jīntiān,today,NOUN,time,Present time,今天是星期一。
-Time,明天,míngtiān,tomorrow,NOUN,time,Future time,明天我们来。
-Time,早上,zǎoshang,morning,NOUN,time,Time of day,早上吃早餐。
-Time,下午,xiàwǔ,afternoon,NOUN,time,Time of day,下午看书。
-Location,这里,zhèlǐ,here,PRON,location,Demonstrative,这里有书。
-Location,那里,nàlǐ,there,PRON,location,Demonstrative,那里是学校。
-Particle,了,le,PERF,PART,aspect,Perfective aspect,我吃了饭。
-Particle,吗,ma,Q,PART,question,Yes/no question,你去吗？
-Particle,的,de,POSS,PART,possession,Genitive marker,我的书。
-Particle,呢,ne,EMPH,PART,emphasis,Emphasis/topic,你呢？
-Quantifier,一,yī,one,NUM,quantity,Basic number,一个苹果。
-Quantifier,两,liǎng,two,NUM,quantity,Before classifier,两个人。
-Quantifier,三,sān,three,NUM,quantity,Basic number,三本书。
-Quantifier,个,gè,CL:general,CL,classifier,Most common,一个东西。
-Quantifier,本,běn,CL:book,CL,classifier,For books,一本书。
+Pronoun,我,wǒ,I,PRON,subject,Most common subject,我吃苹果。,手+戈,2
+Pronoun,你,nǐ,you,PRON,subject/object,Second person,你去学校。,亻+尔,2
+Pronoun,他,tā,he,PRON,subject,Third person male,他是学生。,亻+也,2
+Pronoun,她,tā,she,PRON,subject,Third person female,她喜欢书。,女+也,2
+Pronoun,我们,wǒmen,we,PRON,subject,Plural first person,我们吃饭。,我+亻+门,3
+Pronoun,你们,nǐmen,you (pl),PRON,subject,Plural second person,你们来这里。,你+亻+门,3
+Pronoun,他们,tāmen,they,PRON,subject,Plural third person,他们看电影。,他+亻+门,3
+Verb,是,shì,be,VERB,copula,Equative verb,我是老师。,日+正,2
+Verb,有,yǒu,have,VERB,possession,Existential verb,我有书。,一+月,2
+Verb,去,qù,go,VERB,motion,Basic motion,我去商店。,土+厶,2
+Verb,来,lái,come,VERB,motion,Opposite of go,你来家。,一+人+木,3
+Verb,吃,chī,eat,VERB,action,Basic action,他吃饭。,口+乞,2
+Verb,喝,hē,drink,VERB,action,Basic action,她喝水。,口+曷,2
+Verb,看,kàn,see/look,VERB,action,Perception,我们看书。,手+目,2
+Verb,说,shuō,say,VERB,communication,Basic speech,你们说什么？,讠+兑,2
+Verb,做,zuò,do,VERB,action,General action,他们做作业。,亻+故,2
+Noun,人,rén,person,NOUN,subject/object,Basic noun,人很多。,人,1
+Noun,东西,dōngxi,thing,NOUN,object,General object,我买东西。,东+西,2
+Noun,书,shū,book,NOUN,object,Common object,她看书。,曰+丨,2
+Noun,水,shuǐ,water,NOUN,object,Basic liquid,他喝水。,水,1
+Noun,饭,fàn,meal/food,NOUN,object,Basic food,我们吃饭。,饣+反,2
+Noun,家,jiā,home,NOUN,location,Basic place,我在家。,宀+豕,2
+Noun,学校,xuéxiào,school,NOUN,location,Common place,他们去学校。,臼+子+冖+木+交,5
+Time,昨天,zuótiān,yesterday,NOUN,time,Past time,昨天我去了。,日+乍+天,3
+Time,今天,jīntiān,today,NOUN,time,Present time,今天是星期一。,今+天,2
+Time,明天,míngtiān,tomorrow,NOUN,time,Future time,明天我们来。,日+月+天,3
+Time,早上,zǎoshang,morning,NOUN,time,Time of day,早上吃早餐。,早+上,2
+Time,下午,xiàwǔ,afternoon,NOUN,time,Time of day,下午看书。,下+午,2
+Location,这里,zhèlǐ,here,PRON,location,Demonstrative,这里有书。,辶+文+里,3
+Location,那里,nàlǐ,there,PRON,location,Demonstrative,那里是学校。,冉+阝+里,3
+Particle,了,le,PERF,PART,aspect,Perfective aspect,我吃了饭。,了,1
+Particle,吗,ma,Q,PART,question, accesory, 你去吗？,口+马,2
+Particle,的,de,POSS,PART,possession,Genitive marker,我的书。,白+勺,2
+Particle,呢,ne,EMPH,PART,emphasis,Emphasis/topic,你呢？,口+尼,2
+Quantifier,一,yī,one,NUM,quantity,Basic number,一个苹果。,一,1
+Quantifier,两,liǎng,two,NUM,quantity,Before classifier,两个人。,一+冂+人+人,4
+Quantifier,三,sān,three,NUM,quantity,Basic number,三本书。,三,1
+Quantifier,个,gè,CL:general,CL,classifier,Most common,一个东西。,人+丨,2
+Quantifier,本,běn,CL:book,CL,classifier,For books,一本书。,木+一,2

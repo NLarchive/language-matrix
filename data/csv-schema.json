@@ -1,30 +1,71 @@
 {
-  "matrix_index": {
-    "required": ["language", "level", "type", "includeLevels", "languagePath", "audioPath"]
-  },
-  "categories_config": {
-    "required": ["Category", "Color", "Icon"]
-  },
-  "top_level": {
-    "vocab_csv": {
-      "required": ["Category", "Word", "Pinyin", "English", "POS", "Role", "Common_Usage", "Example_Phrase", "Radicals", "word_n_radicals"]
-    },
-    "config_csv": {
-      "required": ["Key", "Value"],
-      "alternates": {
-        "variable_format": ["Variable", "Description", "Type", "Example"]
-      }
-    }
-  },
   "vocabulary": {
+    "description": "Schema for per-language per-level vocabulary CSV files (e.g., basic.csv, intermediate.csv)",
     "required": ["Category", "Word", "English"],
+    "optional": [
+      "Pinyin",
+      "Reading",
+      "Romanization",
+      "Hiragana",
+      "POS",
+      "Role",
+      "Common_Usage",
+      "Example_Phrase",
+      "Radicals",
+      "Components",
+      "word_n_radicals",
+      "word_n_components",
+      "Level"
+    ],
     "alternates": {
       "pronunciation": ["Pinyin", "Reading", "Romanization"],
-      "component_column": ["Radicals", "Components"]
+      "component_column": ["Radicals", "Components"],
+      "component_count": ["word_n_radicals", "word_n_components"]
     },
-    "optional": ["Hiragana", "POS", "Role", "Common_Usage", "Example_Phrase", "word_n_radicals"]
+    "notes": "At minimum a vocabulary CSV must contain Category, Word and English columns. Pronunciation and component columns are supported under several alternate names for each language. Level may be present or inferred by file path."
   },
+
   "radicals": {
-    "required": ["Radical", "Pinyin", "Description", "Meaning", "Set", "Levels", "UsageCount", "MainRadical", "Variants", "StrokeCount"]
+    "description": "Schema for radicals lookup files (radicals.csv). Different languages use slightly different column names (Pinyin/Reading/Romanization).",
+    "required": ["Radical", "Meaning", "Set"],
+    "optional": [
+      "Pinyin",
+      "Reading",
+      "Romanization",
+      "Description",
+      "Traditional",
+      "Levels",
+      "UsageCount",
+      "MainRadical",
+      "Variants",
+      "StrokeCount",
+      "Position"
+    ],
+    "notes": "Set commonly includes 'kangxi_214', 'variant', 'component', 'bushu_214', 'jamo_basic', etc. StrokeCount is optional and may be missing for some languages — the loader will use 'unknown' when missing. Position is used for Korean jamo components (e.g., 'initial/final')."
+  },
+
+  "categories_config": {
+    "description": "Schema for data/categories_config.csv",
+    "required": ["Category", "Description"],
+    "optional": ["ColorCode"]
+  },
+
+  "matrix_index": {
+    "description": "Expectations for data/matrix_index.json entries",
+    "required": ["id", "name", "languagePath", "audioPath", "level"],
+    "optional": ["file", "type", "includeLevels"],
+    "notes": "Merged matrices should set type: 'merged' and includeLevels: [..]; audioPath controls where audio assets are located (case-sensitive)."
+  }
+  ,
+  "top_level": {
+    "description": "Top-level project CSV files and expectations",
+    "vocab_csv": {
+      "required": ["Category", "Word", "English"],
+      "optional": ["Pinyin", "Reading", "Romanization"]
+    },
+    "config_csv": {
+      "required": ["Variable", "Description", "Type"],
+      "optional": ["Example", "Chinese-Specific Notes"]
+    }
   }
 }

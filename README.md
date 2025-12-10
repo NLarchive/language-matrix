@@ -1,6 +1,8 @@
 # Janulus Matrix - Chinese Language Learning Web App
 https://nlarchive.github.io/language-matrix/
 
+[![CI](https://github.com/NLarchive/language-matrix/workflows/CI/badge.svg)](https://github.com/NLarchive/language-matrix/actions)
+
 A progressive web application (PWA) for learning Chinese vocabulary with interactive matrix selection, sentence generation, and integrated audio playback. Designed for offline-first functionality with comprehensive caching for educational deployment.
 
 ## Features
@@ -346,6 +348,36 @@ caches.keys().then(names => {
 ## License & Attribution
 
 Educational tool for Chinese language learning. Audio files created via text-to-speech processing and normalized for consistent playback.
+
+## Development
+
+### CSV Schema Validation
+
+The project includes automated validation for CSV data files to ensure schema compliance. This runs automatically in CI and can be run locally.
+
+#### Running Locally
+```bash
+# Validate all CSV files against schema
+node tools/validate-csv-schema.js
+```
+
+#### Fixing Schema Violations
+If validation fails:
+1. Check the error messages for specific issues (missing columns, invalid headers)
+2. Edit the affected CSV files in `data/languages/` or `data/`
+3. Ensure headers match the canonical schema in `data/csv-schema.json`
+4. Re-run validation: `node tools/validate-csv-schema.js`
+
+#### In Pull Requests
+- CI will automatically validate CSV schema on push/PR
+- If validation fails, the PR cannot be merged
+- Fix locally and push again, or request help from maintainers
+
+#### Adding New Languages/Data
+When adding new CSV files:
+1. Ensure headers match `data/csv-schema.json`
+2. Test locally: `node tools/validate-csv-schema.js`
+3. Commit and push to trigger CI validation
 
 ## Support & Feedback
 

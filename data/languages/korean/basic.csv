@@ -1,0 +1,54 @@
+Category,Word,Romanization,English,POS,Role,Common_Usage,Example_Phrase,Components,word_n_components
+Pronoun,나,na,I (informal),PRON,subject,Informal first person,나는 학생이야.,나,1
+Pronoun,저,jeo,I (formal),PRON,subject,Formal first person,저는 학생입니다.,저,1
+Pronoun,너,neo,you (informal),PRON,subject/object,Second person informal,너는 누구야?,너,1
+Pronoun,당신,dangsin,you (formal),PRON,subject/object,Formal second person,당신은 누구세요?,당+신,2
+Pronoun,그,geu,he,PRON,subject,Third person male,그는 의사예요.,그,1
+Pronoun,그녀,geunyeo,she,PRON,subject,Third person female,그녀는 선생님이에요.,그+녀,2
+Pronoun,우리,uri,we,PRON,subject,Plural first person,우리는 친구예요.,우+리,2
+Pronoun,그들,geudeul,they,PRON,subject,Plural third person,그들은 학생이에요.,그+들,2
+Verb,이다,ida,be,VERB,copula,Equative verb,이것은 책이다.,이+다,2
+Verb,있다,itda,exist/have,VERB,existence,Existential verb,책이 있다.,있+다,2
+Verb,없다,eopda,not exist,VERB,existence,Negation,돈이 없다.,없+다,2
+Verb,가다,gada,go,VERB,motion,Basic motion,학교에 가다.,가+다,2
+Verb,오다,oda,come,VERB,motion,Opposite of go,집에 오다.,오+다,2
+Verb,먹다,meokda,eat,VERB,action,Basic action,밥을 먹다.,먹+다,2
+Verb,마시다,masida,drink,VERB,action,Basic action,물을 마시다.,마+시+다,3
+Verb,보다,boda,see/look,VERB,action,Perception,영화를 보다.,보+다,2
+Verb,듣다,deutda,hear/listen,VERB,action,Perception,음악을 듣다.,듣+다,2
+Verb,말하다,malhada,speak,VERB,communication,Basic speech,한국어로 말하다.,말+하+다,3
+Verb,읽다,ilkda,read,VERB,action,Basic action,책을 읽다.,읽+다,2
+Verb,쓰다,sseuda,write,VERB,action,Basic action,편지를 쓰다.,쓰+다,2
+Verb,하다,hada,do,VERB,action,General action,공부를 하다.,하+다,2
+Verb,만들다,mandeulda,make,VERB,action,Creation,음식을 만들다.,만+들+다,3
+Verb,알다,alda,know,VERB,cognition,Knowledge,그것을 알다.,알+다,2
+Verb,모르다,moreuda,not know,VERB,cognition,Ignorance,길을 모르다.,모+르+다,3
+Verb,좋아하다,joahada,like,VERB,emotion,Preference,음악을 좋아하다.,좋+아+하+다,4
+Noun,사람,saram,person,NOUN,subject/object,Basic noun,그 사람은 누구?,사+람,2
+Noun,것,geot,thing,NOUN,object,General object,이것은 무엇이에요?,것,1
+Noun,책,chaek,book,NOUN,object,Common object,책을 읽다.,책,1
+Noun,물,mul,water,NOUN,object,Basic liquid,물을 마시다.,물,1
+Noun,밥,bap,meal/rice,NOUN,object,Basic food,밥을 먹다.,밥,1
+Noun,집,jip,home/house,NOUN,location,Basic place,집에 가다.,집,1
+Noun,학교,hakgyo,school,NOUN,location,Common place,학교에 가다.,학+교,2
+Noun,친구,chingu,friend,NOUN,person,Relationship,친구를 만나다.,친+구,2
+Noun,가족,gajok,family,NOUN,person,Relationship,가족과 살다.,가+족,2
+Noun,아버지,abeoji,father,NOUN,person,Family,아버지가 오셨다.,아+버+지,3
+Noun,어머니,eomeoni,mother,NOUN,person,Family,어머니가 요리하다.,어+머+니,3
+Time,어제,eoje,yesterday,NOUN,time,Past time,어제 뭐 했어?,어+제,2
+Time,오늘,oneul,today,NOUN,time,Present time,오늘은 월요일이에요.,오+늘,2
+Time,내일,naeil,tomorrow,NOUN,time,Future time,내일 만나요.,내+일,2
+Time,아침,achim,morning,NOUN,time,Time of day,아침에 일어나다.,아+침,2
+Time,오후,ohu,afternoon,NOUN,time,Time of day,오후에 공부하다.,오+후,2
+Time,저녁,jeonyeok,evening,NOUN,time,Time of day,저녁에 먹다.,저+녁,2
+Time,지금,jigeum,now,NOUN,time,Present moment,지금 뭐 해요?,지+금,2
+Location,여기,yeogi,here,PRON,location,Demonstrative,여기에 책이 있어요.,여+기,2
+Location,거기,geogi,there,PRON,location,Demonstrative,거기에 누가 있어요?,거+기,2
+Location,저기,jeogi,over there,PRON,location,Demonstrative,저기를 보세요.,저+기,2
+Particle,은/는,eun/neun,TOPIC,PART,topic,Topic marker,나는 학생이에요.,은+는,2
+Particle,이/가,i/ga,SUBJ,PART,subject,Subject marker,책이 있어요.,이+가,2
+Particle,을/를,eul/reul,OBJ,PART,object,Object marker,밥을 먹다.,을+를,2
+Particle,에,e,LOC/TIME,PART,locative,Location/time marker,학교에 가다.,에,1
+Particle,에서,eseo,AT/FROM,PART,locative,Action location,학교에서 공부하다.,에+서,2
+Particle,의,ui,POSS,PART,possessive,Possessive marker,나의 책,의,1
+Particle,와/과,wa/gwa,AND/WITH,PART,conjunction,Connector,친구와 가다.,와+과,2

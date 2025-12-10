@@ -1,6 +1,228 @@
-Radical,Pinyin,Description,Meaning,Set,Levels,UsageCount,MainRadical,Variants,StrokeCount
-人,rén,person radical,person,bushu_214,basic,23,人,亻,2
-水,shuǐ,water radical,water,bushu_214,basic,18,水,氵,4
-口,kǒu,mouth radical,mouth,bushu_214,basic,14,口,,3
-木,mù,wood radical,tree/wood,bushu_214,intermediate,10,木,,4
-火,huǒ,fire radical,fire,bushu_214,advanced,7,火,灬,4
+Radical,Pinyin,Description,Meaning,Set,Traditional,Levels,UsageCount,MainRadical,Variants,StrokeCount
+一,yī,one,one; horizontal stroke,kangxi_214,一,basic,5,,none,1
+丨,gǔn,vertical stroke,line; vertical stroke,kangxi_214,丨,basic,2,,none,1
+丶,zhǔ,dot,dot,kangxi_214,丶,"advanced,intermediate",2,,none
+丿,piě,slash,slash; bend,kangxi_214,丿,"advanced,intermediate",2,,none
+二,èr,two,two,kangxi_214,二,intermediate,1,,none,2
+亠,tóu,lid,lid; top,kangxi_214,亠,intermediate,1,,none,2
+人,rén,person,man; person,kangxi_214,人,"advanced,basic,intermediate",8,
+八,bā,eight,eight,kangxi_214,八,intermediate,1,,none,2
+冂,jiōng,down box,border,kangxi_214,冂,basic,1,,none,2
+冖,mì,cover,cover; roof,kangxi_214,冖,"basic,intermediate",3,,none
+冫,bīng,ice,ice,kangxi_214,冫,"advanced,intermediate",2,,none
+几,jī,table,table; small table,kangxi_214,几,"advanced,intermediate",2,,none
+力,lì,power,power; force,kangxi_214,力,"advanced,intermediate",4,,none
+匕,bǐ,spoon,spoon; dagger,kangxi_214,匕,intermediate,1,,none,2
+匚,fāng,right open box,box,kangxi_214,匚,intermediate,1,,none,2
+十,shí,ten,ten,kangxi_214,十,intermediate,1,,none,2
+卜,bǔ,divination,to divine; fortune telling,kangxi_214,卜,intermediate,1,,none,2
+厶,sī,private,private; selfish,kangxi_214,厶,"basic,intermediate",5,,none
+又,yòu,again,again; right hand,kangxi_214,又,intermediate,2,,none,2
+口,kǒu,mouth,mouth,kangxi_214,口,"advanced,basic,intermediate",15,
+囗,wéi,enclosure,enclosure; to surround,kangxi_214,囗,intermediate,1,,none,3
+土,tǔ,earth,earth; soil,kangxi_214,土,"basic,intermediate",3,,none
+士,shì,scholar,scholar; gentleman,kangxi_214,士,intermediate,2,,none,3
+夂,zhǐ,go,to go,kangxi_214,夂,advanced,2,,none,3
+夕,xī,sunset,sunset; evening,kangxi_214,夕,intermediate,4,,none,3
+大,dà,big,big; large,kangxi_214,大,intermediate,3,,none,3
+女,nǚ,woman,woman; female,kangxi_214,女,"basic,intermediate",2,,none
+子,zǐ,child,child; son,kangxi_214,子,"basic,intermediate",3,,none
+宀,mián,roof,roof,kangxi_214,宀,"advanced,basic,intermediate",3,
+寸,cùn,inch,inch; thumb,kangxi_214,寸,"advanced,intermediate",5,,none
+小,xiǎo,small,small; tiny,kangxi_214,小,intermediate,2,,none,3
+工,gōng,work,work; labor,kangxi_214,工,intermediate,1,,none,3
+己,jǐ,oneself,oneself,kangxi_214,己,intermediate,1,,none,3
+巾,jīn,turban,turban; scarf,kangxi_214,巾,intermediate,2,,none,4
+广,guǎng,shelter,shelter; wide,kangxi_214,广,intermediate,1,,none,4
+彡,shān,bristle,bristles; hair,kangxi_214,彡,advanced,1,,none,4
+彳,chì,step,step; to walk,kangxi_214,彳,intermediate,3,,none,4
+心,xīn,heart,heart,kangxi_214,心,intermediate,2,,"忄,⺗"
+戈,gē,spear,spear; dagger-axe,kangxi_214,戈,"basic,intermediate",3,,none
+户,hù,door,door,kangxi_214,户,"advanced,intermediate",2,,none
+手,shǒu,hand,hand,kangxi_214,手,basic,2,,扌,4
+攵,pū,rap,to tap; to hit,kangxi_214,攵,advanced,1,,攴,4
+文,wén,script,script; literature,kangxi_214,文,basic,1,,none,4
+斤,jīn,axe,axe; catty (weight),kangxi_214,斤,"advanced,intermediate",2,,none
+方,fāng,square,square,kangxi_214,方,"advanced,intermediate",2,,none
+日,rì,sun,sun; day,kangxi_214,日,"advanced,basic,intermediate",6,
+曰,yuē,say,to say,kangxi_214,曰,basic,1,,none,4
+月,yuè,"moon; meat",moon; month; flesh,kangxi_214,月,"basic,intermediate",5,,⺼
+木,mù,tree,tree; wood,kangxi_214,木,"advanced,basic,intermediate",5,
+欠,qiàn,lack,to lack; to owe,kangxi_214,欠,intermediate,2,,none,5
+比,bǐ,compare,to compare,kangxi_214,比,advanced,1,,none,5
+水,shuǐ,water,water,kangxi_214,水,basic,1,,氵,5
+甘,gān,sweet,sweet,kangxi_214,甘,advanced,1,,none,5
+生,shēng,life,life; to be born,kangxi_214,生,intermediate,1,,none,5
+白,bái,white,white,kangxi_214,白,"basic,intermediate",2,,none
+目,mù,eye,eye,kangxi_214,目,"advanced,basic,intermediate",5,
+矢,shǐ,arrow,arrow,kangxi_214,矢,intermediate,2,,none,5
+示,shì,altar,to show; spirit,kangxi_214,示,advanced,1,,礻,5
+禾,hé,grain,grain,kangxi_214,禾,intermediate,1,,none,5
+羊,yáng,sheep,sheep; goat,kangxi_214,羊,intermediate,1,,⺶,5
+羽,yǔ,feather,feather,kangxi_214,羽,intermediate,1,,none,5
+老,lǎo,old,old,kangxi_214,老,"advanced,intermediate",2,,none
+而,ér,and,and; beard,kangxi_214,而,advanced,3,,none,5
+自,zì,self,self; from,kangxi_214,自,intermediate,1,,none,5
+至,zhì,arrive,to arrive,kangxi_214,至,advanced,1,,none,5
+臼,jiù,mortar,mortar,kangxi_214,臼,"basic,intermediate",3,,none
+舌,shé,tongue,tongue,kangxi_214,舌,intermediate,1,,none,5
+艮,gèn,stopping,stopping; tough,kangxi_214,艮,intermediate,1,,none,5
+见,jiàn,see,to see,kangxi_214,見,"advanced,intermediate",2,,見
+言,yán,speech,speech; word,kangxi_214,言,"basic,intermediate",2,,讠
+豕,shǐ,pig,pig,kangxi_214,豕,"advanced,basic,intermediate",3,
+贝,bèi,shell,shell; money,kangxi_214,貝,intermediate,1,,貝,5
+足,zú,foot,foot,kangxi_214,足,advanced,1,,⻊,5
+车,chē,cart,cart; vehicle,kangxi_214,車,advanced,1,,車,5
+辶,chuò,walk,to walk,kangxi_214,辵,"advanced,basic,intermediate",6,
+里,lǐ,village,village,kangxi_214,里,"advanced,basic,intermediate",5,
+门,mén,gate,gate; door,kangxi_214,門,"basic,intermediate",5,,門
+隹,zhuī,short-tailed bird,short-tailed bird,kangxi_214,隹,"advanced,intermediate",2,,none
+青,qīng,blue/green,blue; green,kangxi_214,青,advanced,1,,none,5
+非,fēi,not,not; wrong,kangxi_214,非,intermediate,1,,none,8
+面,miàn,face,face,kangxi_214,面,intermediate,4,,none,9
+页,yè,leaf,leaf; page,kangxi_214,頁,intermediate,1,,頁,9
+首,shǒu,head,head,kangxi_214,首,intermediate,1,,none,9
+马,mǎ,horse,horse,kangxi_214,馬,basic,1,,馬,3
+糸,mì,silk,silk,kangxi_214,糸,intermediate,1,,纟,6
+亻,rén,person variant,man; person (component form),variant,亻,"advanced,basic,intermediate",6,人
+刂,dāo,knife variant,knife; sword (component form),variant,刂,intermediate,1,刀,none,3
+忄,xīn,heart variant,heart (component form),variant,忄,advanced,1,心,none,5
+扌,shǒu,hand variant,hand (component form),variant,扌,advanced,2,手,none,5
+讠,yán,speech variant,speech (component form),variant,言,"advanced,basic,intermediate",6,言
+纟,sī,silk variant,silk (component form),variant,纟,intermediate,1,糸,none,7
+氵,shuǐ,water variant,water (component form),variant,氵,advanced,1,水,none,6
+罒,wǎng,net variant,net (component form),variant,罒,intermediate,1,网,none,5
+钅,jīn,gold variant,gold; metal (component form),variant,钅,intermediate,1,金,none,6
+阝,fù,mound/city variant,mound (left) or city (right) (component form),variant,阝,"basic,intermediate",4,阜,none
+饣,shí,eat variant,food; to eat (component form),variant,饣,basic,1,食,none,4
+丁,dīng,nail,male adult; nail,component,丁,intermediate,1,,none,2
+三,sān,three,three,component,三,basic,2,,none,3
+上,shàng,up,up; above,component,上,"basic,intermediate",2,,none
+下,xià,down,down; below,component,下,"basic,intermediate",2,,none
+不,bù,not,not; no,component,不,"advanced,intermediate",2,,none
+东,dōng,east,east,component,东,basic,1,,none,5
+为,wèi,for,for; to be,component,为,"advanced,intermediate",4,,none
+乀,fú,left-falling stroke,left-falling stroke,component,乀,advanced,1,,none,1
+乂,yì,mow,to mow; to cut,component,乂,intermediate,1,,none,2
+乍,zhà,suddenly,suddenly; at first,component,乍,"basic,intermediate",3,,none
+乎,hū,question particle,question particle,component,乎,advanced,1,,none,4
+乚,yǐ,hidden,hidden; second,component,乚,intermediate,2,,none,2
+乞,qǐ,beg,to beg,component,乞,basic,1,,none,3
+也,yě,also,also; too,component,也,"basic,intermediate",4,,none
+乡,xiāng,village,village; countryside,component,乡,advanced,1,,none,3
+买,mǎi,buy,buy,component,买,intermediate,1,,none,4
+了,le,completed action,completed action marker,component,了,"advanced,basic,intermediate",3,
+于,yú,at,at; in; to,component,于,advanced,3,,none,3
+交,jiāo,intersect,to hand over; to intersect,component,交,basic,1,,none,4
+亥,hài,12th earthly branch,12th earthly branch,component,亥,intermediate,1,,none,5
+今,jīn,now,now; today,component,今,basic,1,,none,4
+从,cóng,from,from; to follow,component,从,advanced,1,,none,4
+仑,lún,arrange,logical; arrange,component,仑,advanced,1,,none,4
+他,tā,he,he,component,他,"advanced,basic",2,,none
+以,yǐ,by means of,by means of; because,component,以,intermediate,1,,none,4
+任,rèn,appoint,to appoint; responsibility,component,任,advanced,1,,none,6
+何,hé,what,what; which,component,何,advanced,1,,none,7
+作,zuò,do,to do; to make,component,作,advanced,1,,none,7
+你,nǐ,you,you,component,你,basic,1,,none,7
+候,hòu,wait,to wait; time,component,候,intermediate,1,,none,10
+倠,suī,phonetic 'sui',phonetic component,component,倠,intermediate,1,,none,10
+兄,xiōng,elder brother,elder brother,component,兄,advanced,1,,none,5
+兑,duì,exchange,to exchange,component,兑,basic,1,,none,7
+全,quán,whole,whole; complete,component,全,advanced,1,,none,6
+且,qiě,and,and; also,component,且,intermediate,1,,none,5
+共,gòng,together,together; common,component,共,advanced,1,,none,6
+关,guān,shut,shut; pass,component,关,advanced,2,,none,6
+其,qí,his/her/its,his; her; its,component,其,advanced,1,,none,6
+刃,rèn,blade,blade; edge,component,刃,advanced,1,,none,3
+分,fēn,divide,to divide; minute,component,分,advanced,1,,none,4
+前,qián,front,front; before,component,前,"advanced,intermediate",2,,none
+勺,sháo,spoon,spoon; ladle,component,勺,basic,1,,none,3
+午,wǔ,noon,noon,component,午,basic,1,,none,4
+原,yuán,origin,origin; source,component,原,advanced,1,,none,10
+反,fǎn,opposite,opposite; to return,component,反,basic,1,,none,4
+发,fā,send,send; emit,component,发,advanced,1,,none,5
+取,qǔ,take,to take; to fetch,component,取,advanced,1,,none,8
+司,sī,manage,to manage; department,component,司,intermediate,1,,none,5
+后,hòu,after,after; behind,component,后,intermediate,1,,none,6
+因,yīn,cause,because; cause,component,因,advanced,1,,none,6
+在,zài,at,at; in,component,在,intermediate,2,,none,6
+壬,rén,9th heavenly stem,9th heavenly stem,component,壬,advanced,1,,none,4
+天,tiān,sky,sky; day,component,天,"basic,intermediate",4,,none
+夬,guài,part,to part; to decide,component,夬,intermediate,1,,none,6
+头,tóu,head,head,component,头,advanced,1,,none,5
+完,wán,complete,complete; finish,component,完,"advanced,intermediate",2,,none
+实,shí,real,real; solid,component,实,advanced,1,,none,8
+对,duì,correct,correct; pair,component,对,advanced,1,,none,5
+导,dǎo,guide,to guide; to lead,component,导,advanced,1,,none,5
+尔,ěr,you (archaic),you (archaic),component,尔,basic,1,,none,5
+尼,ní,nun,Buddhist nun,component,尼,basic,1,,none,5
+尽,jìn,exhaust,to exhaust; to the utmost,component,尽,advanced,1,,none,6
+已,yǐ,already,already,component,已,intermediate,1,,none,3
+巴,bā,hope,hope; tail,component,巴,intermediate,1,,none,4
+常,cháng,often,often; common,component,常,intermediate,1,,none,11
+当,dāng,act as,to be; act as,component,当,advanced,2,,none,6
+往,wǎng,towards,to go; towards,component,往,advanced,2,,none,8
+得,de,obtain,to obtain; complement marker,component,得,advanced,1,,none,11
+必,bì,must,must; certainly,component,必,advanced,1,,none,5
+我,wǒ,I/me,I; me,component,我,basic,1,,none,7
+据,jù,according to,according to; to occupy,component,据,advanced,1,,none,11
+故,gù,reason,therefore; reason,component,故,basic,1,,none,9
+斩,zhǎn,chop,to chop; to behead,component,斩,advanced,1,,none,11
+断,duàn,break,to break; to judge,component,断,advanced,1,,none,11
+旦,dàn,dawn,dawn; day,component,旦,intermediate,1,,none,5
+早,zǎo,early,early; morning,component,早,basic,1,,none,6
+时,shí,time,time; hour,component,时,"advanced,intermediate",4,,none
+明,míng,bright,bright; clear,component,明,advanced,1,,none,8
+是,shì,to be,is; to be,component,是,"advanced,intermediate",3,,none
+圣,shèng,holy,holy; sacred,component,圣,intermediate,1,,none,5
+显,xiǎn,show,to show; obvious,component,显,advanced,1,,none,9
+景,jǐng,scenery,scenery; view,component,景,advanced,1,,none,12
+曷,hé,why,why; how,component,曷,basic,1,,none,12
+最,zuì,most,most; -est,component,最,advanced,1,,none,12
+有,yǒu,have,to have,component,有,intermediate,1,,none,6
+本,běn,root,root; origin; book classifier,component,本,advanced,1,,none,5
+束,shù,bundle,bundle; to bind,component,束,advanced,1,,none,7
+析,xī,analyze,to analyze,component,析,advanced,1,,none,8
+果,guǒ,fruit,fruit; result,component,果,advanced,1,,none,8
+标,biāo,mark,mark; sign,component,标,advanced,1,,none,9
+根,gēn,root,root; basis,component,根,advanced,1,,none,10
+正,zhèng,correct,upright; correct,component,正,"advanced,basic,intermediate",3,
+此,cǐ,this,this; these,component,此,"advanced,intermediate",3,,none
+每,měi,every,every,component,每,intermediate,1,,none,7
+法,fǎ,law,law; method,component,法,advanced,1,,none,8
+点,diǎn,dot,dot; point,component,点,advanced,1,,none,9
+然,rán,correct,correct; so,component,然,advanced,2,,none,12
+冉,rǎn,slowly,slowly,component,冉,"basic,intermediate",2,,none
+王,wáng,king,king,component,王,intermediate,1,,none,4
+现,xiàn,appear,appear; present,component,现,advanced,2,,none,8
+由,yóu,from,from; due to,component,由,advanced,1,,none,5
+电,diàn,electricity,electricity,component,电,intermediate,2,,none,5
+相,xiāng,mutual,mutual,component,相,advanced,1,,none,9
+确,què,true,true; certain,component,确,advanced,1,,none,12
+程,chéng,journey,journey; procedure,component,程,advanced,1,,none,11
+管,guǎn,tube,tube; to manage,component,管,advanced,1,,none,14
+系,xì,system,system; to tie,component,系,advanced,1,,none,7
+终,zhōng,end,end; finally,component,终,advanced,1,,none,8
+经,jīng,pass through,to pass through; scripture,component,经,"advanced,intermediate",2,,none
+结,jié,tie,to tie; result,component,结,advanced,1,,none,9
+者,zhě,one who,one who,component,者,intermediate,2,,none,8
+脑,nǎo,brain,brain,component,脑,intermediate,1,,none,10
+囟,xìn,fontanelle,infant's skull; fontanelle,component,囟,intermediate,1,,none,4
+获,huò,obtain,to obtain,component,获,advanced,1,,none,11
+表,biǎo,surface,surface; to express,component,表,advanced,1,,none,8
+西,xī,west,west,component,西,"basic,intermediate",2,,none
+观,guān,view,to view; concept,component,观,advanced,1,,none,9
+解,jiě,untie,to untie; to explain,component,解,advanced,2,,none,13
+证,zhèng,prove,to prove; evidence,component,证,advanced,1,,none,8
+责,zé,duty,duty; to blame,component,责,advanced,1,,none,8
+过,guò,pass,to pass; experiential marker,component,过,advanced,2,,none,6
+进,jìn,enter,to enter,component,进,advanced,1,,none,7
+通,tōng,pass through,to pass through,component,通,advanced,1,,none,10
+那,nà,that,that,component,那,"basic,intermediate",2,,none
+邦,bāng,nation,nation; country,component,邦,intermediate,1,,none,7
+采,cǎi,pick,to pick; to gather,component,采,advanced,1,,none,8
+释,shì,explain,to explain; to release,component,释,advanced,1,,none,11
+除,chú,remove,to remove; except,component,除,advanced,1,,none,10
+随,suí,follow,to follow,component,随,advanced,1,,none,11
+须,xū,must,must; beard,component,须,advanced,1,,none,9
+验,yàn,examine,to examine; to test,component,验,advanced,1,,none,12

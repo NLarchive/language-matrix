@@ -1,7 +1,7 @@
 /**
  * Service Worker for Janulus Matrix - Production Ready
  * Handles offline support, audio file caching, and PWA functionality
- * Version: 1.0.0
+ * Version: 1.0.2
  * 
  * Cache Strategy:
  * - Audio files (MP3): Cache-first with network updates
@@ -10,7 +10,7 @@
  * - HTML pages: Network-first with cache fallback
  */
 
-const CACHE_VERSION = 'v2';
+const CACHE_VERSION = 'v4';
 const CACHE_NAME = `janulus-matrix-${CACHE_VERSION}`;
 const AUDIO_CACHE_NAME = `janulus-audio-${CACHE_VERSION}`;
 
@@ -23,16 +23,21 @@ const STATIC_ASSETS = [
     './js/main.js',
     './js/components/MatrixTableBuilder.js',
     './js/components/SentenceDisplay.js',
+    './js/components/WordComposer.js',
+    './js/components/RadicalDisplay.js',
     './js/utils/csvLoader.js',
     './js/utils/audioCache.js',
     './js/utils/cacheManager.js',
+    './js/utils/languageLoader.js',
+    './js/utils/radicalLoader.js',
     './data/config.csv',
     './data/vocab.csv',
     './data/matrix_index.json',
     './data/categories_config.csv',
-    './data/chinese_basic.csv',
-    './data/chinese_intermediate.csv',
-    './data/chinese_advanced.csv',
+    './data/languages/chinese/basic.csv',
+    './data/languages/chinese/intermediate.csv',
+    './data/languages/chinese/advanced.csv',
+    './data/languages/chinese/radicals/radicals.csv',
     './favicon.svg'
 ];
 

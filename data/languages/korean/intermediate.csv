@@ -1,0 +1,64 @@
+Category,Word,Romanization,English,POS,Role,Common_Usage,Example_Phrase,Components,word_n_components
+Pronoun,자기,jagi,oneself,PRON,reflexive,Reflexive pronoun,자기 일을 하다.,자+기,2
+Pronoun,모두,modu,everyone,PRON,collective,Collective pronoun,모두가 왔다.,모+두,2
+Pronoun,다른 사람,dareun saram,others,PRON,indefinite,Other people,다른 사람을 돕다.,다+른+사+람,4
+Pronoun,무엇,mueot,what,PRON,interrogative,Question word,무엇을 먹어요?,무+엇,2
+Pronoun,누구,nugu,who,PRON,interrogative,Question word,누구세요?,누+구,2
+Pronoun,어디,eodi,where,PRON,interrogative,Question word,어디에 가요?,어+디,2
+Pronoun,어떻게,eotteoke,how,PRON,interrogative,Question word,어떻게 해요?,어+떻+게,3
+Verb,가르치다,gareuchida,teach,VERB,action,Educational,한국어를 가르치다.,가+르+치+다,4
+Verb,배우다,baeuda,learn,VERB,action,Educational,영어를 배우다.,배+우+다,3
+Verb,일하다,ilhada,work,VERB,action,Occupation,회사에서 일하다.,일+하+다,3
+Verb,쉬다,swida,rest,VERB,action,Daily activity,주말에 쉬다.,쉬+다,2
+Verb,시작하다,sijakhada,begin,VERB,action,Temporal,수업을 시작하다.,시+작+하+다,4
+Verb,끝나다,kkeutnada,end,VERB,action,Temporal,영화가 끝나다.,끝+나+다,3
+Verb,사용하다,sayonghada,use,VERB,action,General,컴퓨터를 사용하다.,사+용+하+다,4
+Verb,사다,sada,buy,VERB,action,Commerce,책을 사다.,사+다,2
+Verb,팔다,palda,sell,VERB,action,Commerce,차를 팔다.,팔+다,2
+Verb,기다리다,gidarida,wait,VERB,action,Waiting,버스를 기다리다.,기+다+리+다,4
+Verb,가지다,gajida,have/hold,VERB,possession,Ownership,우산을 가지다.,가+지+다,3
+Verb,보내다,bonaeda,send,VERB,action,Transfer,편지를 보내다.,보+내+다,3
+Verb,받다,batda,receive,VERB,action,Reception,선물을 받다.,받+다,2
+Verb,생각하다,saenggakhada,think,VERB,cognition,Opinion verb,잘 생각하다.,생+각+하+다,4
+Verb,원하다,wonhada,want,VERB,desire,Desire verb,물을 원하다.,원+하+다,3
+Verb,돕다,dopda,help,VERB,action,Assistance,친구를 돕다.,돕+다,2
+Verb,이해하다,ihaehada,understand,VERB,cognition,Comprehension,의미를 이해하다.,이+해+하+다,4
+Adjective,크다,keuda,big,ADJ,descriptor,Size,큰 집,크+다,2
+Adjective,작다,jakda,small,ADJ,descriptor,Size,작은 고양이,작+다,2
+Adjective,새롭다,saeropda,new,ADJ,descriptor,Quality,새로운 책,새+롭+다,3
+Adjective,오래되다,oraedoeda,old,ADJ,descriptor,Quality,오래된 차,오+래+되+다,4
+Adjective,높다,nopda,tall/high,ADJ,descriptor,Size,높은 건물,높+다,2
+Adjective,싸다,ssada,cheap,ADJ,descriptor,Price,싼 음식,싸+다,2
+Adjective,어렵다,eoryeopda,difficult,ADJ,descriptor,Difficulty,어려운 문제,어+렵+다,3
+Adjective,쉽다,swipda,easy,ADJ,descriptor,Difficulty,쉬운 문제,쉽+다,2
+Adjective,바쁘다,bappeuda,busy,ADJ,descriptor,State,바쁜 날,바+쁘+다,3
+Adjective,한가하다,hangahada,free/idle,ADJ,descriptor,State,한가한 시간,한+가+하+다,4
+Noun,회사,hoesa,company,NOUN,location,Occupation,회사에 가다.,회+사,2
+Noun,일,il,work/job,NOUN,object,Occupation,일을 하다.,일,1
+Noun,전화,jeonhwa,telephone,NOUN,object,Communication,전화를 하다.,전+화,2
+Noun,문제,munje,problem,NOUN,object,Abstract,문제를 해결하다.,문+제,2
+Noun,질문,jilmun,question,NOUN,object,Communication,질문이 있어요.,질+문,2
+Noun,대답,daedap,answer,NOUN,object,Communication,대답을 하다.,대+답,2
+Noun,의미,uimi,meaning,NOUN,abstract,Concept,의미를 알다.,의+미,2
+Noun,친구,chingu,friend,NOUN,person,Relationship,친구와 놀다.,친+구,2
+Noun,선생님,seonsaengnim,teacher,NOUN,person,Profession,선생님께 묻다.,선+생+님,3
+Noun,학생,haksaeng,student,NOUN,person,Status,학생이에요.,학+생,2
+Noun,의사,uisa,doctor,NOUN,person,Profession,의사에게 가다.,의+사,2
+Noun,병원,byeongwon,hospital,NOUN,location,Institution,병원에 가다.,병+원,2
+Noun,시간,sigan,time,NOUN,abstract,Concept,시간이 없다.,시+간,2
+Noun,돈,don,money,NOUN,object,Currency,돈이 있다.,돈,1
+Time,이번 주,ibeon ju,this week,NOUN,time,Present,이번 주는 바쁘다.,이+번+주,3
+Time,다음 주,daeum ju,next week,NOUN,time,Future,다음 주에 만나요.,다+음+주,3
+Time,지난주,jinanju,last week,NOUN,time,Past,지난주에 갔다.,지+난+주,3
+Time,매일,maeil,every day,NOUN,time,Frequency,매일 공부하다.,매+일,2
+Time,가끔,gakkeum,sometimes,NOUN,time,Frequency,가끔 영화를 보다.,가+끔,2
+Particle,죠,jyo,CONFIRM,PART,confirmation,Seeking agreement,좋은 날씨죠.,죠,1
+Particle,요,yo,POLITE,PART,politeness,Polite ending,안녕하세요.,요,1
+Particle,까,kka,Q,PART,question,Question marker,갈까요?,까,1
+Conjunction,그리고,geurigo,and then,CONJ,connector,Sequence,먹고 그리고 잤다.,그+리+고,3
+Conjunction,하지만,hajiman,but,CONJ,connector,Contrast,비싸다 하지만 산다.,하+지+만,3
+Conjunction,그래서,geuraeseo,so/therefore,CONJ,connector,Result,비가 와서 안 갔다.,그+래+서,3
+Adverb,아주,aju,very,ADV,degree,Intensity,아주 높다.,아+주,2
+Adverb,조금,jogeum,a little,ADV,degree,Small amount,조금 먹다.,조+금,2
+Adverb,벌써,beolsseo,already,ADV,completion,Completion,벌써 끝났다.,벌+써,2
+Adverb,아직,ajik,still/not yet,ADV,continuation,Continuation,아직 안 먹었다.,아+직,2

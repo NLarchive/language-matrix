@@ -6,10 +6,10 @@
         "file": null,
         "language": "zh-CN",
         "languagePath": "chinese",
+        "audioPath": "chinese",
         "level": "all_levels",
         "type": "merged",
-        "includeLevels": ["basic", "intermediate", "advanced"],
-        "audioPath": "assets/audio/chinese/"
+        "includeLevels": ["basic", "intermediate", "advanced"]
     },
     {
         "id": "chinese_basic",
@@ -18,10 +18,8 @@
         "file": "languages/chinese/basic.csv",
         "language": "zh-CN",
         "languagePath": "chinese",
-        "level": "basic",
-        "type": "single",
-        "includeLevels": ["basic"],
-        "audioPath": "assets/audio/chinese/basic/"
+        "audioPath": "chinese",
+        "level": "basic"
     },
     {
         "id": "chinese_intermediate", 
@@ -30,10 +28,8 @@
         "file": "languages/chinese/intermediate.csv",
         "language": "zh-CN",
         "languagePath": "chinese",
-        "level": "intermediate",
-        "type": "single",
-        "includeLevels": ["intermediate"],
-        "audioPath": "assets/audio/chinese/intermediate/"
+        "audioPath": "chinese",
+        "level": "intermediate"
     },
     {
         "id": "chinese_advanced",
@@ -42,57 +38,91 @@
         "file": "languages/chinese/advanced.csv",
         "language": "zh-CN",
         "languagePath": "chinese",
-        "level": "advanced",
-        "type": "single",
-        "includeLevels": ["advanced"],
-        "audioPath": "assets/audio/chinese/advanced/"
+        "audioPath": "chinese",
+        "level": "advanced"
     },
     {
-        "id": "spanish_all_levels",
-        "name": "Spanish - All Levels (A1-C2)",
-        "description": "Complete Spanish vocabulary across all proficiency levels from Basic to Advanced",
+        "id": "japanese_all_levels",
+        "name": "Japanese - All Levels (JLPT N5-N1)",
+        "description": "Complete Japanese vocabulary across all proficiency levels from Basic to Advanced",
         "file": null,
-        "language": "es-ES",
-        "languagePath": "spanish",
+        "language": "ja-JP",
+        "languagePath": "japanese",
+        "audioPath": "Japanese",
         "level": "all_levels",
         "type": "merged",
-        "includeLevels": ["basic", "intermediate", "advanced"],
-        "audioPath": "assets/audio/spanish/"
+        "includeLevels": ["basic", "intermediate", "advanced"]
     },
     {
-        "id": "spanish_basic",
-        "name": "Spanish - Basic (A1-A2)",
-        "description": "Essential vocabulary: pronouns, common verbs, basic nouns, adjectives, numbers",
-        "file": "languages/spanish/basic.csv",
-        "language": "es-ES",
-        "languagePath": "spanish",
-        "level": "basic",
-        "type": "single",
-        "includeLevels": ["basic"],
-        "audioPath": "assets/audio/spanish/basic/"
+        "id": "japanese_basic",
+        "name": "Japanese - Basic (JLPT N5-N4)",
+        "description": "Essential vocabulary: pronouns, common verbs, basic nouns, hiragana words",
+        "file": "languages/japanese/basic.csv",
+        "language": "ja-JP",
+        "languagePath": "japanese",
+        "audioPath": "Japanese",
+        "level": "basic"
     },
     {
-        "id": "spanish_intermediate", 
-        "name": "Spanish - Intermediate (B1-B2)",
-        "description": "Modal verbs, conjunctions, adverbs, question words, prepositions",
-        "file": "languages/spanish/intermediate.csv",
-        "language": "es-ES",
-        "languagePath": "spanish",
-        "level": "intermediate",
-        "type": "single",
-        "includeLevels": ["intermediate"],
-        "audioPath": "assets/audio/spanish/intermediate/"
+        "id": "japanese_intermediate", 
+        "name": "Japanese - Intermediate (JLPT N3-N2)",
+        "description": "Modal verbs, conjunctions, adverbs, kanji compounds, business vocabulary",
+        "file": "languages/japanese/intermediate.csv",
+        "language": "ja-JP",
+        "languagePath": "japanese",
+        "audioPath": "Japanese",
+        "level": "intermediate"
     },
     {
-        "id": "spanish_advanced",
-        "name": "Spanish - Advanced (C1-C2)",
-        "description": "Formal vocabulary, abstract nouns, literary connectors, academic verbs",
-        "file": "languages/spanish/advanced.csv",
-        "language": "es-ES",
-        "languagePath": "spanish",
-        "level": "advanced",
-        "type": "single",
-        "includeLevels": ["advanced"],
-        "audioPath": "assets/audio/spanish/advanced/"
+        "id": "japanese_advanced",
+        "name": "Japanese - Advanced (JLPT N2-N1)",
+        "description": "Formal vocabulary, abstract nouns, literary connectors, academic expressions",
+        "file": "languages/japanese/advanced.csv",
+        "language": "ja-JP",
+        "languagePath": "japanese",
+        "audioPath": "Japanese",
+        "level": "advanced"
+    },
+    {
+        "id": "korean_all_levels",
+        "name": "Korean - All Levels (TOPIK I-II)",
+        "description": "Complete Korean vocabulary across all proficiency levels from Basic to Advanced",
+        "file": null,
+        "language": "ko-KR",
+        "languagePath": "korean",
+        "audioPath": "Korean",
+        "level": "all_levels",
+        "type": "merged",
+        "includeLevels": ["basic", "intermediate", "advanced"]
+    },
+    {
+        "id": "korean_basic",
+        "name": "Korean - Basic (TOPIK I)",
+        "description": "Essential vocabulary: pronouns, common verbs, basic nouns, hangul words",
+        "file": "languages/korean/basic.csv",
+        "language": "ko-KR",
+        "languagePath": "korean",
+        "audioPath": "Korean",
+        "level": "basic"
+    },
+    {
+        "id": "korean_intermediate", 
+        "name": "Korean - Intermediate (TOPIK II 3-4)",
+        "description": "Modal verbs, conjunctions, adverbs, hanja-based words, formal speech",
+        "file": "languages/korean/intermediate.csv",
+        "language": "ko-KR",
+        "languagePath": "korean",
+        "audioPath": "Korean",
+        "level": "intermediate"
+    },
+    {
+        "id": "korean_advanced",
+        "name": "Korean - Advanced (TOPIK II 5-6)",
+        "description": "Formal vocabulary, abstract nouns, literary connectors, academic expressions",
+        "file": "languages/korean/advanced.csv",
+        "language": "ko-KR",
+        "languagePath": "korean",
+        "audioPath": "Korean",
+        "level": "advanced"
     }
 ]

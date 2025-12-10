@@ -1,0 +1,1109 @@
+{
+  "template_type": "current_project_state",
+  "version": "1.5",
+  "last_updated": "2025-12-10",
+  "project_name": "Janulus Matrix - Language Learning System",
+  "description": "Interactive multi-language learning application with vocabulary matrix, radical components, word composer game, and audio support for Chinese, Japanese, and Korean",
+  "start_date": "2025-10-01",
+  "end_date": "2025-12-31",
+  "status": "In Progress",
+  "overall_progress": 99,
+  "next_steps_priority": [
+    {
+      "priority": 1,
+      "task": "Integrate CSV/schema validator into CI",
+      "description": "Wire `tools/validate-csv-schema.js` into the CI pipeline (GitHub Actions) so schema violations fail CI. Add a short developer runbook showing how to run/accept fixes locally and in PRs.",
+      "estimated_hours": 3,
+      "dependencies": ["tools/validate-csv-schema.js", "data/csv-schema.json"],
+      "status": "In Progress",
+      "notes": "Validator added to repo (Dec 05). Next: add an Action step + badge and failing test on mismatch."
+    },
+    {
+      "priority": 2,
+      "task": "Add unit tests for validator & include in coverage",
+      "description": "Create Jest unit tests for `tools/validate-csv-schema.js` covering valid/invalid CSVs, and ensure CI enforces these tests and coverage thresholds.",
+      "estimated_hours": 4,
+      "dependencies": ["tools/validate-csv-schema.js", "tests"],
+      "status": "Not Started",
+      "notes": "Requires CI integration (priority 1) to have maximum value."
+    },
+    {
+      "priority": 3,
+      "task": "Expand E2E coverage for Word Composer across languages",
+      "description": "Add Playwright E2E scenarios that exercise the Word Composer + radicals reference for Japanese and Korean matrices, including audio-based flows and verification UI.",
+      "estimated_hours": 6,
+      "dependencies": ["tests/e2e", "js/components/WordComposer.js"],
+      "status": "In Progress",
+      "notes": "Existing E2E scaffolding and TTS generator exist — extend tests to verify multi-language composer behavior."
+    },
+    {
+      "priority": 4,
+      "task": "Performance & offline optimisations for audio",
+      "description": "Profile audioCache.preloadVocabularyAudio() and service-worker workbox strategies. Tune batch sizes and caching strategy to balance memory, offline readiness and startup latency. Produce benchmarks and targets (e.g. 95% offline coverage with < 3s startup overhead).",
+      "estimated_hours": 8,
+      "dependencies": ["js/utils/audioCache.js", "service-worker.js", "tests/e2e/audio-verification.spec.js"],
+      "status": "In Progress",
+      "notes": "Audio verification tooling is present; next is to use test data to tune caching and measure metrics."
+    },
+    {
+      "priority": 5,
+      "task": "Documentation & developer onboarding",
+      "description": "Update top-level README, LANGUAGE system quickstart, and add a short runbook for audio generation, CSV schema maintenance and the CI validator. Add a 'how-to' for adding new languages and audio assets.",
+      "estimated_hours": 4,
+      "dependencies": ["docs/", "tools/generate-google-tts.spec.js", "tools/validate-csv-schema.js"],
+      "status": "Not Started",
+      "notes": "Makes the project easier to maintain for new contributors and CI operators."
+    },
+    {
+      "priority": 6,
+      "task": "Release prep & deployment automation",
+      "description": "Create a release checklist including cache invalidation, audio deployment steps, and a CI job that prepares a production artifact (zip or deployed site). Add release notes automation for changes in data files.",
+      "estimated_hours": 6,
+      "dependencies": ["service-worker.js", "data/matrix_index.json"],
+      "status": "Not Started",
+      "notes": "Target for end-of-cycle stabilization and reproducible deployments."
+    }
+  ],
+  "recently_completed": [
+    {
+      "task": "Updated Japanese CSV files to use Romanization and added Hiragana column",
+      "completed_date": "2025-12-10",
+      "description": "Changed Japanese vocabulary CSV files to use 'Romanization' column with romaji instead of 'Reading' with hiragana. Added 'Hiragana' column for native script readings. Updated csv-schema.json to include 'Hiragana' as optional. This standardizes pronunciation columns across languages: Pinyin (Chinese), Romanization (Japanese/Korean).",
+      "files": [
+        "data/csv-schema.json",
+        "data/languages/japanese/basic.csv",
+        "data/languages/japanese/intermediate.csv",
+        "data/languages/japanese/advanced.csv"
+      ]
+    },
+    {
+      "task": "Fix Korean Radicals Display & Audio Issues (all_levels + folder mapping)",
+      "completed_date": "2025-12-05",
+      "description": "Fixed Korean radicals 'undefined', ensured correct audio folder mapping (audioPath) and added best-fit level selection for composable words so 'all_levels' matrices find audio in actual level folders. Also sanitized filenames for audio assets.",
+      "files": ["data/languages/korean/radicals/radicals.csv", "js/main.js", "js/utils/audioCache.js", "js/components/MatrixTableBuilder.js", "js/components/WordComposer.js"]
+    },
+    {
+      "task": "Add CSV schema registry and validator",
+      "completed_date": "2025-12-05",
+      "description": "Added canonical csv-schema.json, docs/CSV_SCHEMA.md and tools/validate-csv-schema.js to formalize CSV headers and provide an automated validator for future language/table imports.",
+      "files": ["data/csv-schema.json", "docs/CSV_SCHEMA.md", "tools/validate-csv-schema.js"]
+    },
+    {
+      "task": "Japanese/Korean Radicals Population",
+      "completed_date": "2025-12-05",
+      "description": "Expanded Japanese and Korean radical/component datasets and synchronized vocabulary counts for parity with Chinese; created radicals folders with bushu and jamo entries.",
+      "files": [
+        "data/languages/japanese/basic.csv",
+        "data/languages/japanese/intermediate.csv",
+        "data/languages/japanese/advanced.csv",
+        "data/languages/japanese/radicals/radicals.csv",
+        "data/languages/korean/basic.csv",
+        "data/languages/korean/intermediate.csv",
+        "data/languages/korean/advanced.csv",
+        "data/languages/korean/radicals/radicals.csv"
+      ]
+    },
+    {
+      "task": "Fix Korean Radicals & Multi-language Display",
+      "completed_date": "2025-12-05",
+      "description": "Fixed 'undefined' Korean radicals by standardizing CSV headers. Updated all UI components to support Reading/Romanization fields.",
+      "files": ["data/languages/korean/radicals/radicals.csv", "js/components/RadicalDisplay.js", "js/components/MatrixTableBuilder.js", "js/components/SentenceDisplay.js"]
+    },
+    {
+      "task": "Audio Generation Pipeline",
+      "completed_date": "2025-12-05",
+      "description": "Generated TTS audio for all Japanese and Korean vocabulary (364 words) using Playwright + Google Translate",
+      "files": ["tests/e2e/generate-google-tts.spec.js"]
+    },
+    {
+      "task": "Audio Verification Tooling",
+      "completed_date": "2025-12-05",
+      "description": "Built audio coverage verification test and tools - 100% coverage achieved for all 9 language/level combinations",
+      "files": ["tests/e2e/audio-verification.spec.js", "tools/audio-verification.js", "docs/AUDIO_COVERAGE_REPORT.md"]
+    },
+    {
+      "task": "Word Composer Verification UI",
+      "completed_date": "2025-12-05",
+      "description": "Enhanced success display with component breakdown, readings, and meanings after correct word composition",
+      "files": ["js/components/WordComposer.js", "css/style.css"]
+    },
+    {
+      "task": "Enable Word Composer for all languages (fallback + UI init)",
+      "completed_date": "2025-12-05",
+      "description": "Made RadicalDisplay initialize Word Composer for any language and added a robust fallback in radicalLoader.loadRadicals() to synthesize radicals from vocabulary mappings when radicals.csv is missing. This ensures the Word Composer can run for Chinese, Japanese and Korean even when radicals.csv is incomplete.",
+      "files": [
+        "js/components/RadicalDisplay.js",
+        "js/utils/radicalLoader.js",
+        "js/components/WordComposer.js"
+      ]
+    },
+    {
+      "task": "Multi-Language Radical Support",
+      "completed_date": "2025-12-05",
+      "description": "Updated radicalLoader to support Components column (Japanese/Korean) in addition to Radicals column (Chinese)",
+      "files": ["js/utils/radicalLoader.js"]
+    },
+    {
+      "task": "Audio File Normalization",
+      "completed_date": "2025-12-05",
+      "description": "Removed numbered prefixes from all audio files, standardized to raw word filenames",
+      "files": ["assets/audio/Japanese/*", "assets/audio/Korean/*"]
+    }
+  ],
+  "timeline": {
+    "core_infrastructure": {
+      "phase": "Core Infrastructure",
+      "status": "Completed",
+      "progress_percentage": 100,
+      "subtasks": {
+        "csv_loader": {
+          "name": "CSV Loader Utility",
+          "description": "Parse and load CSV vocabulary files with proper encoding and RFC 4180 compliant quote handling",
+          "start_date": "2025-10-01",
+          "end_date": "2025-12-05",
+          "priority": "Critical",
+          "status": "Completed",
+          "progress_percentage": 100,
+          "estimated_hours": 8,
+          "actual_hours": 10,
+          "files": ["js/utils/csvLoader.js"],
+          "fixes_applied": ["Added parseCSVLine() function with RFC 4180 compliant quote handling for fields containing commas"],
+          "assigned_to": "AI Agent (Core Team)",
+          "dependencies": [],
+          "deliverables": [
+            "RFC4180-compliant CSV parser (parseCSVLine) exposed via js/utils/csvLoader.js",
+            "Unit tests demonstrating correct parsing of quoted fields",
+            "Integration tests to validate downstream consumers (languageLoader, audioCache)"
+          ]
+        },
+        "language_loader": {
+          "name": "Language Loader System",
+          "description": "Dynamic language discovery and level loading from data/languages folder",
+          "start_date": "2025-10-05",
+          "end_date": "2025-10-10",
+          "priority": "Critical",
+          "status": "Completed",
+          "progress_percentage": 100,
+          "estimated_hours": 12,
+          "files": ["js/utils/languageLoader.js"],
+          "dependencies": ["core_infrastructure.csv_loader"],
+          "assigned_to": "AI Agent (Core Team)",
+          "deliverables": [
+            "Stable language discovery and level loader that consumes parseCSV",
+            "Integration tests validating merged level loading"
+          ]
+        },
+        "audio_cache": {
+          "name": "Audio Cache System",
+          "description": "IndexedDB and Cache API for offline audio storage with vocabulary preloading",
+          "start_date": "2025-10-10",
+          "end_date": "2025-12-05",
+          "priority": "High",
+          "status": "Completed",
+          "progress_percentage": 100,
+          "estimated_hours": 20,
+          "actual_hours": 24,
+          "files": ["js/utils/audioCache.js", "js/utils/cacheManager.js"],
+          "new_features": ["preloadVocabularyAudio() - batch preloading from vocabulary CSV"],
+          "assigned_to": "AI Agent (Audio Team)",
+          "dependencies": ["core_infrastructure.csv_loader"],
+          "deliverables": [
+            "Reliable audio caching and preloading API",
+            "Scripted preload workflows for CI/dev to run audio coverage verification"
+          ]
+        },
+        "service_worker": {
+          "name": "Service Worker",
+          "description": "PWA offline support with cache strategies for audio, data, and static assets",
+          "start_date": "2025-11-01",
+          "end_date": "2025-12-05",
+          "priority": "High",
+          "status": "Completed",
+          "progress_percentage": 100,
+          "estimated_hours": 12,
+          "files": ["service-worker.js"],
+          "features": ["Cache-first for audio", "Stale-while-revalidate for data", "Network-first for HTML"],
+          "assigned_to": "DevOps",
+          "dependencies": ["core_infrastructure.audio_cache"],
+          "deliverables": [
+            "Service worker v4 with updated static asset list",
+            "Cache invalidation plan and rollout notes"
+          ]
+        }
+      }
+    },
+    "radical_system": {
+      "phase": "Radical & Component System",
+      "status": "Completed",
+      "progress_percentage": 100,
+      "subtasks": {
+        "radical_loader": {
+          "name": "Radical Loader Utility",
+          "description": "Load radicals from radicals.csv with dynamic StrokeCount, build word-radical mappings from vocabulary CSVs",
+          "start_date": "2025-10-15",
+          "end_date": "2025-12-05",
+          "priority": "High",
+          "status": "Completed",
+          "progress_percentage": 100,
+          "estimated_hours": 24,
+          "actual_hours": 28,
+          "files": ["js/utils/radicalLoader.js"],
+          "assigned_to": "AI Agent (Data Team)",
+          "dependencies": ["data_management.vocabulary_csvs"],
+          "deliverables": [
+            "Word-to-radical mappings extracted from vocabulary CSVs",
+            "radicals cache with stroke counts and variant mapping",
+            "Unit tests validating buildWordRadicalsFromLevels"
+          ],
+          "features": [
+            "buildWordRadicalsFromLevels() - extracts Radicals column from vocab CSVs",
+            "getRadicalsGroupedByStroke() - dynamic stroke count from CSV column",
+            "getComposableWords() - finds words with 2+ radicals for Word Composer",
+            "findRadicalsInCharacter() - with useFallback option for character-level matching",
+            "Variant radical mapping (亻→人, 氵→水, etc.)",
+            "Level-based radical filtering"
+          ]
+        },
+        "radical_display": {
+          "name": "Radical Display Component",
+          "description": "Merged interface showing Word Composer game + radical reference grid organized by stroke count",
+          "start_date": "2025-10-25",
+          "end_date": "2025-12-05",
+          "priority": "High",
+          "status": "Completed",
+          "progress_percentage": 100,
+          "estimated_hours": 28,
+          "actual_hours": 32,
+          "files": ["js/components/RadicalDisplay.js"],
+          "dependencies": ["radical_system.radical_loader"],
+          "assigned_to": "Frontend",
+          "deliverables": [
+            "Merged radicals UI and Word Composer integration",
+            "Interactive grid grouped by stroke count"
+          ],
+          "features": [
+            "Integrated Word Composer at top",
+            "Radical reference grid below",
+            "Level-based filtering (shows only radicals used in current level)",
+            "Draggable radical cards for Word Composer"
+          ]
+        },
+        "word_radical_modal": {
+          "name": "Word Detail Modal with Radicals",
+          "description": "Show component radicals in word detail modal with meanings looked up from radicals.csv",
+          "start_date": "2025-12-01",
+          "end_date": "2025-12-04",
+          "priority": "High",
+          "status": "Completed",
+          "progress_percentage": 100,
+          "estimated_hours": 8,
+          "files": ["js/components/MatrixTableBuilder.js"],
+          "dependencies": ["radical_system.radical_loader","radical_system.radical_display"],
+          "assigned_to": "Frontend",
+          "deliverables": [
+            "Modal showing word component radicals with meanings from radicals.csv",
+            "Integration tests for modal radical lookups"
+          ]
+        },
+        "radicals_csv_expansion": {
+          "name": "Expand radicals.csv Coverage",
+          "description": "Built radicals.csv dynamically from vocabulary CSVs with Kangxi 214, variants, and components",
+          "start_date": "2025-12-04",
+          "end_date": "2025-12-05",
+          "priority": "Medium",
+          "status": "Completed",
+          "progress_percentage": 100,
+          "estimated_hours": 6,
+          "actual_hours": 3,
+          "files": [
+            "data/languages/chinese/radicals/radicals.csv",
+            "data/languages/chinese/radicals/radicals_214.csv",
+            "tools/build_radicals_from_vocab.py",
+            "tools/add_stroke_counts.py"
+          ],
+          "notes": "100% coverage. radicals.csv now has Set (kangxi_214/variant/component), Levels, StrokeCount columns",
+          "assigned_to": "Data Team",
+          "dependencies": ["data_management.vocabulary_csvs"],
+          "deliverables": [
+            "Expanded radicals.csv file with components and stroke count",
+            "Verification report confirming 100% coverage"
+          ]
+        }
+      }
+    },
+    "vocabulary_matrix": {
+      "phase": "Vocabulary Matrix Interface",
+      "status": "Completed",
+      "subtasks": {
+        "matrix_builder": {
+          "name": "Matrix Table Builder",
+          "description": "Build interactive vocabulary matrix table with category columns",
+          "start_date": "2025-10-20",
+          "end_date": "2025-11-01",
+          "priority": "Critical",
+          "status": "Completed",
+          "progress_percentage": 100,
+          "estimated_hours": 20,
+          "files": ["js/components/MatrixTableBuilder.js"]
+        },
+        "sentence_display": {
+          "name": "Sentence Display Component",
+          "description": "Display selected words as sentence with pinyin and English",
+          "start_date": "2025-11-01",
+          "end_date": "2025-11-10",
+          "priority": "High",
+          "status": "Completed",
+          "progress_percentage": 100,
+          "estimated_hours": 12,
+          "files": ["js/components/SentenceDisplay.js"]
+        },
+        "audio_playback": {
+          "name": "Audio Playback Integration",
+          "description": "Play word and sentence audio with level-aware fallback",
+          "start_date": "2025-11-10",
+          "end_date": "2025-11-20",
+          "priority": "High",
+          "status": "Completed",
+          "progress_percentage": 100,
+          "estimated_hours": 16,
+          "files": ["js/components/SentenceDisplay.js", "js/components/MatrixTableBuilder.js"]
+        }
+      }
+    },
+    "word_composer_game": {
+      "phase": "Word Composer Game",
+      "status": "Completed",
+      "progress_percentage": 100,
+      "subtasks": {
+        "composer_ui": {
+          "name": "Word Composer Interface",
+          "description": "Drag-and-drop interface to compose words from radicals with audio feedback",
+          "start_date": "2025-11-15",
+          "end_date": "2025-12-05",
+          "priority": "Medium",
+          "status": "Completed",
+          "progress_percentage": 100,
+          "estimated_hours": 28,
+          "actual_hours": 36,
+          "files": ["js/components/WordComposer.js"],
+          "assigned_to": "Frontend",
+          "dependencies": ["radical_system.radical_loader","vocabulary_matrix.matrix_builder"],
+          "deliverables": [
+            "Playable UI with drag/drop and audio feedback",
+            "Accessibility and touch support verified"
+          ],
+          "features": [
+            "Drag radicals from reference section to drop zones",
+            "Audio playback on correct word composition",
+            "Score tracking and progress display",
+            "Level-based word filtering",
+            "Uses word's actual level for audio path resolution",
+            "Show Hints button - highlights needed radicals in yellow with pulsing animation",
+            "Manual Next Word button - user controls when to advance after correct answer",
+            "Replay Audio button - allows replaying the word audio after completion"
+          ]
+        },
+        "touch_support": {
+          "name": "Mobile Touch Support",
+          "description": "Touch event handling for mobile drag-and-drop with ghost element",
+          "start_date": "2025-11-25",
+          "end_date": "2025-12-05",
+          "priority": "Medium",
+          "status": "Completed",
+          "progress_percentage": 100,
+          "estimated_hours": 10,
+          "actual_hours": 12,
+          "files": ["js/components/WordComposer.js"],
+          "assigned_to": "Frontend",
+          "dependencies": ["word_composer_game.composer_ui"],
+          "deliverables": [
+            "Robust touch interactions and mobile UX for the composer"
+          ],
+          "features": [
+            "Touch ghost element for visual feedback",
+            "Touch move with slot highlighting",
+            "Touch end drop detection"
+          ]
+        },
+        "verification": {
+          "name": "Composer Verification UI",
+          "description": "Add verification codes and user/developer verification UI for composed words and corresponding audio files",
+          "start_date": "2025-12-05",
+          "end_date": "2025-12-12",
+          "priority": "High",
+          "status": "Completed",
+          "progress_percentage": 100,
+          "estimated_hours": 12,
+          "files": ["js/components/WordComposer.js", "js/utils/audioCache.js", "js/utils/radicalLoader.js"],
+          "notes": "Verification UI implemented in `js/components/WordComposer.js` (buildVerificationUI). Developer verification tooling exists to compute hashes for word+audio; next step is to surface verification mappings in CI reports if desired.",
+          "assigned_to": "AI Agent (Frontend Team)",
+          "dependencies": ["data_management.audio_verification"],
+          "deliverables": [
+            "UI that displays a short verification code after correct composition",
+            "Copy-to-clipboard button and optional 'verify' endpoint lookup",
+            "Unit + E2E tests asserting verification flow"
+          ]
+        }
+      }
+    },
+    "testing": {
+      "phase": "Testing Infrastructure",
+      "status": "Completed",
+      "progress_percentage": 100,
+      "subtasks": {
+        "unit_tests": {
+          "name": "Unit Tests",
+          "description": "Jest unit tests for core utilities",
+          "start_date": "2025-12-01",
+          "end_date": "2025-12-05",
+          "priority": "High",
+          "status": "Completed",
+          "progress_percentage": 100,
+          "estimated_hours": 8,
+          "files": [
+            "tests/unit/radicalSystem.test.js",
+            "tests/unit/csvLoader.test.js"
+          ]
+          ,
+          "assigned_to": "QA Team",
+          "deliverables": [
+            "Unit test suite passing for core utilities",
+            "Code coverage report for changed modules"
+          ]
+        },
+        "integration_tests": {
+          "name": "Integration Tests",
+          "description": "Data-driven integration tests for radical filtering and word composition",
+          "start_date": "2025-12-03",
+          "end_date": "2025-12-05",
+          "priority": "High",
+          "status": "Completed",
+          "progress_percentage": 100,
+          "estimated_hours": 12,
+          "files": [
+            "tests/integration/levelFiltering.test.js",
+            "tests/integration/mergedRadicalUI.test.js",
+            "tests/integration/radicalFilteringDataDriven.test.js"
+          ],
+          "assigned_to": "QA Team",
+          "deliverables": [
+            "Integration tests validating level isolation and composable words",
+            "Data-driven test artifacts stored in CI logs"
+          ],
+          "features": [
+            "Data-driven: computes expected values from CSV files",
+            "No hardcoded expectations",
+            "Tests level isolation and composable word detection"
+          ]
+        },
+        "e2e_tests": {
+          "name": "E2E Tests (Playwright)",
+          "description": "End-to-end browser tests for radical filtering UI",
+          "start_date": "2025-12-04",
+          "end_date": "2025-12-05",
+          "priority": "Medium",
+          "status": "Completed",
+          "progress_percentage": 100,
+          "estimated_hours": 6,
+          "files": ["tests/e2e/radicalFilter.spec.js"]
+        },
+        "python_validation": {
+          "name": "Python Validation Scripts",
+          "description": "Python scripts to validate data integrity between CSVs",
+          "start_date": "2025-12-04",
+          "end_date": "2025-12-05",
+          "priority": "Medium",
+          "status": "Completed",
+          "progress_percentage": 100,
+          "estimated_hours": 4,
+          "files": [
+            "tests/validate_radical_data.py",
+            "tests/test_word_radical_integration.py"
+          ]
+          ,
+          "assigned_to": "Data Team",
+          "deliverables": [
+            "Python validation scripts that confirm radicals/vocab alignment",
+            "Summary report for data anomalies"
+          ]
+        }
+      }
+    },
+    "data_management": {
+      "phase": "Data Management",
+      "status": "In Progress",
+      "progress_percentage": 85,
+      "subtasks": {
+        "vocabulary_csvs": {
+          "name": "Vocabulary CSV Files",
+          "description": "Basic, intermediate, advanced vocabulary with Radicals column for word decomposition",
+          "start_date": "2025-10-01",
+          "end_date": "2025-12-05",
+          "priority": "Critical",
+          "status": "Completed",
+          "progress_percentage": 100,
+          "estimated_hours": 40,
+          "files": [
+            "data/languages/chinese/basic.csv",
+            "data/languages/chinese/intermediate.csv",
+            "data/languages/chinese/advanced.csv"
+          ],
+          "columns": ["Category", "Word", "Pinyin", "English", "POS", "Role", "Common_Usage", "Example_Phrase", "Radicals", "word_n_radicals"]
+        },
+        "matrix_index": {
+          "name": "Matrix Index Configuration",
+          "description": "JSON index with merged matrix support (type: merged, includeLevels)",
+          "start_date": "2025-10-15",
+          "end_date": "2025-12-05",
+          "priority": "High",
+          "status": "Completed",
+          "progress_percentage": 100,
+          "estimated_hours": 6,
+          "files": ["data/matrix_index.json"],
+          "features": ["Merged matrix type for All Levels view", "languagePath for audio resolution"]
+        },
+        "audio_files": {
+          "name": "Audio File Organization",
+          "description": "Audio files organized by language and level with preloading support",
+          "start_date": "2025-11-01",
+          "end_date": "2025-12-15",
+          "priority": "High",
+          "status": "In Progress",
+          "progress_percentage": 75,
+          "estimated_hours": 20,
+          "files": [
+            "assets/audio/chinese/basic/",
+            "assets/audio/chinese/intermediate/",
+            "assets/audio/chinese/advanced/",
+            "assets/audio/chinese/radicals/"
+          ],
+          "assigned_to": "AI Agent (Data Team)",
+          "dependencies": ["data_management.vocabulary_csvs"],
+          "deliverables": [
+            "Generate and place MP3 files to reach >= 95% coverage",
+            "Report of missing files and a remediation plan"
+          ]
+        }
+        ,
+        "audio_verification": {
+          "name": "Audio Coverage & Verification",
+          "description": "Verify that each vocabulary word has a corresponding audio file; generate verification codes and a report for missing audio",
+          "start_date": "2025-12-05",
+          "end_date": "2025-12-12",
+          "priority": "High",
+          "status": "Completed",
+          "progress_percentage": 100,
+          "estimated_hours": 16,
+          "files": ["js/utils/audioCache.js", "data/tools/compile_audio_all.py"],
+          "notes": "Audio verification implemented and exercised: Playwright + `tools/audio-verification.js` generate per-level reports and the TTS generator (`tests/e2e/generate-google-tts.spec.js`) can remediate missing files.",
+          "assigned_to": "AI Agent (Data Team)",
+          "dependencies": ["data_management.vocabulary_csvs","data_management.audio_files"],
+          "deliverables": [
+            "Verification JSON per level mapping word -> path -> SHA256",
+            "Missing audio report and automatic-to-run generation commands"
+          ]
+        }
+      }
+    },
+    "future_development": {
+      "phase": "Future Development",
+      "status": "In Progress",
+      "subtasks": {
+        "japanese_support": {
+          "name": "Japanese Language Support",
+          "description": "Add Japanese vocabulary, audio, and syllable components",
+          "start_date": "2025-12-05",
+          "end_date": "2025-12-15",
+          "priority": "High",
+          "status": "In Progress",
+          "progress_percentage": 85,
+          "estimated_hours": 60,
+          "actual_hours": 12,
+          "files": [
+            "data/languages/japanese/basic.csv",
+            "data/languages/japanese/intermediate.csv",
+            "data/languages/japanese/advanced.csv",
+            "data/languages/japanese/radicals/radicals.csv",
+            "assets/audio/Japanese/"
+          ],
+          "notes": "COMPLETE: Japanese vocabulary CSVs with 60+ basic, 65+ intermediate, 62+ advanced words matching Chinese level counts. Radicals folder created with 58 bushu (部首) entries. Audio folder structure ready. matrix_index.json configured with ja-JP language code.",
+          "assigned_to": "AI Agent (Data Team)",
+          "dependencies": ["core_infrastructure.language_loader"],
+          "deliverables": [
+            "Japanese vocabulary CSVs with Word, Reading, English, Components columns",
+            "Japanese radicals/bushu CSV with readings",
+            "Audio folder structure matching Chinese pattern",
+            "Integration tests validating language loader handles Japanese"
+          ]
+        },
+        "korean_support": {
+          "name": "Korean Language Support",
+          "description": "Add Korean vocabulary, audio, and hangul components",
+          "start_date": "2025-12-05",
+          "end_date": "2025-12-15",
+          "priority": "High",
+          "status": "In Progress",
+          "progress_percentage": 85,
+          "estimated_hours": 60,
+          "actual_hours": 12,
+          "files": [
+            "data/languages/korean/basic.csv",
+            "data/languages/korean/intermediate.csv",
+            "data/languages/korean/advanced.csv",
+            "data/languages/korean/radicals/radicals.csv",
+            "assets/audio/Korean/"
+          ],
+          "notes": "COMPLETE: Korean vocabulary CSVs with 53+ basic, 64+ intermediate, 62+ advanced words matching Chinese level counts. Radicals folder created with 52 jamo (자모) component entries. Audio folder structure ready. matrix_index.json configured with ko-KR language code.",
+          "assigned_to": "AI Agent (Data Team)",
+          "dependencies": ["core_infrastructure.language_loader"],
+          "deliverables": [
+            "Korean vocabulary CSVs with Word, Romanization, English, Components columns",
+            "Korean jamo/hangul components CSV",
+            "Audio folder structure matching Chinese pattern",
+            "Integration tests validating language loader handles Korean"
+          ]
+        },
+        "spaced_repetition": {
+          "name": "Spaced Repetition System",
+          "description": "Implement SRS algorithm for vocabulary review scheduling",
+          "start_date": "2026-03-01",
+          "end_date": "2026-04-30",
+          "priority": "Medium",
+          "status": "Not Started",
+          "progress_percentage": 0,
+          "estimated_hours": 40
+        },
+        "user_progress": {
+          "name": "User Progress Tracking",
+          "description": "Track learned words, quiz scores, and learning streaks",
+          "start_date": "2026-03-01",
+          "end_date": "2026-04-30",
+          "priority": "Low",
+          "status": "Not Started",
+          "progress_percentage": 0,
+          "estimated_hours": 32
+        },
+        "quiz_mode": {
+          "name": "Quiz Mode",
+          "description": "Multiple choice and fill-in-the-blank quizzes",
+          "start_date": "2026-05-01",
+          "end_date": "2026-06-30",
+          "priority": "Low",
+          "status": "Not Started",
+          "progress_percentage": 0,
+          "estimated_hours": 24
+        }
+      }
+    }
+  },
+  "categories": [
+    {
+      "name": "Core Infrastructure",
+      "parent_category_name": null
+    },
+    {
+      "name": "Radical System",
+      "parent_category_name": null
+    },
+    {
+      "name": "UI Components",
+      "parent_category_name": null
+    },
+    {
+      "name": "Data Management",
+      "parent_category_name": null
+    },
+    {
+      "name": "Future Features",
+      "parent_category_name": null
+    }
+  ],
+  "file_inventory": {
+    "javascript": {
+      "main": ["js/main.js"],
+      "components": [
+        "js/components/MatrixTableBuilder.js",
+        "js/components/RadicalDisplay.js",
+        "js/components/SentenceDisplay.js",
+        "js/components/WordComposer.js"
+      ],
+      "utils": [
+        "js/utils/audioCache.js",
+        "js/utils/cacheManager.js",
+        "js/utils/csvLoader.js",
+        "js/utils/languageLoader.js",
+        "js/utils/radicalLoader.js"
+      ]
+    },
+    "css": [
+      "css/style.css",
+      "css/matrix_table.css"
+    ],
+    "data": {
+      "config": [
+        "data/matrix_index.json",
+        "data/categories_config.csv",
+        "data/config.csv"
+      ],
+      "chinese": [
+        "data/languages/chinese/basic.csv",
+        "data/languages/chinese/intermediate.csv",
+        "data/languages/chinese/advanced.csv",
+        "data/languages/chinese/radicals/radicals.csv"
+      ],
+      "japanese": [
+        "data/languages/japanese/basic.csv",
+        "data/languages/japanese/intermediate.csv",
+        "data/languages/japanese/advanced.csv",
+        "data/languages/japanese/radicals/radicals.csv"
+      ],
+      "korean": [
+        "data/languages/korean/basic.csv",
+        "data/languages/korean/intermediate.csv",
+        "data/languages/korean/advanced.csv",
+        "data/languages/korean/radicals/radicals.csv"
+      ]
+    },
+    "tests": {
+      "e2e": [
+        "tests/e2e/radicalFilter.spec.js"
+      ],
+      "integration": [
+        "tests/integration/levelFiltering.test.js",
+        "tests/integration/mergedRadicalUI.test.js",
+        "tests/integration/radicalFilteringDataDriven.test.js",
+        "tests/integration/multiLanguage.test.js"
+      ],
+      "unit": [
+        "tests/unit/radicalSystem.test.js"
+      ],
+      "python": [
+        "tests/validate_radical_coverage.py",
+        "tests/test_radical_filtering.py",
+        "tests/tools/validate_multilang.py"
+      ]
+    },
+    "tools": {
+      "python": [
+        "tools/build_radicals_from_vocab.py",
+        "tools/add_stroke_counts.py",
+        "tools/analyze_radicals.py",
+        "tools/verify_radicals.py"
+      ],
+      "data_tools": [
+        "data/tools/compile_audio_all.py",
+        "data/tools/extract_hanzi.py",
+        "data/tools/merge_csvs.py"
+      ]
+    },
+    "assets": {
+      "audio": [
+        "assets/audio/chinese/basic/",
+        "assets/audio/chinese/intermediate/",
+        "assets/audio/chinese/advanced/",
+        "assets/audio/chinese/radicals/",
+        "assets/audio/Japanese/basic/",
+        "assets/audio/Japanese/intermediate/",
+        "assets/audio/Japanese/advanced/",
+        "assets/audio/Korean/basic/",
+        "assets/audio/Korean/intermediate/",
+        "assets/audio/Korean/advanced/"
+      ]
+    },
+    "root": [
+      "index.html",
+      "service-worker.js",
+      "favicon.svg",
+      "README.md",
+      "LICENSE",
+      "AGENTS.md"
+    ]
+  },
+  "recent_fixes": [
+    {
+      "date": "2025-12-05",
+      "description": "Fixed Korean radicals display issues: added StrokeCount column, fixed RadicalDisplay.setLevel timing, and sanitized audio filenames for Korean particles with '/' characters.",
+      "files_changed": [
+        "data/languages/korean/radicals/radicals.csv",
+        "js/main.js",
+        "js/components/MatrixTableBuilder.js"
+      ],
+      "details": "Added StrokeCount column to Korean radicals.csv with appropriate stroke counts for jamo. Fixed RadicalDisplay.setLevel being called before radicals are loaded. Added filename sanitization to replace '/' with '-' in audio file paths."
+    },
+    {
+      "date": "2025-12-05",
+      "description": "Fixed Korean radicals 'undefined' issue and standardized multi-language display",
+      "files_changed": [
+        "data/languages/korean/radicals/radicals.csv",
+        "js/components/RadicalDisplay.js",
+        "js/components/MatrixTableBuilder.js",
+        "js/components/SentenceDisplay.js"
+      ],
+      "details": "Renamed headers in Korean radicals.csv (Component -> Radical) to match system expectations. Updated UI components to correctly display Reading (Japanese) and Romanization (Korean) in place of Pinyin."
+    },
+    {
+      "date": "2025-12-05",
+      "description": "Expanded Japanese and Korean vocabularies to match Chinese word counts",
+      "files_changed": [
+        "data/languages/japanese/basic.csv",
+        "data/languages/japanese/intermediate.csv",
+        "data/languages/japanese/advanced.csv",
+        "data/languages/japanese/radicals/radicals.csv",
+        "data/languages/korean/basic.csv",
+        "data/languages/korean/intermediate.csv",
+        "data/languages/korean/advanced.csv",
+        "data/languages/korean/radicals/radicals.csv"
+      ],
+      "details": "MAJOR UPDATE: Japanese vocabulary expanded to 60+ basic, 65+ intermediate, 62+ advanced words. Korean vocabulary expanded to 53+ basic, 64+ intermediate, 62+ advanced words. Created radicals folders with bushu (部首) for Japanese (58 entries) and jamo (자모) for Korean (52 entries). All three languages now have consistent vocabulary coverage and component/radical support."
+    },
+    {
+      "date": "2025-12-05",
+      "description": "Multi-language integration: Added Japanese and Korean support",
+      "files_changed": [
+        "data/matrix_index.json",
+        "data/languages/japanese/basic.csv",
+        "data/languages/japanese/intermediate.csv",
+        "data/languages/japanese/advanced.csv",
+        "data/languages/korean/basic.csv",
+        "data/languages/korean/intermediate.csv",
+        "data/languages/korean/advanced.csv",
+        "tests/integration/multiLanguage.test.js",
+        "tests/tools/validate_multilang.py"
+      ],
+      "details": "NEW: Japanese and Korean placeholder vocabularies with 30/20/15 words per level. Updated matrix_index.json with correct language codes (ja-JP, ko-KR), separate audioPath field for case-sensitive file systems. Added multi-language validation script and integration tests."
+    },
+    {
+      "date": "2025-12-05",
+      "description": "Enhanced Word Composer with hint highlights, manual advancement, and audio replay",
+      "files_changed": [
+        "js/components/WordComposer.js",
+        "css/style.css"
+      ],
+      "details": "NEW: Show Hints button highlights needed radicals in yellow with pulsing animation. Manual Next Word button replaces auto-advance. Replay Audio button for repeating word pronunciation after completion."
+    },
+    {
+      "date": "2025-12-05",
+      "description": "Fixed CSV parser with RFC 4180 compliant quote handling",
+      "files_changed": [
+        "js/utils/csvLoader.js",
+        "js/utils/audioCache.js"
+      ],
+      "details": "CRITICAL FIX: Added parseCSVLine() function that properly handles quoted fields containing commas. Applied to both csvLoader.js and audioCache.js preloadVocabularyAudio()"
+    },
+    {
+      "date": "2025-12-05",
+      "description": "Added fallback mode to findRadicalsInCharacter",
+      "files_changed": [
+        "js/utils/radicalLoader.js"
+      ],
+      "details": "Added useFallback parameter to findRadicalsInCharacter() that enables character-level matching when explicit decomposition not found"
+    },
+    {
+      "date": "2025-12-05",
+      "description": "Added audio path sanitization with encodeURIComponent",
+      "files_changed": [
+        "js/utils/audioCache.js"
+      ],
+      "details": "Audio file paths now use encodeURIComponent to handle special characters in Chinese words"
+    },
+    {
+      "date": "2025-12-05",
+      "description": "Updated service worker to v4",
+      "files_changed": [
+        "service-worker.js"
+      ],
+      "details": "Bumped cache version to v4 to invalidate caches after Word Composer enhancements"
+    },
+    {
+      "date": "2025-12-05",
+      "description": "Implemented Word Composer drag-drop game",
+      "files_changed": [
+        "js/components/WordComposer.js"
+      ],
+      "details": "NEW component: Drag-and-drop game for building Chinese words from radicals. Features touch support, audio feedback, score tracking, level filtering integration"
+    },
+    {
+      "date": "2025-12-05",
+      "description": "Enhanced radicalLoader with composable word detection",
+      "files_changed": [
+        "js/utils/radicalLoader.js"
+      ],
+      "details": "NEW features: buildWordRadicalsFromLevels() to extract radicals from vocabulary CSVs, getComposableWords() for Word Composer, getRadicalsGroupedByStroke() for UI organization"
+    },
+    {
+      "date": "2025-12-05",
+      "description": "Added vocabulary preloading to audio cache",
+      "files_changed": [
+        "js/utils/audioCache.js"
+      ],
+      "details": "NEW function: preloadVocabularyAudio(language, level) for batch preloading audio files based on vocabulary CSV"
+    },
+    {
+      "date": "2025-12-05",
+      "description": "Updated service worker to v2 with radical caching",
+      "files_changed": [
+        "service-worker.js"
+      ],
+      "details": "Added radicals.csv to STATIC_ASSETS, updated cache version to v2 for proper cache invalidation"
+    },
+    {
+      "date": "2025-12-05",
+      "description": "Comprehensive testing infrastructure",
+      "files_changed": [
+        "tests/e2e/radicalFilter.spec.js",
+        "tests/integration/levelFiltering.test.js",
+        "tests/integration/mergedRadicalUI.test.js",
+        "tests/integration/radicalFilteringDataDriven.test.js",
+        "tests/unit/radicalSystem.test.js",
+        "tests/validate_radical_coverage.py",
+        "tests/test_radical_filtering.py"
+      ],
+      "details": "NEW: Complete testing suite with Playwright E2E tests, Jest integration tests, data-driven tests, and Python validation scripts"
+    },
+    {
+      "date": "2025-12-05",
+      "description": "Python build tools for radical data",
+      "files_changed": [
+        "tools/build_radicals_from_vocab.py",
+        "tools/add_stroke_counts.py",
+        "tools/analyze_radicals.py",
+        "tools/verify_radicals.py"
+      ],
+      "details": "NEW: Build scripts to extract radicals from vocabulary, add stroke counts, analyze coverage, and verify data integrity"
+    },
+    {
+      "date": "2025-12-04",
+      "description": "Achieved 100% radical coverage in radicals.csv",
+      "files_changed": [
+        "data/languages/chinese/radicals/radicals.csv"
+      ],
+      "details": "Added 137 missing character components to radicals.csv. Coverage increased from 56% to 100% (350 total entries)"
+    },
+    {
+      "date": "2025-12-04",
+      "description": "Fixed radical meaning lookup in word detail modal",
+      "files_changed": [
+        "js/components/MatrixTableBuilder.js",
+        "js/main.js"
+      ],
+      "details": "Added radicalLoader reference to MatrixTableBuilder for proper variant matching and dynamic meaning lookup from radicals.csv"
+    },
+    {
+      "date": "2025-12-04",
+      "description": "Fixed buildWordRadicalsFromLevels to read Radicals column from vocabulary CSVs",
+      "files_changed": [
+        "js/utils/radicalLoader.js"
+      ],
+      "details": "Updated to parse Radicals column directly from basic.csv, intermediate.csv, advanced.csv instead of relying on character decomposition"
+    },
+    {
+      "date": "2025-12-04",
+      "description": "Removed hardcoded Chinese language check for radical display",
+      "files_changed": [
+        "js/components/MatrixTableBuilder.js"
+      ],
+      "details": "Made radical display language-agnostic"
+    },
+    {
+      "date": "2025-12-05",
+      "description": "Audio Generation Pipeline - Generated TTS for Japanese and Korean",
+      "files_changed": [
+        "tests/e2e/generate-google-tts.spec.js",
+        "assets/audio/Japanese/basic/*.mp3",
+        "assets/audio/Japanese/intermediate/*.mp3",
+        "assets/audio/Japanese/advanced/*.mp3",
+        "assets/audio/Korean/basic/*.mp3",
+        "assets/audio/Korean/intermediate/*.mp3",
+        "assets/audio/Korean/advanced/*.mp3"
+      ],
+      "details": "Created Playwright TTS generator that uses Google Translate to generate audio. Generated 364 audio files across 6 language/level combinations (Japanese: 60+66+61, Korean: 53+63+61)"
+    },
+    {
+      "date": "2025-12-05",
+      "description": "Audio file normalization - removed numbered prefixes",
+      "files_changed": [
+        "assets/audio/Japanese/*/*.mp3",
+        "assets/audio/Korean/*/*.mp3",
+        "tests/e2e/generate-google-tts.spec.js"
+      ],
+      "details": "Removed N_word.mp3 prefixes from all audio files, keeping only raw word.mp3 filenames to match runtime audio lookup. Updated TTS generator to only save raw filenames."
+    },
+    {
+      "date": "2025-12-05",
+      "description": "Audio Verification Tooling - 100% coverage verified",
+      "files_changed": [
+        "tests/e2e/audio-verification.spec.js",
+        "tools/audio-verification.js",
+        "docs/AUDIO_COVERAGE_REPORT.md"
+      ],
+      "details": "Created Playwright test that verifies audio files exist for all vocabulary words. All 9 language/level combinations at 100% coverage (527 total words, 527 audio files)"
+    },
+    {
+      "date": "2025-12-05",
+      "description": "Word Composer Verification UI - Enhanced success display",
+      "files_changed": [
+        "js/components/WordComposer.js",
+        "css/style.css"
+      ],
+      "details": "Added buildVerificationUI() method showing component breakdown with readings and meanings after correct word composition. Added verification-panel CSS styles."
+    },
+    {
+      "date": "2025-12-05",
+      "description": "Multi-language radical support - Added Components column parsing",
+      "files_changed": [
+        "js/utils/radicalLoader.js"
+      ],
+      "details": "Updated buildWordRadicalsFromLevels() to check for both 'Radicals' column (Chinese) and 'Components' column (Japanese/Korean), enabling Word Composer for all languages."
+    },
+    {
+      "date": "2025-12-06",
+      "description": "Added comprehensive test suite and Japanese basic audio samples",
+      "files_changed": [
+        "tests/e2e/audio-verification.spec.js",
+        "tests/e2e/generate-google-tts.spec.js",
+        "tests/e2e/radicalFilter.spec.js",
+        "tests/integration/levelFiltering.test.js",
+        "tests/integration/mergedRadicalUI.test.js",
+        "tests/integration/multiLanguage.test.js",
+        "tests/integration/radicalFilteringDataDriven.test.js",
+        "tests/unit/radicalSystem.test.js",
+        "tests/unit/wordComposer.multilang.test.js",
+        "tests/assets/audio/Japanese/basic/*.mp3"
+      ],
+      "details": "Added E2E, integration, and unit tests for comprehensive coverage including audio verification, radical filtering, and multi-language support. Included Japanese basic level audio samples (60 files) for testing purposes."
+    }
+  ],
+  "known_issues": [],
+  "resolved_issues": [
+    {
+      "id": "CSV-001",
+      "severity": "Critical",
+      "title": "CSV Parser uses naive split(',') - fails on quoted fields",
+      "description": "csvLoader.js used simple split(',') which breaks when CSV fields contain commas inside quotes.",
+      "affected_files": ["js/utils/csvLoader.js", "js/utils/audioCache.js"],
+      "resolution": "Added parseCSVLine() function with RFC 4180 compliant quote handling. Also added _parseCSVLine() to audioCache.js for preloadVocabularyAudio()",
+      "created_date": "2025-12-05",
+      "resolved_date": "2025-12-05"
+    },
+    {
+      "id": "RAD-001",
+      "severity": "Medium",
+      "title": "findRadicalsInCharacter strict mode returns empty for unknown decompositions",
+      "description": "radicalLoader.findRadicalsInCharacter used STRICT MODE that returned empty array if explicit decomposition not found",
+      "affected_files": ["js/utils/radicalLoader.js"],
+      "resolution": "Added useFallback parameter to findRadicalsInCharacter() that enables character-level matching when set to true",
+      "created_date": "2025-12-05",
+      "resolved_date": "2025-12-05"
+    },
+    {
+      "id": "AUD-001",
+      "severity": "Low",
+      "title": "Audio filename sanitization may fail on special characters",
+      "description": "preloadVocabularyAudio constructed audio paths without sanitizing special characters",
+      "affected_files": ["js/utils/audioCache.js"],
+      "resolution": "Added encodeURIComponent() for audio file paths in preloadVocabularyAudio()",
+      "created_date": "2025-12-05",
+      "resolved_date": "2025-12-05"
+    }
+  ]
+}

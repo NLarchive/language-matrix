@@ -1,64 +1,64 @@
 Category,Word,Pinyin,English,POS,Role,Common_Usage,Example_Phrase,Radicals,word_n_radicals
-Pronoun,自己,zìjǐ,oneself,PRON,reflexive,Reflexive pronoun,我自己做。
-Pronoun,大家,dàjiā,everyone,PRON,collective,Collective pronoun,大家都来了。
-Pronoun,别人,biérén,others,PRON,indefinite,Other people,别人不知道。
-Pronoun,什么,shénme,what,PRON,interrogative,Question word,你要什么？
-Pronoun,谁,shéi,who,PRON,interrogative,Question word,谁来了？
-Pronoun,哪里,nǎlǐ,where,PRON,interrogative,Question word,你去哪里？
-Pronoun,怎么,zěnme,how,PRON,interrogative,Question word,怎么做？
-Verb,想,xiǎng,want/think,VERB,modal,Modal verb,我想去。
-Verb,要,yào,want/will,VERB,modal,Modal/future,他要来。
-Verb,能,néng,can/able,VERB,modal,Ability modal,她能做。
-Verb,可以,kěyǐ,may/can,VERB,modal,Permission modal,你可以走。
-Verb,应该,yīnggāi,should,VERB,modal,Obligation modal,我们应该学习。
-Verb,知道,zhīdào,know,VERB,cognition,Knowledge verb,我知道了。
-Verb,觉得,juéde,feel/think,VERB,cognition,Opinion verb,他觉得好。
-Verb,喜欢,xǐhuan,like,VERB,emotion,Preference verb,她喜欢音乐。
-Verb,帮助,bāngzhù,help,VERB,action,Assistance,我帮助你。
-Verb,学习,xuéxí,study,VERB,action,Learning action,他们学习中文。
-Verb,工作,gōngzuò,work,VERB,action,Work action,我在工作。
-Verb,买,mǎi,buy,VERB,transaction,Purchase,我买东西。
-Verb,卖,mài,sell,VERB,transaction,Sale,他卖书。
-Noun,朋友,péngyou,friend,NOUN,person,Relationship,我的朋友。
-Noun,老师,lǎoshī,teacher,NOUN,person,Profession,她是老师。
-Noun,学生,xuésheng,student,NOUN,person,Status,他是学生。
-Noun,公司,gōngsī,company,NOUN,place,Organization,我在公司。
-Noun,医院,yīyuàn,hospital,NOUN,place,Institution,去医院。
-Noun,问题,wèntí,question/problem,NOUN,abstract,Issue,这是问题。
-Noun,时间,shíjiān,time,NOUN,abstract,Concept,没有时间。
-Noun,钱,qián,money,NOUN,object,Currency,有钱。
-Noun,电话,diànhuà,phone,NOUN,object,Device,打电话。
-Noun,电脑,diànnǎo,computer,NOUN,object,Device,用电脑。
-Time,现在,xiànzài,now,NOUN,time,Present,现在开始。
-Time,以前,yǐqián,before,NOUN,time,Past reference,以前去过。
-Time,以后,yǐhòu,after,NOUN,time,Future reference,以后再说。
-Time,每天,měitiān,every day,NOUN,time,Frequency,每天学习。
-Time,有时候,yǒushíhou,sometimes,NOUN,time,Frequency,有时候去。
-Location,外面,wàimiàn,outside,NOUN,location,Position,在外面。
-Location,里面,lǐmiàn,inside,NOUN,location,Position,在里面。
-Location,上面,shàngmiàn,above,NOUN,location,Position,在上面。
-Location,下面,xiàmiàn,below,NOUN,location,Position,在下面。
-Location,旁边,pángbiān,beside,NOUN,location,Position,在旁边。
-Particle,过,guò,EXP,PART,aspect,Experiential,我去过。
-Particle,着,zhe,PROG,PART,aspect,Progressive,他看着书。
-Particle,得,de,COMP,PART,complement,Complement marker,做得好。
-Particle,地,de,ADV,PART,adverbial,Adverb marker,快地走。
-Particle,吧,ba,SUGG,PART,mood,Suggestion,走吧。
-Conjunction,和,hé,and,CONJ,connector,Addition,我和你。
-Conjunction,或者,huòzhě,or,CONJ,connector,Alternative,这个或者那个。
-Conjunction,但是,dànshì,but,CONJ,connector,Contrast,好但是贵。
-Conjunction,因为,yīnwèi,because,CONJ,connector,Cause,因为下雨。
-Conjunction,所以,suǒyǐ,so/therefore,CONJ,connector,Result,所以不去。
-Adverb,很,hěn,very,ADV,degree,Intensity,很好。
-Adverb,太,tài,too,ADV,degree,Excessive,太大了。
-Adverb,非常,fēicháng,extremely,ADV,degree,High intensity,非常好。
-Adverb,都,dōu,all/both,ADV,scope,Totality,都来了。
-Adverb,也,yě,also,ADV,addition,Addition,我也去。
-Adverb,还,hái,still/also,ADV,continuation,Continuation,还在学。
-Adverb,已经,yǐjīng,already,ADV,completion,Completion,已经做完。
-Adverb,正在,zhèngzài,in progress,ADV,progressive,Ongoing,正在吃饭。
-Quantifier,几,jǐ,how many,NUM,quantity,Question,几个人？
-Quantifier,多少,duōshao,how much,NUM,quantity,Question,多少钱？
-Quantifier,些,xiē,some,NUM,quantity,Indefinite,一些书。
-Quantifier,次,cì,CL:times,CL,classifier,Frequency,三次。
-Quantifier,块,kuài,CL:yuan,CL,classifier,Money,五块钱。
+Pronoun,自己,zìjǐ,oneself,PRON,reflexive,Reflexive pronoun,我自己做。,自+己,2
+Pronoun,大家,dàjiā,everyone,PRON,collective,Collective pronoun,大家都来了。,大+宀+豕,3
+Pronoun,别人,biérén,others,PRON,indefinite,Other people,别人不知道。,口+力+刂+人,4
+Pronoun,什么,shénme,what,PRON,interrogative,Question word,你要什么？,亻+十+厶,3
+Pronoun,谁,shéi,who,PRON,interrogative,Question word,谁来了？,讠+隹,2
+Pronoun,哪里,nǎlǐ,where,PRON,interrogative,Question word,你去哪里？,口+冉+阝+里,4
+Pronoun,怎么,zěnme,how,PRON,interrogative,Question word,怎么做？,乍+心+厶,3
+Verb,想,xiǎng,want/think,VERB,modal,Modal verb,我想去。,木+目+心,3
+Verb,要,yào,want/will,VERB,modal,Modal/future,他要来。,西+女,2
+Verb,能,néng,can/able,VERB,modal,Ability modal,她能做。,厶+匕+月,3
+Verb,可以,kěyǐ,may/can,VERB,modal,Permission modal,你可以走。,丁+口+人+乚,4
+Verb,应该,yīnggāi,should,VERB,modal,Obligation modal,我们应该学习。,广+亻+隹+言+亥,5
+Verb,知道,zhīdào,know,VERB,cognition,Knowledge verb,我知道了。,矢+口+辶+首,4
+Verb,觉得,juéde,feel/think,VERB,cognition,Opinion verb,他觉得好。,臼+冖+见+彳+日+寸,6
+Verb,喜欢,xǐhuan,like,VERB,emotion,Preference verb,她喜欢音乐。,士+口+口+欠+又,5
+Verb,帮助,bāngzhù,help,VERB,action,Assistance,我帮助你。,邦+巾+且+力,4
+Verb,学习,xuéxí,study,VERB,action,Learning action,他们学习中文。,臼+子+冖+羽+白,5
+Verb,工作,gōngzuò,work,VERB,action,Work action,我在工作。,工+亻+乍,3
+Verb,买,mǎi,buy,VERB,transaction,Purchase,我买东西。,买,1
+Verb,卖,mài,sell,VERB,transaction,Sale,他卖书。,士+买,2
+Noun,朋友,péngyou,friend,NOUN,person,Relationship,我的朋友。,月+又,2
+Noun,老师,lǎoshī,teacher,NOUN,person,Profession,她是老师。,老+巾,2
+Noun,学生,xuésheng,student,NOUN,person,Status,他是学生。,臼+子+生,3
+Noun,公司,gōngsī,company,NOUN,place,Organization,我在公司。,八+厶+司,3
+Noun,医院,yīyuàn,hospital,NOUN,place,Institution,去医院。,匚+矢+阝+完,4
+Noun,问题,wèntí,question/problem,NOUN,abstract,Issue,这是问题。,门+口+是+页,4
+Noun,时间,shíjiān,time,NOUN,abstract,Concept,没有时间。,日+寸+门+日,4
+Noun,钱,qián,money,NOUN,object,Currency,有钱。,钅+戈+戈,3
+Noun,电话,diànhuà,phone,NOUN,object,Device,打电话。,电+讠+舌,3
+Noun,电脑,diànnǎo,computer,NOUN,object,Device,用电脑。,电+月+囟,3
+Time,现在,xiànzài,now,NOUN,time,Present,现在开始。,王+见+在,3
+Time,以前,yǐqián,before,NOUN,time,Past reference,以前去过。,人+乚+前,3
+Time,以后,yǐhòu,after,NOUN,time,Future reference,以后再说。,人+乚+后,3
+Time,每天,měitiān,every day,NOUN,time,Frequency,每天学习。,每+天,2
+Time,有时候,yǒushíhou,sometimes,NOUN,time,Frequency,有时候去。,有+时+候,3
+Location,外面,wàimiàn,outside,NOUN,location,Position,在外面。,夕+卜+面,3
+Location,里面,lǐmiàn,inside,NOUN,location,Position,在里面。,里+面,2
+Location,上面,shàngmiàn,above,NOUN,location,Position,在上面。,上+面,2
+Location,下面,xiàmiàn,below,NOUN,location,Position,在下面。,下+面,2
+Location,旁边,pángbiān,beside,NOUN,location,Position,在旁边。,亠+方+辶+力,4
+Particle,过,guò,EXP,PART,aspect,Experiential,我去过。,辶+寸,2
+Particle,着,zhe,PROG,PART,aspect,Progressive,他看着书。,羊+目,2
+Particle,得,de,COMP,PART,complement,Complement marker,做得好。,彳+日+寸,3
+Particle,地,de,ADV,PART,adverbial,Adverb marker,快地走。,土+也,2
+Particle,吧,ba,SUGG,PART,mood,Suggestion,走吧。,口+巴,2
+Conjunction,和,hé,and,CONJ,connector,Addition,我和你。,禾+口,2
+Conjunction,或者,huòzhě,or,CONJ,connector,Alternative,这个或者那个。,戈+口+者,3
+Conjunction,但是,dànshì,but,CONJ,connector,Contrast,好但是贵。,亻+旦+是,3
+Conjunction,因为,yīnwèi,because,CONJ,connector,Cause,因为下雨。,囗+大+为,3
+Conjunction,所以,suǒyǐ,so/therefore,CONJ,connector,Result,所以不去。,户+斤+以,3
+Adverb,很,hěn,very,ADV,degree,Intensity,很好。,彳+艮,2
+Adverb,太,tài,too,ADV,degree,Excessive,太大了。,大+丶,2
+Adverb,非常,fēicháng,extremely,ADV,degree,High intensity,非常好。,非+常,2
+Adverb,都,dōu,all/both,ADV,scope,Totality,都来了。,者+阝,2
+Adverb,也,yě,also,ADV,addition,Addition,我也去。,也,1
+Adverb,还,hái,still/also,ADV,continuation,Continuation,还在学。,辶+不,2
+Adverb,已经,yǐjīng,already,ADV,completion,Completion,已经做完。,已+纟+圣,3
+Adverb,正在,zhèngzài,in progress,ADV,progressive,Ongoing,正在吃饭。,正+在,2
+Quantifier,几,jǐ,how many,NUM,quantity,Question,几个人？,几,1
+Quantifier,多少,duōshao,how much,NUM,quantity,Question,多少钱？,夕+夕+小+丿,4
+Quantifier,些,xiē,some,NUM,quantity,Indefinite,一些书。,此+二,2
+Quantifier,次,cì,CL:times,CL,classifier,Frequency,三次。,冫+欠,2
+Quantifier,块,kuài,CL:yuan,CL,classifier,Money,五块钱。,土+夬,2

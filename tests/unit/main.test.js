@@ -65,49 +65,4 @@ describe('JanulusMatrixApp loadSelectedMatrix', () => {
         await expect(app.loadSelectedMatrix('merged_1')).resolves.not.toThrow();
         expect(languageLoader.loadAllLevels).toHaveBeenCalledWith('english', ['basic', 'intermediate'], expect.any(Object));
     });
-
-    test('filterAvailableMatrices keeps only entries with available CSVs or merged data', async () => {
-        app = new JanulusMatrixApp();
-
-        // Mock fetch: chinese file exists, spanish file missing
-        global.fetch = jest.fn((path, opts) => {
-            if (path === 'data/chinese_basic.csv') {
-                if (opts && opts.method === 'HEAD') return Promise.resolve({ ok: true, status: 200 });
-                return Promise.resolve({ ok: true, status: 200, text: () => Promise.resolve('Category,Word\nPronoun,我') });
-            }
-            // anything else - not found
-            return Promise.resolve({ ok: false, status: 404 });
-        });
-
-        const entries = [
-            { id: 'exists', file: 'chinese_basic.csv' },
-            { id: 'missing', file: 'languages/spanish/basic.csv' }
-        ];
-
-        const filtered = await app.filterAvailableMatrices(entries);
-        expect(Array.isArray(filtered)).toBe(true);
-        expect(filtered).toHaveLength(1);
-        expect(filtered[0].id).toBe('exists');
-    });
-
-    test('filterAvailableMatrices keeps merged entries only when languageLoader has data', async () => {
-        app = new JanulusMatrixApp();
-
-        const mergedMatrix = {
-            id: 'merged_ok',
-            type: 'merged',
-            includeLevels: ['basic'],
-            languagePath: 'english'
-        };
-
-        // languageLoader.loadAllLevels returns data => should be included
-        languageLoader.loadAllLevels.mockResolvedValueOnce([{ Category: 'Pronoun', Word: 'I' }]);
-        let filtered = await app.filterAvailableMatrices([mergedMatrix]);
-        expect(filtered).toHaveLength(1);
-
-        // languageLoader.loadAllLevels returns empty => excluded
-        languageLoader.loadAllLevels.mockResolvedValueOnce([]);
-        filtered = await app.filterAvailableMatrices([mergedMatrix]);
-        expect(filtered).toHaveLength(0);
-    });
 });

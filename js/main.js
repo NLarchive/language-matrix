@@ -1,7 +1,9 @@
 import { parseCSV, groupVocabByCategory, getCategoryConfig, loadMatrixIndex, loadMatrix } from './utils/csvLoader.js';
 import { languageLoader } from './utils/languageLoader.js';
+import { radicalLoader } from './utils/radicalLoader.js';
 import { MatrixTableBuilder } from './components/MatrixTableBuilder.js';
 import { SentenceDisplay } from './components/SentenceDisplay.js';
+import { RadicalDisplay } from './components/RadicalDisplay.js';
 import { audioCache } from './utils/audioCache.js';
 
 class JanulusMatrixApp {
@@ -13,7 +15,10 @@ class JanulusMatrixApp {
         this.categoryConfig = {};
         this.sentenceDisplay = null;
         this.matrixBuilder = null;
+        this.radicalDisplay = null;
+        this.radicals = [];
         this.audioCache = audioCache;
+        this.activeTab = 'vocabulary';
     }
 
     async init() {
@@ -38,6 +43,12 @@ class JanulusMatrixApp {
                 this.sentenceDisplay.update(selectedWords, categoryOrder);
             }
         );
+        
+        // Pass radicalLoader reference for variant matching in modal display
+        this.matrixBuilder.setRadicalLoader(radicalLoader);
+
+        // Initialize radical display
+        this.radicalDisplay = new RadicalDisplay('radicals-content', radicalLoader);
 
         try {
             // Load matrix index and category config
@@ -73,8 +84,6 @@ class JanulusMatrixApp {
                 console.warn('[JanulusMatrixApp] Found misconfigured matrix_index.json entries:', invalidEntries.map(e => e && e.id));
                 // keep going — but the error will be thrown when attempting to load an invalid matrix.
             }
-            // Filter matrixIndex to only matrices that actually have data available
-            this.matrixIndex = await this.filterAvailableMatrices(this.matrixIndex);
             const configText = await configResponse.text();
             this.categoryConfig = getCategoryConfig(parseCSV(configText));
             
@@ -99,64 +108,6 @@ class JanulusMatrixApp {
     }
 
     /**
-     * Validate matrix index entries by ensuring the CSVs or language levels are actually available.
-     * - For merged matrices, try to loadAllLevels via languageLoader and only keep entries that return data.
-     * - For file-based matrices, attempt to fetch the configured CSV path and keep entries that respond OK.
-     * @param {Array} entries
-     * @returns {Promise<Array>} filtered entries
-     */
-    async filterAvailableMatrices(entries) {
-        const available = [];
-
-        for (const mi of entries) {
-            if (!mi) continue;
-            try {
-                if (mi.type === 'merged' && Array.isArray(mi.includeLevels) && mi.includeLevels.length > 0) {
-                    // prefer languagePath if present
-                    const languagePath = mi.languagePath || this.getLanguagePathFromCode(mi.language);
-                    const data = await languageLoader.loadAllLevels(languagePath, mi.includeLevels);
-                    if (Array.isArray(data) && data.length > 0) {
-                        available.push(mi);
-                    } else {
-                        console.warn(`[JanulusMatrixApp] Skipping merged matrix '${mi.id}' - no data found for language '${languagePath}'`);
-                    }
-                } else if (mi.file && typeof mi.file === 'string') {
-                    // normalize file path to data/*
-                    const filePath = mi.file.startsWith('data/') ? mi.file : `data/${mi.file}`;
-
-                    // Try a lightweight existence check (HEAD), fallback to GET
-                    let ok = false;
-                    try {
-                        const headResp = await fetch(filePath, { method: 'HEAD' });
-                        ok = headResp && headResp.ok;
-                    } catch (e) {
-                        // HEAD might fail in some environments — try GET
-                        try {
-                            const getResp = await fetch(filePath);
-                            ok = getResp && getResp.ok;
-                        } catch (err) {
-                            ok = false;
-                        }
-                    }
-
-                    if (ok) {
-                        available.push(mi);
-                    } else {
-                        console.warn(`[JanulusMatrixApp] Skipping matrix '${mi.id}' - configured file '${filePath}' not found`);
-                    }
-                } else {
-                    // misconfigured single-file entry with no file and not merged — exclude
-                    console.warn(`[JanulusMatrixApp] Excluding '${mi.id}' - no file and not a merged matrix`);
-                }
-            } catch (error) {
-                console.warn('[JanulusMatrixApp] Error validating matrix entry', mi && mi.id, error && error.message);
-            }
-        }
-
-        return available;
-    }
-
-    /**
      * Get language folder path from language code
      * @param {string} languageCode - ISO language code (e.g., 'zh-CN', 'es-ES')
      * @returns {string} Language folder name
@@ -165,8 +116,8 @@ class JanulusMatrixApp {
         const languageMap = {
             'zh-CN': 'chinese',
             'zh-TW': 'chinese',
-            'es-ES': 'spanish',
-            'es-MX': 'spanish',
+            'es-ES': 'Japanese',
+            'es-MX': 'Japanese',
             'fr-FR': 'french',
             'de-DE': 'german',
             'ja-JP': 'japanese',
@@ -226,16 +177,36 @@ class JanulusMatrixApp {
             
             // Update current level and inform audio system
             this.currentLevel = matrixInfo.level;
+            // Keep internal language path used throughout the UI (e.g. 'korean', 'chinese')
             this.currentLanguage = matrixInfo.languagePath || this.getLanguagePathFromCode(matrixInfo.language);
+            // audioPath may be a different folder name (capitalized, e.g. 'Korean' or 'Japanese')
+            this.currentAudioPath = matrixInfo.audioPath || this.currentLanguage;
             if (window.audioCache) {
                 window.audioCache.setCurrentLevel(matrixInfo.level);
                 if (typeof window.audioCache.setCurrentLanguage === 'function') {
-                    window.audioCache.setCurrentLanguage(this.currentLanguage);
+                    // prefer audioPath from matrix config which points to actual asset folder name
+                    window.audioCache.setCurrentLanguage(this.currentAudioPath);
+                }
+                
+                // Preload all vocabulary audio for this level (runs in background)
+                if (typeof window.audioCache.preloadVocabularyAudio === 'function') {
+                    // For merged matrices, preload all included levels
+                    if (matrixInfo.type === 'merged' && Array.isArray(matrixInfo.includeLevels)) {
+                        matrixInfo.includeLevels.forEach(level => {
+                            window.audioCache.preloadVocabularyAudio(this.currentLanguage, level);
+                        });
+                    } else {
+                        // Preload single level
+                        window.audioCache.preloadVocabularyAudio(this.currentLanguage, matrixInfo.level);
+                    }
                 }
             }
             
             // Render the matrix with language info for audio paths
             this.matrixBuilder.render(vocabData, this.categoryConfig, matrixInfo.level, this.currentLanguage);
+            
+            // Load radicals for current language and pass to matrix builder
+            await this.loadRadicals();
             
             // Clear sentence display
             this.sentenceDisplay.clear();
@@ -243,6 +214,38 @@ class JanulusMatrixApp {
         } catch (error) {
             console.error("Failed to load matrix:", error);
             this.showError(`Failed to load ${matrixInfo.name}`);
+        }
+    }
+
+    /**
+     * Load radicals for current language
+     */
+    async loadRadicals() {
+        try {
+            // Load both radicals and build word-radical mappings from levels
+            const [radicals, wordRadicals] = await Promise.all([
+                radicalLoader.loadRadicals(this.currentLanguage),
+                radicalLoader.buildWordRadicalsFromLevels(this.currentLanguage)
+            ]);
+            
+            this.radicals = radicals;
+            
+            // Update radical display with language and level
+            this.radicalDisplay.setLanguage(this.currentLanguage);
+            await this.radicalDisplay.render(this.radicals);
+            this.radicalDisplay.setLevel(this.currentLevel);
+            
+            // Pass radicals and word-radical mappings to matrix builder for modal integration
+            if (this.matrixBuilder) {
+                this.matrixBuilder.setRadicals(this.radicals, this.currentLanguage);
+                this.matrixBuilder.setWordRadicals(wordRadicals);
+            }
+            
+            console.log(`[JanulusMatrixApp] Loaded ${this.radicals.length} radicals and ${Object.keys(wordRadicals).length} word mappings for ${this.currentLanguage}`);
+        } catch (error) {
+            console.error('[JanulusMatrixApp] Error loading radicals:', error);
+            this.radicals = [];
+            await this.radicalDisplay.render([]);
         }
     }
 
@@ -262,6 +265,37 @@ class JanulusMatrixApp {
             this.matrixBuilder.clearSelection();
             this.sentenceDisplay.clear();
         });
+
+        // Tab navigation
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const tabName = e.currentTarget.dataset.tab;
+                this.switchTab(tabName);
+            });
+        });
+    }
+
+    /**
+     * Switch between tabs
+     * @param {string} tabName - Tab identifier ('vocabulary' or 'radicals')
+     */
+    switchTab(tabName) {
+        // Update active button
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.tab === tabName);
+        });
+
+        // Update active content
+        document.querySelectorAll('.tab-content').forEach(content => {
+            content.classList.remove('active');
+        });
+        
+        const tabContent = document.getElementById(`${tabName}-tab`);
+        if (tabContent) {
+            tabContent.classList.add('active');
+        }
+
+        this.activeTab = tabName;
     }
 
     showError(message) {
