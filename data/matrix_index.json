@@ -8,34 +8,44 @@
         "languagePath": "chinese",
         "level": "all_levels",
         "type": "merged",
-        "includeLevels": ["basic", "intermediate", "advanced"]
+        "includeLevels": ["basic", "intermediate", "advanced"],
+        "audioPath": "assets/audio/chinese/"
     },
     {
         "id": "chinese_basic",
         "name": "Chinese - Basic (HSK 1-2)",
         "description": "Essential vocabulary for beginners: pronouns, common verbs, basic nouns",
-        "file": "chinese_basic.csv",
+        "file": "languages/chinese/basic.csv",
         "language": "zh-CN",
         "languagePath": "chinese",
-        "level": "basic"
+        "level": "basic",
+        "type": "single",
+        "includeLevels": ["basic"],
+        "audioPath": "assets/audio/chinese/basic/"
     },
     {
         "id": "chinese_intermediate", 
         "name": "Chinese - Intermediate (HSK 3-4)",
         "description": "Modal verbs, conjunctions, adverbs, question words, more vocabulary",
-        "file": "chinese_intermediate.csv",
+        "file": "languages/chinese/intermediate.csv",
         "language": "zh-CN",
         "languagePath": "chinese",
-        "level": "intermediate"
+        "level": "intermediate",
+        "type": "single",
+        "includeLevels": ["intermediate"],
+        "audioPath": "assets/audio/chinese/intermediate/"
     },
     {
         "id": "chinese_advanced",
         "name": "Chinese - Advanced (HSK 5-6)",
         "description": "Formal vocabulary, abstract nouns, literary particles, academic connectors",
-        "file": "chinese_advanced.csv",
+        "file": "languages/chinese/advanced.csv",
         "language": "zh-CN",
         "languagePath": "chinese",
-        "level": "advanced"
+        "level": "advanced",
+        "type": "single",
+        "includeLevels": ["advanced"],
+        "audioPath": "assets/audio/chinese/advanced/"
     },
     {
         "id": "spanish_all_levels",
@@ -46,7 +56,8 @@
         "languagePath": "spanish",
         "level": "all_levels",
         "type": "merged",
-        "includeLevels": ["basic", "intermediate", "advanced"]
+        "includeLevels": ["basic", "intermediate", "advanced"],
+        "audioPath": "assets/audio/spanish/"
     },
     {
         "id": "spanish_basic",
@@ -55,7 +66,10 @@
         "file": "languages/spanish/basic.csv",
         "language": "es-ES",
         "languagePath": "spanish",
-        "level": "basic"
+        "level": "basic",
+        "type": "single",
+        "includeLevels": ["basic"],
+        "audioPath": "assets/audio/spanish/basic/"
     },
     {
         "id": "spanish_intermediate", 
@@ -64,7 +78,10 @@
         "file": "languages/spanish/intermediate.csv",
         "language": "es-ES",
         "languagePath": "spanish",
-        "level": "intermediate"
+        "level": "intermediate",
+        "type": "single",
+        "includeLevels": ["intermediate"],
+        "audioPath": "assets/audio/spanish/intermediate/"
     },
     {
         "id": "spanish_advanced",
@@ -73,6 +90,9 @@
         "file": "languages/spanish/advanced.csv",
         "language": "es-ES",
         "languagePath": "spanish",
-        "level": "advanced"
+        "level": "advanced",
+        "type": "single",
+        "includeLevels": ["advanced"],
+        "audioPath": "assets/audio/spanish/advanced/"
     }
 ]

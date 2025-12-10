@@ -1,4 +1,4 @@
-Category,Word,Pinyin,English,POS,Role,Common_Usage,Example_Phrase
+Category,Word,Pinyin,English,POS,Role,Common_Usage,Example_Phrase,Radicals,word_n_radicals
 Pronoun,我,wǒ,I,PRON,subject,Most common subject,我吃苹果。
 Pronoun,你,nǐ,you,PRON,subject/object,Second person,你去学校。
 Pronoun,他,tā,he,PRON,subject,Third person male,他是学生。

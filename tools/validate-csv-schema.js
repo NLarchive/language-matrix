@@ -73,7 +73,21 @@ let errors = [];
     if (!ch) { errors.push('data/config.csv missing or empty'); }
     else {
       const ccols = splitHeader(ch);
-      (schema.top_level.config_csv.required || []).forEach(req => { if (!ccols.includes(req)) errors.push(`data/config.csv missing required column: ${req}`); });
+      // If alternates are provided for config format, allow one of the formats
+      const configSchema = schema.top_level.config_csv || {};
+      if (configSchema.alternates && Object.keys(configSchema.alternates).length > 0) {
+        let matchedAlternate = false;
+        Object.keys(configSchema.alternates).forEach(alt => {
+          const altCols = configSchema.alternates[alt] || [];
+          if (altCols.every(a => ccols.includes(a))) matchedAlternate = true;
+        });
+        if (!matchedAlternate) {
+          // Fall back to required set
+          (configSchema.required || []).forEach(req => { if (!ccols.includes(req)) errors.push(`data/config.csv missing required column: ${req}`); });
+        }
+      } else {
+        (configSchema.required || []).forEach(req => { if (!ccols.includes(req)) errors.push(`data/config.csv missing required column: ${req}`); });
+      }
     }
   }
 })();

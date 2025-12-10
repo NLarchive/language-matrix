@@ -10,7 +10,10 @@
       "required": ["Category", "Word", "Pinyin", "English", "POS", "Role", "Common_Usage", "Example_Phrase", "Radicals", "word_n_radicals"]
     },
     "config_csv": {
-      "required": ["Key", "Value"]
+      "required": ["Key", "Value"],
+      "alternates": {
+        "variable_format": ["Variable", "Description", "Type", "Example"]
+      }
     }
   },
   "vocabulary": {
