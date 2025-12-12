@@ -1,67 +1,67 @@
 {
   "template_type": "current_project_state",
-  "version": "1.5",
-  "last_updated": "2025-12-10",
+  "version": "1.6",
+  "last_updated": "2025-12-12",
   "project_name": "Janulus Matrix - Language Learning System",
   "description": "Interactive multi-language learning application with vocabulary matrix, radical components, word composer game, and audio support for Chinese, Japanese, and Korean",
   "start_date": "2025-10-01",
   "end_date": "2025-12-31",
-  "status": "In Progress",
-  "overall_progress": 99,
+  "status": "In Progress - CI/Test Failure Resolution Phase",
+  "overall_progress": 95,
   "next_steps_priority": [
     {
       "priority": 1,
-      "task": "Integrate CSV/schema validator into CI",
-      "description": "Wire `tools/validate-csv-schema.js` into the CI pipeline (GitHub Actions) so schema violations fail CI. Add a short developer runbook showing how to run/accept fixes locally and in PRs.",
-      "estimated_hours": 3,
-      "dependencies": ["tools/validate-csv-schema.js", "data/csv-schema.json"],
-      "status": "In Progress",
-      "notes": "Validator added to repo (Dec 05). Next: add an Action step + badge and failing test on mismatch."
+      "task": "FIX CRITICAL: Service Worker tests failing - Request is not defined",
+      "description": "The CI pipeline is failing because tests/unit/serviceWorker.test.js references the 'Request' Web API which is not available in jsdom test environment. Fix by: (1) Adding 'Request' polyfill to jest.setup.js, (2) Mocking service worker implementation, or (3) Moving SW tests to E2E with Playwright where DOM APIs are available.",
+      "estimated_hours": 2,
+      "dependencies": ["tests/unit/serviceWorker.test.js", "tests/setup/jest.setup.js"],
+      "status": "Critical - Blocking CI",
+      "notes": "GitHub Actions failing on CI #7 with ReferenceError: Request is not defined. This is blocking all PR/master merges until resolved."
     },
     {
       "priority": 2,
-      "task": "Add unit tests for validator & include in coverage",
-      "description": "Create Jest unit tests for `tools/validate-csv-schema.js` covering valid/invalid CSVs, and ensure CI enforces these tests and coverage thresholds.",
-      "estimated_hours": 4,
-      "dependencies": ["tools/validate-csv-schema.js", "tests"],
-      "status": "Not Started",
-      "notes": "Requires CI integration (priority 1) to have maximum value."
+      "task": "Investigate & fix remaining test failures",
+      "description": "After fixing Request issue, run full test suite and resolve any remaining Jest (unit/integration) and Playwright (E2E) failures. Check for missing polyfills, mock setup, or environment-specific issues.",
+      "estimated_hours": 3,
+      "dependencies": ["tests/"],
+      "status": "Pending",
+      "notes": "May uncover additional jsdom/Node.js environment issues that need polyfills or mocks."
     },
     {
       "priority": 3,
-      "task": "Expand E2E coverage for Word Composer across languages",
-      "description": "Add Playwright E2E scenarios that exercise the Word Composer + radicals reference for Japanese and Korean matrices, including audio-based flows and verification UI.",
-      "estimated_hours": 6,
-      "dependencies": ["tests/e2e", "js/components/WordComposer.js"],
+      "task": "Integrate CSV/schema validator into CI as passing step",
+      "description": "Verify `tools/validate-csv-schema.js` runs successfully in CI (it currently passes locally). Ensure GitHub Actions workflow has proper error handling so schema violations fail the workflow.",
+      "estimated_hours": 2,
+      "dependencies": ["tools/validate-csv-schema.js", ".github/workflows/ci.yml"],
       "status": "In Progress",
-      "notes": "Existing E2E scaffolding and TTS generator exist — extend tests to verify multi-language composer behavior."
+      "notes": "Validator already works locally. Next: ensure CI workflow properly captures exit code and fails on schema errors."
     },
     {
       "priority": 4,
-      "task": "Performance & offline optimisations for audio",
-      "description": "Profile audioCache.preloadVocabularyAudio() and service-worker workbox strategies. Tune batch sizes and caching strategy to balance memory, offline readiness and startup latency. Produce benchmarks and targets (e.g. 95% offline coverage with < 3s startup overhead).",
-      "estimated_hours": 8,
-      "dependencies": ["js/utils/audioCache.js", "service-worker.js", "tests/e2e/audio-verification.spec.js"],
-      "status": "In Progress",
-      "notes": "Audio verification tooling is present; next is to use test data to tune caching and measure metrics."
+      "task": "Add unit tests for CSV schema validator",
+      "description": "Create Jest unit tests for `tools/validate-csv-schema.js` covering valid/invalid CSV scenarios. Ensure CI enforces these tests and coverage thresholds.",
+      "estimated_hours": 3,
+      "dependencies": ["tools/validate-csv-schema.js", "tests/unit/"],
+      "status": "Not Started",
+      "notes": "Adds robustness and prevents regression in data file validation."
     },
     {
       "priority": 5,
-      "task": "Documentation & developer onboarding",
-      "description": "Update top-level README, LANGUAGE system quickstart, and add a short runbook for audio generation, CSV schema maintenance and the CI validator. Add a 'how-to' for adding new languages and audio assets.",
-      "estimated_hours": 4,
-      "dependencies": ["docs/", "tools/generate-google-tts.spec.js", "tools/validate-csv-schema.js"],
-      "status": "Not Started",
-      "notes": "Makes the project easier to maintain for new contributors and CI operators."
+      "task": "E2E test coverage for all UI flows (Word Composer, Radicals, Matrix)",
+      "description": "Expand Playwright E2E tests to cover complete user journeys: matrix filtering, radical display, word composer gameplay, and audio playback across all 3 languages and 3 levels.",
+      "estimated_hours": 5,
+      "dependencies": ["tests/e2e/", "js/components/"],
+      "status": "In Progress",
+      "notes": "Most infrastructure is in place; focus on comprehensive scenario coverage."
     },
     {
       "priority": 6,
-      "task": "Release prep & deployment automation",
-      "description": "Create a release checklist including cache invalidation, audio deployment steps, and a CI job that prepares a production artifact (zip or deployed site). Add release notes automation for changes in data files.",
+      "task": "Performance profiling & optimization targets",
+      "description": "Profile startup time, audio preloading, and service worker cache strategies. Set measurable targets (e.g., < 2s initial load, 95% offline coverage) and optimize accordingly.",
       "estimated_hours": 6,
-      "dependencies": ["service-worker.js", "data/matrix_index.json"],
+      "dependencies": ["js/utils/audioCache.js", "service-worker.js", "tests/e2e/"],
       "status": "Not Started",
-      "notes": "Target for end-of-cycle stabilization and reproducible deployments."
+      "notes": "Should follow CI/test stability (priorities 1-4)."
     }
   ],
   "recently_completed": [
@@ -1071,6 +1071,20 @@
         "tests/assets/audio/Japanese/basic/*.mp3"
       ],
       "details": "Added E2E, integration, and unit tests for comprehensive coverage including audio verification, radical filtering, and multi-language support. Included Japanese basic level audio samples (60 files) for testing purposes."
+    }
+  ],
+  "current_issues": [
+    {
+      "id": "CI-001",
+      "severity": "Critical",
+      "title": "GitHub Actions CI failing - ReferenceError: Request is not defined",
+      "description": "Tests in tests/unit/serviceWorker.test.js reference the Web API 'Request' object which is not available in the jsdom test environment. This causes 'npm test' to fail in CI pipeline (GitHub Actions), blocking all commits to master.",
+      "affected_files": ["tests/unit/serviceWorker.test.js"],
+      "root_cause": "Service Worker tests are written for browser environment but running in Node.js/jsdom which lacks Request/Response/fetch APIs",
+      "created_date": "2025-12-12",
+      "status": "Open - Blocking CI",
+      "suggested_fix": "Option A: Add polyfill for Request in jest.setup.js using 'node-fetch' or '@whatwg-node/fetch'. Option B: Mock service worker implementation. Option C: Move SW tests to E2E with Playwright. Option D: Skip/mark SW tests as pending until moved to E2E.",
+      "github_actions_run": "https://github.com/NLarchive/language-matrix/actions - CI #7 aee4bf7 (delete test folder commit)"
     }
   ],
   "known_issues": [],
