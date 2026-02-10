@@ -1,70 +1,142 @@
 {
   "template_type": "current_project_state",
   "version": "1.6",
-  "last_updated": "2025-12-12",
+  "last_updated": "2026-02-10",
   "project_name": "Janulus Matrix - Language Learning System",
   "description": "Interactive multi-language learning application with vocabulary matrix, radical components, word composer game, and audio support for Chinese, Japanese, and Korean",
   "start_date": "2025-10-01",
   "end_date": "2025-12-31",
-  "status": "In Progress - Core Features Complete, Testing Phase",
-  "overall_progress": 97,
+  "status": "In Progress - Core Features Complete, Mobile UI Fixed, Testing Phase",
+  "overall_progress": 98,
   "next_steps_priority": [
     {
       "priority": 1,
+      "task": "COMPLETED: Mobile UI layout clipping fix",
+      "description": "Fixed the vertical clipping on mobile by disabling the CSS full-bleed hack on viewports <=1024px in matrix_table.css.",
+      "estimated_hours": 4,
+      "actual_hours": 3,
+      "dependencies": [
+        "css/matrix_table.css",
+        "css/style.css"
+      ],
+      "status": "Completed - Feb 10 2026",
+      "notes": "Added @media (max-width: 1024px) to disable full-bleed on mobile. Also added comprehensive touch-device CSS @media (hover: none) block in style.css."
+    },
+    {
+      "priority": 2,
+      "task": "COMPLETED: Stuck pressed button fix on touch devices",
+      "description": "Fixed stuck button states: @media (hover: none) CSS overrides, global touchend/touchcancel/pointerup cleanup in main.js, WordComposer.handleTouchEnd guard.",
+      "estimated_hours": 3,
+      "actual_hours": 2,
+      "dependencies": [
+        "js/main.js",
+        "js/components/WordComposer.js",
+        "css/style.css",
+        "plugins/radical-word-builder/style.css"
+      ],
+      "status": "Completed - Feb 10 2026",
+      "notes": "Global touch cleanup handles edge cases. CSS prevents visual stuck states on any touch device."
+    },
+    {
+      "priority": 3,
+      "task": "COMPLETED: Playwright mobile E2E tests + matrix.spec.js fix",
+      "description": "Created tests/e2e/mobile-ui.spec.js with 15 tests (45 across 3 browsers). Fixed matrix.spec.js strict mode violation. All 93 Playwright tests pass.",
+      "estimated_hours": 4,
+      "actual_hours": 4,
+      "dependencies": [
+        "tests/e2e/mobile-ui.spec.js",
+        "tests/e2e/matrix.spec.js"
+      ],
+      "status": "Completed - Feb 10 2026",
+      "notes": "Tests use page.setViewportSize() instead of device presets. Touch tests use hasTouch: true."
+    },
+    {
+      "priority": 4,
       "task": "COMPLETED: Service Worker tests failing - Request polyfill added",
       "description": "Added Request and Response polyfills to jest.setup.js. Service Worker tests now pass. All npm test suite: 149 passing, 28 skipped (with documentation), 0 failing.",
       "estimated_hours": 2,
-      "dependencies": ["tests/unit/serviceWorker.test.js", "tests/setup/jest.setup.js"],
+      "dependencies": [
+        "tests/unit/serviceWorker.test.js",
+        "tests/setup/jest.setup.js"
+      ],
       "status": "Completed - Dec 12 2025",
       "notes": "Fixed by adding Request and Response class polyfills, updating Japanese CSV test expectations, and documenting skipped ES module tests."
     },
     {
-      "priority": 2,
+      "priority": 5,
       "task": "Run GitHub Actions CI to verify test suite passes",
       "description": "Push the test fixes to master and verify GitHub Actions CI pipeline succeeds with the new test configuration. All 149 tests should pass in CI.",
       "estimated_hours": 1,
-      "dependencies": [".github/workflows/ci.yml"],
+      "dependencies": [
+        ".github/workflows/ci.yml"
+      ],
       "status": "Pending",
       "notes": "Ready to push. Tests all pass locally."
     },
     {
-      "priority": 3,
+      "priority": 6,
       "task": "Improve ES module jest.mock() setup or add E2E alternatives",
       "description": "The skipped unit tests (main.test.js, audioCache.test.js, wordComposer.multilang.test.js) use jest.mock() with ES modules. Either configure jest properly for ES mocks, or move these tests to Playwright E2E. Note: functionality is already tested in integration tests.",
       "estimated_hours": 4,
-      "dependencies": ["tests/unit/", "tests/e2e/"],
+      "dependencies": [
+        "tests/unit/",
+        "tests/e2e/"
+      ],
       "status": "Not Started",
       "notes": "Lower priority since integration tests provide good coverage. Can defer or implement as test infrastructure hardening."
     },
     {
-      "priority": 4,
+      "priority": 7,
       "task": "Integrate CSV/schema validator into CI as passing step",
       "description": "Verify `tools/validate-csv-schema.js` runs successfully in CI (it currently passes locally). Ensure GitHub Actions workflow has proper error handling so schema violations fail the workflow.",
       "estimated_hours": 2,
-      "dependencies": ["tools/validate-csv-schema.js", ".github/workflows/ci.yml"],
+      "dependencies": [
+        "tools/validate-csv-schema.js",
+        ".github/workflows/ci.yml"
+      ],
       "status": "In Progress",
       "notes": "Validator already works locally. Next: ensure CI workflow properly captures exit code and fails on schema errors."
     },
     {
-      "priority": 5,
+      "priority": 8,
       "task": "Add unit tests for CSV schema validator",
       "description": "Create Jest unit tests for `tools/validate-csv-schema.js` covering valid/invalid CSV scenarios. Ensure CI enforces these tests and coverage thresholds.",
       "estimated_hours": 3,
-      "dependencies": ["tools/validate-csv-schema.js", "tests/unit/"],
+      "dependencies": [
+        "tools/validate-csv-schema.js",
+        "tests/unit/"
+      ],
       "status": "Not Started",
       "notes": "Adds robustness and prevents regression in data file validation."
     },
     {
-      "priority": 6,
+      "priority": 9,
       "task": "E2E test coverage expansion for UI flows",
       "description": "Expand Playwright E2E tests to cover complete user journeys: matrix filtering, radical display, word composer gameplay, and audio playback across all 3 languages and 3 levels.",
       "estimated_hours": 5,
-      "dependencies": ["tests/e2e/", "js/components/"],
+      "dependencies": [
+        "tests/e2e/",
+        "js/components/"
+      ],
       "status": "In Progress",
       "notes": "Most infrastructure is in place; focus on comprehensive scenario coverage."
     }
   ],
   "recently_completed": [
+    {
+      "task": "Fixed Mobile UI - vertical clipping and stuck buttons on touch devices",
+      "completed_date": "2026-02-10",
+      "description": "Fixed two mobile UI bugs: (1) vertical cut caused by CSS full-bleed hack, (2) stuck button states on touch devices. Added 15 Playwright mobile E2E tests. Fixed existing matrix.spec.js strict mode violation (6 tests). All 93 Playwright tests pass.",
+      "files": [
+        "css/matrix_table.css",
+        "css/style.css",
+        "js/main.js",
+        "js/components/WordComposer.js",
+        "plugins/radical-word-builder/style.css",
+        "tests/e2e/mobile-ui.spec.js",
+        "tests/e2e/matrix.spec.js"
+      ]
+    },
     {
       "task": "Fixed CI/test failures - Request polyfill and test configuration",
       "completed_date": "2025-12-12",
@@ -93,13 +165,23 @@
       "task": "Fix Korean Radicals Display & Audio Issues (all_levels + folder mapping)",
       "completed_date": "2025-12-05",
       "description": "Fixed Korean radicals 'undefined', ensured correct audio folder mapping (audioPath) and added best-fit level selection for composable words so 'all_levels' matrices find audio in actual level folders. Also sanitized filenames for audio assets.",
-      "files": ["data/languages/korean/radicals/radicals.csv", "js/main.js", "js/utils/audioCache.js", "js/components/MatrixTableBuilder.js", "js/components/WordComposer.js"]
+      "files": [
+        "data/languages/korean/radicals/radicals.csv",
+        "js/main.js",
+        "js/utils/audioCache.js",
+        "js/components/MatrixTableBuilder.js",
+        "js/components/WordComposer.js"
+      ]
     },
     {
       "task": "Add CSV schema registry and validator",
       "completed_date": "2025-12-05",
       "description": "Added canonical csv-schema.json, docs/CSV_SCHEMA.md and tools/validate-csv-schema.js to formalize CSV headers and provide an automated validator for future language/table imports.",
-      "files": ["data/csv-schema.json", "docs/CSV_SCHEMA.md", "tools/validate-csv-schema.js"]
+      "files": [
+        "data/csv-schema.json",
+        "docs/CSV_SCHEMA.md",
+        "tools/validate-csv-schema.js"
+      ]
     },
     {
       "task": "Japanese/Korean Radicals Population",
@@ -120,25 +202,39 @@
       "task": "Fix Korean Radicals & Multi-language Display",
       "completed_date": "2025-12-05",
       "description": "Fixed 'undefined' Korean radicals by standardizing CSV headers. Updated all UI components to support Reading/Romanization fields.",
-      "files": ["data/languages/korean/radicals/radicals.csv", "js/components/RadicalDisplay.js", "js/components/MatrixTableBuilder.js", "js/components/SentenceDisplay.js"]
+      "files": [
+        "data/languages/korean/radicals/radicals.csv",
+        "js/components/RadicalDisplay.js",
+        "js/components/MatrixTableBuilder.js",
+        "js/components/SentenceDisplay.js"
+      ]
     },
     {
       "task": "Audio Generation Pipeline",
       "completed_date": "2025-12-05",
       "description": "Generated TTS audio for all Japanese and Korean vocabulary (364 words) using Playwright + Google Translate",
-      "files": ["tests/e2e/generate-google-tts.spec.js"]
+      "files": [
+        "tests/e2e/generate-google-tts.spec.js"
+      ]
     },
     {
       "task": "Audio Verification Tooling",
       "completed_date": "2025-12-05",
       "description": "Built audio coverage verification test and tools - 100% coverage achieved for all 9 language/level combinations",
-      "files": ["tests/e2e/audio-verification.spec.js", "tools/audio-verification.js", "docs/AUDIO_COVERAGE_REPORT.md"]
+      "files": [
+        "tests/e2e/audio-verification.spec.js",
+        "tools/audio-verification.js",
+        "docs/AUDIO_COVERAGE_REPORT.md"
+      ]
     },
     {
       "task": "Word Composer Verification UI",
       "completed_date": "2025-12-05",
       "description": "Enhanced success display with component breakdown, readings, and meanings after correct word composition",
-      "files": ["js/components/WordComposer.js", "css/style.css"]
+      "files": [
+        "js/components/WordComposer.js",
+        "css/style.css"
+      ]
     },
     {
       "task": "Enable Word Composer for all languages (fallback + UI init)",
@@ -154,13 +250,18 @@
       "task": "Multi-Language Radical Support",
       "completed_date": "2025-12-05",
       "description": "Updated radicalLoader to support Components column (Japanese/Korean) in addition to Radicals column (Chinese)",
-      "files": ["js/utils/radicalLoader.js"]
+      "files": [
+        "js/utils/radicalLoader.js"
+      ]
     },
     {
       "task": "Audio File Normalization",
       "completed_date": "2025-12-05",
       "description": "Removed numbered prefixes from all audio files, standardized to raw word filenames",
-      "files": ["assets/audio/Japanese/*", "assets/audio/Korean/*"]
+      "files": [
+        "assets/audio/Japanese/*",
+        "assets/audio/Korean/*"
+      ]
     }
   ],
   "timeline": {
@@ -179,8 +280,12 @@
           "progress_percentage": 100,
           "estimated_hours": 8,
           "actual_hours": 10,
-          "files": ["js/utils/csvLoader.js"],
-          "fixes_applied": ["Added parseCSVLine() function with RFC 4180 compliant quote handling for fields containing commas"],
+          "files": [
+            "js/utils/csvLoader.js"
+          ],
+          "fixes_applied": [
+            "Added parseCSVLine() function with RFC 4180 compliant quote handling for fields containing commas"
+          ],
           "assigned_to": "AI Agent (Core Team)",
           "dependencies": [],
           "deliverables": [
@@ -198,8 +303,12 @@
           "status": "Completed",
           "progress_percentage": 100,
           "estimated_hours": 12,
-          "files": ["js/utils/languageLoader.js"],
-          "dependencies": ["core_infrastructure.csv_loader"],
+          "files": [
+            "js/utils/languageLoader.js"
+          ],
+          "dependencies": [
+            "core_infrastructure.csv_loader"
+          ],
           "assigned_to": "AI Agent (Core Team)",
           "deliverables": [
             "Stable language discovery and level loader that consumes parseCSV",
@@ -216,10 +325,17 @@
           "progress_percentage": 100,
           "estimated_hours": 20,
           "actual_hours": 24,
-          "files": ["js/utils/audioCache.js", "js/utils/cacheManager.js"],
-          "new_features": ["preloadVocabularyAudio() - batch preloading from vocabulary CSV"],
+          "files": [
+            "js/utils/audioCache.js",
+            "js/utils/cacheManager.js"
+          ],
+          "new_features": [
+            "preloadVocabularyAudio() - batch preloading from vocabulary CSV"
+          ],
           "assigned_to": "AI Agent (Audio Team)",
-          "dependencies": ["core_infrastructure.csv_loader"],
+          "dependencies": [
+            "core_infrastructure.csv_loader"
+          ],
           "deliverables": [
             "Reliable audio caching and preloading API",
             "Scripted preload workflows for CI/dev to run audio coverage verification"
@@ -234,10 +350,18 @@
           "status": "Completed",
           "progress_percentage": 100,
           "estimated_hours": 12,
-          "files": ["service-worker.js"],
-          "features": ["Cache-first for audio", "Stale-while-revalidate for data", "Network-first for HTML"],
+          "files": [
+            "service-worker.js"
+          ],
+          "features": [
+            "Cache-first for audio",
+            "Stale-while-revalidate for data",
+            "Network-first for HTML"
+          ],
           "assigned_to": "DevOps",
-          "dependencies": ["core_infrastructure.audio_cache"],
+          "dependencies": [
+            "core_infrastructure.audio_cache"
+          ],
           "deliverables": [
             "Service worker v4 with updated static asset list",
             "Cache invalidation plan and rollout notes"
@@ -260,9 +384,13 @@
           "progress_percentage": 100,
           "estimated_hours": 24,
           "actual_hours": 28,
-          "files": ["js/utils/radicalLoader.js"],
+          "files": [
+            "js/utils/radicalLoader.js"
+          ],
           "assigned_to": "AI Agent (Data Team)",
-          "dependencies": ["data_management.vocabulary_csvs"],
+          "dependencies": [
+            "data_management.vocabulary_csvs"
+          ],
           "deliverables": [
             "Word-to-radical mappings extracted from vocabulary CSVs",
             "radicals cache with stroke counts and variant mapping",
@@ -287,8 +415,12 @@
           "progress_percentage": 100,
           "estimated_hours": 28,
           "actual_hours": 32,
-          "files": ["js/components/RadicalDisplay.js"],
-          "dependencies": ["radical_system.radical_loader"],
+          "files": [
+            "js/components/RadicalDisplay.js"
+          ],
+          "dependencies": [
+            "radical_system.radical_loader"
+          ],
           "assigned_to": "Frontend",
           "deliverables": [
             "Merged radicals UI and Word Composer integration",
@@ -310,8 +442,13 @@
           "status": "Completed",
           "progress_percentage": 100,
           "estimated_hours": 8,
-          "files": ["js/components/MatrixTableBuilder.js"],
-          "dependencies": ["radical_system.radical_loader","radical_system.radical_display"],
+          "files": [
+            "js/components/MatrixTableBuilder.js"
+          ],
+          "dependencies": [
+            "radical_system.radical_loader",
+            "radical_system.radical_display"
+          ],
           "assigned_to": "Frontend",
           "deliverables": [
             "Modal showing word component radicals with meanings from radicals.csv",
@@ -336,7 +473,9 @@
           ],
           "notes": "100% coverage. radicals.csv now has Set (kangxi_214/variant/component), Levels, StrokeCount columns",
           "assigned_to": "Data Team",
-          "dependencies": ["data_management.vocabulary_csvs"],
+          "dependencies": [
+            "data_management.vocabulary_csvs"
+          ],
           "deliverables": [
             "Expanded radicals.csv file with components and stroke count",
             "Verification report confirming 100% coverage"
@@ -357,7 +496,9 @@
           "status": "Completed",
           "progress_percentage": 100,
           "estimated_hours": 20,
-          "files": ["js/components/MatrixTableBuilder.js"]
+          "files": [
+            "js/components/MatrixTableBuilder.js"
+          ]
         },
         "sentence_display": {
           "name": "Sentence Display Component",
@@ -368,7 +509,9 @@
           "status": "Completed",
           "progress_percentage": 100,
           "estimated_hours": 12,
-          "files": ["js/components/SentenceDisplay.js"]
+          "files": [
+            "js/components/SentenceDisplay.js"
+          ]
         },
         "audio_playback": {
           "name": "Audio Playback Integration",
@@ -379,7 +522,10 @@
           "status": "Completed",
           "progress_percentage": 100,
           "estimated_hours": 16,
-          "files": ["js/components/SentenceDisplay.js", "js/components/MatrixTableBuilder.js"]
+          "files": [
+            "js/components/SentenceDisplay.js",
+            "js/components/MatrixTableBuilder.js"
+          ]
         }
       }
     },
@@ -398,9 +544,14 @@
           "progress_percentage": 100,
           "estimated_hours": 28,
           "actual_hours": 36,
-          "files": ["js/components/WordComposer.js"],
+          "files": [
+            "js/components/WordComposer.js"
+          ],
           "assigned_to": "Frontend",
-          "dependencies": ["radical_system.radical_loader","vocabulary_matrix.matrix_builder"],
+          "dependencies": [
+            "radical_system.radical_loader",
+            "vocabulary_matrix.matrix_builder"
+          ],
           "deliverables": [
             "Playable UI with drag/drop and audio feedback",
             "Accessibility and touch support verified"
@@ -426,9 +577,13 @@
           "progress_percentage": 100,
           "estimated_hours": 10,
           "actual_hours": 12,
-          "files": ["js/components/WordComposer.js"],
+          "files": [
+            "js/components/WordComposer.js"
+          ],
           "assigned_to": "Frontend",
-          "dependencies": ["word_composer_game.composer_ui"],
+          "dependencies": [
+            "word_composer_game.composer_ui"
+          ],
           "deliverables": [
             "Robust touch interactions and mobile UX for the composer"
           ],
@@ -447,10 +602,16 @@
           "status": "Completed",
           "progress_percentage": 100,
           "estimated_hours": 12,
-          "files": ["js/components/WordComposer.js", "js/utils/audioCache.js", "js/utils/radicalLoader.js"],
+          "files": [
+            "js/components/WordComposer.js",
+            "js/utils/audioCache.js",
+            "js/utils/radicalLoader.js"
+          ],
           "notes": "Verification UI implemented in `js/components/WordComposer.js` (buildVerificationUI). Developer verification tooling exists to compute hashes for word+audio; next step is to surface verification mappings in CI reports if desired.",
           "assigned_to": "AI Agent (Frontend Team)",
-          "dependencies": ["data_management.audio_verification"],
+          "dependencies": [
+            "data_management.audio_verification"
+          ],
           "deliverables": [
             "UI that displays a short verification code after correct composition",
             "Copy-to-clipboard button and optional 'verify' endpoint lookup",
@@ -476,8 +637,7 @@
           "files": [
             "tests/unit/radicalSystem.test.js",
             "tests/unit/csvLoader.test.js"
-          ]
-          ,
+          ],
           "assigned_to": "QA Team",
           "deliverables": [
             "Unit test suite passing for core utilities",
@@ -518,7 +678,9 @@
           "status": "Completed",
           "progress_percentage": 100,
           "estimated_hours": 6,
-          "files": ["tests/e2e/radicalFilter.spec.js"]
+          "files": [
+            "tests/e2e/radicalFilter.spec.js"
+          ]
         },
         "python_validation": {
           "name": "Python Validation Scripts",
@@ -532,8 +694,7 @@
           "files": [
             "tests/validate_radical_data.py",
             "tests/test_word_radical_integration.py"
-          ]
-          ,
+          ],
           "assigned_to": "Data Team",
           "deliverables": [
             "Python validation scripts that confirm radicals/vocab alignment",
@@ -561,7 +722,18 @@
             "data/languages/chinese/intermediate.csv",
             "data/languages/chinese/advanced.csv"
           ],
-          "columns": ["Category", "Word", "Pinyin", "English", "POS", "Role", "Common_Usage", "Example_Phrase", "Radicals", "word_n_radicals"]
+          "columns": [
+            "Category",
+            "Word",
+            "Pinyin",
+            "English",
+            "POS",
+            "Role",
+            "Common_Usage",
+            "Example_Phrase",
+            "Radicals",
+            "word_n_radicals"
+          ]
         },
         "matrix_index": {
           "name": "Matrix Index Configuration",
@@ -572,8 +744,13 @@
           "status": "Completed",
           "progress_percentage": 100,
           "estimated_hours": 6,
-          "files": ["data/matrix_index.json"],
-          "features": ["Merged matrix type for All Levels view", "languagePath for audio resolution"]
+          "files": [
+            "data/matrix_index.json"
+          ],
+          "features": [
+            "Merged matrix type for All Levels view",
+            "languagePath for audio resolution"
+          ]
         },
         "audio_files": {
           "name": "Audio File Organization",
@@ -591,13 +768,14 @@
             "assets/audio/chinese/radicals/"
           ],
           "assigned_to": "AI Agent (Data Team)",
-          "dependencies": ["data_management.vocabulary_csvs"],
+          "dependencies": [
+            "data_management.vocabulary_csvs"
+          ],
           "deliverables": [
             "Generate and place MP3 files to reach >= 95% coverage",
             "Report of missing files and a remediation plan"
           ]
-        }
-        ,
+        },
         "audio_verification": {
           "name": "Audio Coverage & Verification",
           "description": "Verify that each vocabulary word has a corresponding audio file; generate verification codes and a report for missing audio",
@@ -607,10 +785,16 @@
           "status": "Completed",
           "progress_percentage": 100,
           "estimated_hours": 16,
-          "files": ["js/utils/audioCache.js", "data/tools/compile_audio_all.py"],
+          "files": [
+            "js/utils/audioCache.js",
+            "data/tools/compile_audio_all.py"
+          ],
           "notes": "Audio verification implemented and exercised: Playwright + `tools/audio-verification.js` generate per-level reports and the TTS generator (`tests/e2e/generate-google-tts.spec.js`) can remediate missing files.",
           "assigned_to": "AI Agent (Data Team)",
-          "dependencies": ["data_management.vocabulary_csvs","data_management.audio_files"],
+          "dependencies": [
+            "data_management.vocabulary_csvs",
+            "data_management.audio_files"
+          ],
           "deliverables": [
             "Verification JSON per level mapping word -> path -> SHA256",
             "Missing audio report and automatic-to-run generation commands"
@@ -641,7 +825,9 @@
           ],
           "notes": "COMPLETE: Japanese vocabulary CSVs with 60+ basic, 65+ intermediate, 62+ advanced words matching Chinese level counts. Radicals folder created with 58 bushu (部首) entries. Audio folder structure ready. matrix_index.json configured with ja-JP language code.",
           "assigned_to": "AI Agent (Data Team)",
-          "dependencies": ["core_infrastructure.language_loader"],
+          "dependencies": [
+            "core_infrastructure.language_loader"
+          ],
           "deliverables": [
             "Japanese vocabulary CSVs with Word, Reading, English, Components columns",
             "Japanese radicals/bushu CSV with readings",
@@ -668,7 +854,9 @@
           ],
           "notes": "COMPLETE: Korean vocabulary CSVs with 53+ basic, 64+ intermediate, 62+ advanced words matching Chinese level counts. Radicals folder created with 52 jamo (자모) component entries. Audio folder structure ready. matrix_index.json configured with ko-KR language code.",
           "assigned_to": "AI Agent (Data Team)",
-          "dependencies": ["core_infrastructure.language_loader"],
+          "dependencies": [
+            "core_infrastructure.language_loader"
+          ],
           "deliverables": [
             "Korean vocabulary CSVs with Word, Romanization, English, Components columns",
             "Korean jamo/hangul components CSV",
@@ -733,7 +921,9 @@
   ],
   "file_inventory": {
     "javascript": {
-      "main": ["js/main.js"],
+      "main": [
+        "js/main.js"
+      ],
       "components": [
         "js/components/MatrixTableBuilder.js",
         "js/components/RadicalDisplay.js",
@@ -779,7 +969,9 @@
     },
     "tests": {
       "e2e": [
-        "tests/e2e/radicalFilter.spec.js"
+        "tests/e2e/radicalFilter.spec.js",
+        "tests/e2e/mobile-ui.spec.js",
+        "tests/e2e/matrix.spec.js"
       ],
       "integration": [
         "tests/integration/levelFiltering.test.js",
@@ -833,6 +1025,20 @@
     ]
   },
   "recent_fixes": [
+    {
+      "date": "2026-02-10",
+      "description": "Fixed mobile UI: vertical clipping and stuck pressed buttons on touch devices",
+      "files_changed": [
+        "css/matrix_table.css",
+        "css/style.css",
+        "js/main.js",
+        "js/components/WordComposer.js",
+        "plugins/radical-word-builder/style.css",
+        "tests/e2e/mobile-ui.spec.js",
+        "tests/e2e/matrix.spec.js"
+      ],
+      "details": "Disabled CSS full-bleed hack on mobile (matrix_table.css), added @media (hover: none) touch overrides (style.css, plugin CSS), global touch cleanup (main.js), WordComposer changedTouches guard. Created 15 Playwright mobile E2E tests. Fixed matrix.spec.js strict mode violation."
+    },
     {
       "date": "2025-12-05",
       "description": "Fixed Korean radicals display issues: added StrokeCount column, fixed RadicalDisplay.setLevel timing, and sanitized audio filenames for Korean particles with '/' characters.",
@@ -1092,13 +1298,35 @@
       "severity": "RESOLVED",
       "title": "GitHub Actions CI failing - ReferenceError: Request is not defined",
       "description": "Tests in tests/unit/serviceWorker.test.js were referencing the Web API 'Request' object which was not available in the jsdom test environment.",
-      "affected_files": ["tests/unit/serviceWorker.test.js", "tests/setup/jest.setup.js"],
+      "affected_files": [
+        "tests/unit/serviceWorker.test.js",
+        "tests/setup/jest.setup.js"
+      ],
       "root_cause": "Service Worker tests use Web APIs (Request, Response) that jsdom doesn't provide",
       "created_date": "2025-12-12",
       "resolved_date": "2025-12-12",
       "status": "RESOLVED",
       "resolution": "Added Request and Response polyfill classes to jest.setup.js. Also fixed test expectations for Japanese CSV columns (Reading -> Romanization) and URL encoding behavior. Test suite now: 149 passing, 28 skipped (with documentation), 0 failing.",
       "test_results": "All unit and integration tests passing. CI should now succeed."
+    },
+    {
+      "id": "UI-001",
+      "severity": "RESOLVED",
+      "title": "Mobile UI: main screen clipping and stuck pressed buttons on game screen",
+      "description": "On small-screen smartphones the main UI appears clipped with a vertical cut and in the Word Composer game a pressed button visual state sometimes remains on-screen (stuck). Needs reproduction on iOS/Android, check touch event handling, CSS active/focus states, and responsive layout.",
+      "affected_files": [
+        "index.html",
+        "css/style.css",
+        "css/matrix_table.css",
+        "js/components/WordComposer.js",
+        "js/main.js"
+      ],
+      "root_cause": "(1) Full-bleed CSS hack created seam on mobile. (2) CSS :active/:hover transforms stick on touch devices.",
+      "created_date": "2026-02-10",
+      "status": "RESOLVED",
+      "notes": "User report: 'on smarthphone the ui look like a vertical cut on main screen and on game screen the pressed button got stuck on the screen'.",
+      "resolved_date": "2026-02-10",
+      "resolution": "Disabled full-bleed on mobile, added touch-device CSS overrides, global touch cleanup, WordComposer guard. 15 Playwright mobile E2E tests added."
     }
   ],
   "known_issues": [],
@@ -1108,7 +1336,10 @@
       "severity": "Critical",
       "title": "CSV Parser uses naive split(',') - fails on quoted fields",
       "description": "csvLoader.js used simple split(',') which breaks when CSV fields contain commas inside quotes.",
-      "affected_files": ["js/utils/csvLoader.js", "js/utils/audioCache.js"],
+      "affected_files": [
+        "js/utils/csvLoader.js",
+        "js/utils/audioCache.js"
+      ],
       "resolution": "Added parseCSVLine() function with RFC 4180 compliant quote handling. Also added _parseCSVLine() to audioCache.js for preloadVocabularyAudio()",
       "created_date": "2025-12-05",
       "resolved_date": "2025-12-05"
@@ -1118,7 +1349,9 @@
       "severity": "Medium",
       "title": "findRadicalsInCharacter strict mode returns empty for unknown decompositions",
       "description": "radicalLoader.findRadicalsInCharacter used STRICT MODE that returned empty array if explicit decomposition not found",
-      "affected_files": ["js/utils/radicalLoader.js"],
+      "affected_files": [
+        "js/utils/radicalLoader.js"
+      ],
       "resolution": "Added useFallback parameter to findRadicalsInCharacter() that enables character-level matching when set to true",
       "created_date": "2025-12-05",
       "resolved_date": "2025-12-05"
@@ -1128,7 +1361,9 @@
       "severity": "Low",
       "title": "Audio filename sanitization may fail on special characters",
       "description": "preloadVocabularyAudio constructed audio paths without sanitizing special characters",
-      "affected_files": ["js/utils/audioCache.js"],
+      "affected_files": [
+        "js/utils/audioCache.js"
+      ],
       "resolution": "Added encodeURIComponent() for audio file paths in preloadVocabularyAudio()",
       "created_date": "2025-12-05",
       "resolved_date": "2025-12-05"

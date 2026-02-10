@@ -335,6 +335,25 @@ class JanulusMatrixApp {
 // Export the class for unit tests
 export { JanulusMatrixApp };
 
+// ---------- Global touch-cleanup (prevents stuck :active / :hover on mobile) ----------
+if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+    const clearStuckStates = () => {
+        // Blur the currently-focused button so :focus/:active CSS releases
+        const active = document.activeElement;
+        if (active && (active.tagName === 'BUTTON' || active.classList.contains('btn'))) {
+            active.blur();
+        }
+        // Remove transient drag/touch classes that may linger
+        document.querySelectorAll('.touch-dragging, .dragging, .drag-over').forEach(el => {
+            el.classList.remove('touch-dragging', 'dragging', 'drag-over');
+        });
+    };
+    document.addEventListener('touchend', clearStuckStates, { passive: true });
+    document.addEventListener('touchcancel', clearStuckStates, { passive: true });
+    // pointerup covers stylus / hybrid devices
+    document.addEventListener('pointerup', clearStuckStates, { passive: true });
+}
+
 // Initialize app when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
     const app = new JanulusMatrixApp();

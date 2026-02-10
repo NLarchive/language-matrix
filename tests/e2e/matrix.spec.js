@@ -104,16 +104,16 @@ test.describe('Responsive Design', () => {
         await page.goto('/');
         
         // Check that main elements are still visible
-        const matrixContainer = page.locator('#matrix-container, .matrix-container, main');
-        await expect(matrixContainer).toBeVisible({ timeout: 10000 });
+        const matrixContainer = page.locator('#matrix-container').or(page.locator('.matrix-container')).or(page.locator('main'));
+        await expect(matrixContainer.first()).toBeVisible({ timeout: 10000 });
     });
 
     test('should display correctly on tablet viewport', async ({ page }) => {
         await page.setViewportSize({ width: 768, height: 1024 });
         await page.goto('/');
         
-        const matrixContainer = page.locator('#matrix-container, .matrix-container, main');
-        await expect(matrixContainer).toBeVisible({ timeout: 10000 });
+        const matrixContainer = page.locator('#matrix-container').or(page.locator('.matrix-container')).or(page.locator('main'));
+        await expect(matrixContainer.first()).toBeVisible({ timeout: 10000 });
     });
 });
 

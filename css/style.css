@@ -315,6 +315,38 @@ main {
     }
 }
 
+/* ---- Touch device: prevent sticky :hover / :active states ---- */
+@media (hover: none) and (pointer: coarse) {
+    /* Disable hover transforms on all buttons — prevents ghost hover after tap */
+    .btn:hover,
+    .btn-play:hover,
+    .tab-btn:hover,
+    .radical-card:hover,
+    .radical-chip.draggable:hover {
+        transform: none;
+        box-shadow: none;
+    }
+
+    /* Override :active transforms so they cannot linger after touch end.
+       iOS Safari may keep :active while the touch-action chain is processing. */
+    .btn:active,
+    .btn-play:active,
+    .btn-clear:active,
+    .btn-check:active,
+    .btn-skip:active,
+    .btn-hint:active,
+    .btn-replay:active,
+    .btn-next:active {
+        transform: none;
+    }
+
+    /* Ensure all interactive elements opt-in to fast tapping */
+    button, .btn, .tab-btn, .radical-card, .radical-chip.draggable {
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+    }
+}
+
 /* Modal Styles */
 .modal {
     display: none;
@@ -457,14 +489,10 @@ main {
     }
 }
 
-/* Ensure minimum readable font sizes for UI text across the app */
-body, button, input, select, textarea, .matrix-table, .sentence-display, .sentence-content {
+/* Ensure minimum readable font sizes for UI text across the app.
+   Only target base text elements — avoid overriding component-level sizing. */
+body, button, input, select, textarea {
     font-size: var(--min-ui-font);
-}
-
-/* Ensure sentence text and important hanzi words are larger */
-.sentence-chinese, .sentence-chinese span, .word-chinese, .word-detail-chinese {
-    font-size: clamp(var(--min-hanzi-font), 4vw, 36px) !important;
 }
 
 /* ============================================
