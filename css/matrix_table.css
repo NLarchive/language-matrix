@@ -1,6 +1,9 @@
 /* Matrix Table Styles - Responsive & Universal */
 .matrix-table-container {
-    /* Full-bleed container that still respects safe areas and inner padding */
+    /* Full-bleed container that still respects safe areas and inner padding.
+       On wide screens use the negative-offset trick so the table can span
+       beyond the max-width parent.  On narrow/mobile screens the parent is
+       already full-width so we disable the hack (avoids hairline seam). */
     position: relative;
     left: calc(50% - 50vw);
     width: 100vw;
@@ -15,6 +18,15 @@
     box-shadow: var(--shadow-sm);
     -webkit-overflow-scrolling: touch;
     scroll-behavior: smooth;
+}
+
+/* On screens narrower than the parent max-width the full-bleed hack is
+   unnecessary and creates a visible vertical seam on mobile browsers. */
+@media (max-width: 1024px) {
+    .matrix-table-container {
+        left: 0;
+        width: 100%;
+    }
 }
 
 /* Scroll hint for mobile */
@@ -312,5 +324,11 @@
     
     .word-btn.selected:active {
         background: #0056b3;
+    }
+
+    /* Prevent sticky :active transforms on touch buttons */
+    .audio-mini-btn:active,
+    .info-mini-btn:active {
+        transform: none;
     }
 }

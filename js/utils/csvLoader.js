@@ -144,9 +144,19 @@ export function filterVocabByLevel(vocabList, levels) {
 export function getCategoryConfig(configList) {
     const config = {};
     configList.forEach(cat => {
+        // Accept multiple possible header names for color to remain backward compatible
+        const rawColor = cat.Color || cat.ColorCode || cat.ColorHex || cat.Color_Value || '';
+        // Normalize color: ensure a valid hex string with leading '#', fallback to primary color
+        const colorCandidate = (typeof rawColor === 'string') ? rawColor.trim() : '';
+        const normalizedColor = (() => {
+            if (!colorCandidate) return '#007AFF';
+            // If already starts with '#', accept it, otherwise prefix '#'
+            return colorCandidate.startsWith('#') ? colorCandidate : `#${colorCandidate}`;
+        })();
+
         config[cat.Category] = {
-            description: cat.Description || '',
-            color: cat.ColorCode || '#007AFF'
+            description: cat.Description || cat.DescriptionText || '',
+            color: normalizedColor
         };
     });
     return config;

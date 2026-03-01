@@ -315,6 +315,38 @@ main {
     }
 }
 
+/* ---- Touch device: prevent sticky :hover / :active states ---- */
+@media (hover: none) and (pointer: coarse) {
+    /* Disable hover transforms on all buttons — prevents ghost hover after tap */
+    .btn:hover,
+    .btn-play:hover,
+    .tab-btn:hover,
+    .radical-card:hover,
+    .radical-chip.draggable:hover {
+        transform: none;
+        box-shadow: none;
+    }
+
+    /* Override :active transforms so they cannot linger after touch end.
+       iOS Safari may keep :active while the touch-action chain is processing. */
+    .btn:active,
+    .btn-play:active,
+    .btn-clear:active,
+    .btn-check:active,
+    .btn-skip:active,
+    .btn-hint:active,
+    .btn-replay:active,
+    .btn-next:active {
+        transform: none;
+    }
+
+    /* Ensure all interactive elements opt-in to fast tapping */
+    button, .btn, .tab-btn, .radical-card, .radical-chip.draggable {
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+    }
+}
+
 /* Modal Styles */
 .modal {
     display: none;
@@ -457,14 +489,10 @@ main {
     }
 }
 
-/* Ensure minimum readable font sizes for UI text across the app */
-body, button, input, select, textarea, .matrix-table, .sentence-display, .sentence-content {
+/* Ensure minimum readable font sizes for UI text across the app.
+   Only target base text elements — avoid overriding component-level sizing. */
+body, button, input, select, textarea {
     font-size: var(--min-ui-font);
-}
-
-/* Ensure sentence text and important hanzi words are larger */
-.sentence-chinese, .sentence-chinese span, .word-chinese, .word-detail-chinese {
-    font-size: clamp(var(--min-hanzi-font), 4vw, 36px) !important;
 }
 
 /* ============================================
@@ -1380,6 +1408,369 @@ body, button, input, select, textarea, .matrix-table, .sentence-display, .senten
 
 .no-words-message p {
     margin: 0 0 8px 0;
+}
+
+/* ============================================
+   Sticky Composer Bar — second navbar below header
+   Desktop : single row  [score | hint⟶canvas | controls]
+   Mobile  : two rows
+     Row 1  [hint word | drop slots (wrap)]
+     Row 2  [score/progress | icon-only buttons]
+   ============================================ */
+
+.composer-sticky-bar {
+    position: sticky;
+    top: var(--header-height, 64px);
+    z-index: 90;
+    background: rgba(248, 250, 252, 0.97);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-top: 1px solid var(--border-color);
+    border-bottom: 2px solid rgba(0, 122, 255, 0.20);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.07);
+}
+
+.composer-sticky-bar[hidden] {
+    display: none;
+}
+
+.composer-sticky-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 7px 20px;
+}
+
+/* ── DESKTOP: single flex row ───────────────────────────── */
+
+.composer-sticky-bar .word-composer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Left: score pill */
+.composer-sticky-bar .composer-header {
+    flex-shrink: 0;
+    order: 1;
+    margin-bottom: 0;
+    padding: 0 12px 0 0;
+    border-bottom: none;
+    border-right: 1.5px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    min-width: 68px;
+}
+
+.composer-sticky-bar .composer-title h3 {
+    font-size: 10px;
+    font-weight: 700;
+    margin: 0;
+    color: var(--primary-color);
+    white-space: nowrap;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+}
+
+.composer-sticky-bar .composer-title p { display: none; }
+
+.composer-sticky-bar .composer-stats {
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+}
+
+.composer-sticky-bar .score-display {
+    font-size: 11px;
+    white-space: nowrap;
+}
+
+.composer-sticky-bar .score-display strong {
+    font-size: 14px;
+    color: var(--primary-color);
+}
+
+.composer-sticky-bar .progress-display {
+    font-size: 10px;
+    background: var(--border-color);
+    padding: 1px 6px;
+    border-radius: 10px;
+    color: var(--text-secondary);
+    white-space: nowrap;
+}
+
+/* Centre: hint fused left-edge of the canvas pill */
+
+.composer-sticky-bar .composer-hint {
+    order: 2;
+    flex-shrink: 0;
+    margin-bottom: 0;
+    padding: 4px 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 7px;
+    text-align: left;
+    /* keep existing gradient; fuse right side into canvas */
+    border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+    border-right: none;
+    /* override margin-bottom from base .composer-hint */
+    margin-bottom: 0 !important;
+}
+
+.composer-sticky-bar .hint-label {
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--text-secondary);
+    margin-bottom: 0;
+    white-space: nowrap;
+}
+
+.composer-sticky-bar .hint-content {
+    gap: 5px;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.composer-sticky-bar .hint-word {
+    font-size: 28px;
+    line-height: 1;
+    font-weight: 700;
+}
+
+.composer-sticky-bar .hint-radicals {
+    font-size: 10px;
+    white-space: nowrap;
+    color: var(--text-secondary);
+}
+
+.composer-sticky-bar .btn-hint {
+    padding: 3px 7px;
+    font-size: 10px;
+    white-space: nowrap;
+    border-radius: var(--radius-sm);
+    background: white;
+    border: 1px solid rgba(0, 122, 255, 0.3) !important;
+    color: var(--primary-color);
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+/* Canvas — fuses with right-edge of hint, fills remaining space */
+
+.composer-sticky-bar .composer-canvas-section {
+    order: 3;
+    flex: 1;
+    min-width: 0;
+    margin-bottom: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0;
+}
+
+.composer-sticky-bar .composer-canvas {
+    flex: 1;
+    min-width: 0;
+    padding: 5px 10px;
+    min-height: 58px;
+    gap: 7px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-color) transparent;
+    justify-content: flex-start;
+    background: linear-gradient(135deg, #fafbfc 0%, #f0f4f8 100%);
+    border: 1px solid var(--border-color);
+    border-left: none;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+.composer-sticky-bar .composer-canvas::-webkit-scrollbar {
+    height: 3px;
+}
+
+.composer-sticky-bar .composer-canvas::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 2px;
+}
+
+.composer-sticky-bar .radical-slot {
+    width: 46px;
+    height: 46px;
+    flex-shrink: 0;
+    border-width: 1.5px;
+}
+
+.composer-sticky-bar .placed-radical { font-size: 26px; }
+.composer-sticky-bar .slot-placeholder { font-size: 14px; font-weight: 700; }
+
+/* Right: action buttons */
+
+.composer-sticky-bar .canvas-controls {
+    order: 4;
+    flex-shrink: 0;
+    margin: 0 0 0 10px;
+    gap: 6px;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    display: flex;
+    align-items: center;
+}
+
+.composer-sticky-bar .canvas-controls .btn {
+    padding: 6px 12px;
+    font-size: 13px;
+    white-space: nowrap;
+    border-radius: var(--radius-sm);
+    line-height: 1;
+}
+
+/* Suppress result / no-words inside bar (feedback shown in tab below) */
+.composer-sticky-bar .composer-result { display: none !important; }
+
+.composer-sticky-bar .no-words-message {
+    padding: 5px 10px;
+    font-size: 11px;
+    color: var(--text-secondary);
+}
+
+/* ── MOBILE: 2-row CSS Grid ─────────────────────────────────
+   Row 1 │ hint-word │ all drop slots (wrap)
+   Row 2 │ score     │ icon-only action buttons
+   ─────────────────────────────────────────────────────────── */
+@media (max-width: 600px) {
+    .composer-sticky-inner {
+        padding: 5px 10px;
+    }
+
+    .composer-sticky-bar .word-composer {
+        display: grid;
+        grid-template-areas:
+            "hint  canvas"
+            "score controls";
+        grid-template-columns: auto 1fr;
+        grid-template-rows: auto auto;
+        gap: 5px 8px;
+        /* reset flex properties */
+        align-items: unset;
+    }
+
+    /* Map grid areas */
+    .composer-sticky-bar .composer-hint           { grid-area: hint;     }
+    .composer-sticky-bar .composer-canvas-section { grid-area: canvas;   }
+    .composer-sticky-bar .composer-header         { grid-area: score;    }
+    .composer-sticky-bar .canvas-controls         { grid-area: controls; }
+
+    /* ── Row 1 left: compact hint pill ── */
+    .composer-sticky-bar .composer-hint {
+        padding: 4px 8px;
+        border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+        border-right: none;
+        align-items: center;
+        gap: 4px;
+        /* reset order from desktop */
+        order: unset;
+    }
+
+    .composer-sticky-bar .hint-label { display: none; }
+
+    .composer-sticky-bar .hint-word {
+        font-size: 30px;
+        line-height: 1;
+    }
+
+    .composer-sticky-bar .hint-radicals {
+        font-size: 10px;
+        white-space: nowrap;
+    }
+
+    /* 💡 icon-only: hide text label */
+    .composer-sticky-bar .btn-hint {
+        padding: 3px 5px;
+        font-size: 14px;
+    }
+
+    /* ── Row 1 right: canvas — ALL slots visible (wrap) ── */
+    .composer-sticky-bar .composer-canvas-section {
+        order: unset;
+        flex: unset;
+        min-width: 0;
+        align-items: stretch;
+    }
+
+    .composer-sticky-bar .composer-canvas {
+        flex-wrap: wrap;          /* ← all slots wrap; none hidden */
+        overflow-x: visible;
+        overflow-y: visible;
+        min-height: auto;
+        padding: 4px 8px;
+        gap: 5px;
+        border-left: none;
+        border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+        align-content: flex-start;
+    }
+
+    .composer-sticky-bar .radical-slot {
+        width: 40px;
+        height: 40px;
+        border-width: 1.5px;
+    }
+
+    .composer-sticky-bar .placed-radical { font-size: 22px; }
+    .composer-sticky-bar .slot-placeholder { font-size: 12px; }
+
+    /* ── Row 2 left: score/progress pill ── */
+    .composer-sticky-bar .composer-header {
+        order: unset;
+        border-right: none;
+        border-top: 1px solid var(--border-color);
+        padding: 3px 0 0 0;
+        flex-direction: row;
+        align-items: center;
+        gap: 6px;
+        min-width: 0;
+    }
+
+    .composer-sticky-bar .composer-title h3 {
+        font-size: 9px;
+    }
+
+    .composer-sticky-bar .composer-stats {
+        flex-direction: row;
+        gap: 4px;
+    }
+
+    .composer-sticky-bar .score-display strong {
+        font-size: 13px;
+    }
+
+    /* ── Row 2 right: icon-only buttons ── */
+    .composer-sticky-bar .canvas-controls {
+        order: unset;
+        margin: 0;
+        border-top: 1px solid var(--border-color);
+        padding-top: 3px;
+        gap: 5px;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    /* Hide text labels — show emoji icon only */
+    .composer-sticky-bar .btn-label { display: none; }
+
+    .composer-sticky-bar .canvas-controls .btn {
+        padding: 5px 7px;
+        font-size: 16px;
+        line-height: 1;
+        min-width: 34px;
+        text-align: center;
+        border-radius: var(--radius-sm);
+    }
 }
 
 /* Mobile responsive for Word Composer */

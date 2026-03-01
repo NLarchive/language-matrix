@@ -31,7 +31,7 @@ const EXPECTED_LANGUAGES = {
         levels: ['basic', 'intermediate', 'advanced'],
         audioPath: 'Japanese',
         languagePath: 'japanese',
-        requiredColumns: ['Category', 'Word', 'Reading', 'English']
+        requiredColumns: ['Category', 'Word', 'Romanization', 'English']
     },
     korean: {
         code: 'ko-KR',

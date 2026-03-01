@@ -78,14 +78,11 @@ export class RadicalDisplay {
         
         if (!this.container) return;
         
-        // Create main merged layout
+        // Create main merged layout – composer lives in the sticky bar outside this container
         const radicalRefHtml = await this.renderRadicalReference();
         let html = `
             <div class="radicals-section-merged">
-                <!-- Word Composer Canvas at Top -->
-                <div class="word-composer-section"><div id="word-composer-container"></div></div>
-                
-                <!-- Radical Reference Below -->
+                <!-- Radical Reference -->
                 <div class="radical-reference-section">
                     ${radicalRefHtml}
                 </div>
@@ -221,7 +218,8 @@ export class RadicalDisplay {
      * Initialize the Word Composer game integrated at top
      */
     async initWordComposer() {
-        const composerContainer = this.container.querySelector('#word-composer-container');
+        // The word-composer-container lives in the sticky bar (outside this.container)
+        const composerContainer = document.getElementById('word-composer-container');
         if (!composerContainer || !this.radicalLoader) return;
         
         this.wordComposer = new WordComposer('word-composer-container', this.radicalLoader);

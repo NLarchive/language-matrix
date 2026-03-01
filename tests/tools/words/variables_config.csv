@@ -1,0 +1,15 @@
+Variable,Description,Type,Example,Chinese-Specific Notes
+idx,Index of the token in the sentence,Integer,1,Sequential numbering starting from 1
+token,Surface form of the token (character or word),String,我,Raw text as it appears
+lemma,Lemma or base form of the token,String,我,For Chinese, often same as token due to lack of inflection
+pos,Part-of-speech tag,String,PRON,Use Universal Dependencies tags or Chinese-specific (e.g., PRON, VERB, NOUN)
+dep_head,Index of the dependency head,Integer,2,0 for root; references idx of head token
+dep_rel,Dependency relation label,String,nsubj,Labels like nsubj, obj, tmod from dependency parsing
+aspect,Aspect marker (if present),String,了,Common in Chinese: 了 (perfective), 过 (experiential), 着 (progressive)
+classifier,Classifier or measure word (if applicable),String,个,Required with numerals + nouns; e.g., 个, 把, 本
+role,Semantic or syntactic role in sentence,String,subject,Custom labels: subject, object, time, location, etc.
+negation,Negation marker (if present),String,不,Common: 不 (general negation), 没 (past negation)
+question,Question particle (if present),String,吗,吗 for yes/no questions; 呢 for A-not-A
+modality,Modality or mood particle (if present),String,吧,吧 (suggestion), 呢 (emphasis), 了 (completion)
+serial_verb,Flag for serial verb construction,Boolean,true,True if part of SVC (e.g., 去买)
+resultative,Flag for resultative complement,Boolean,true,True if verb + complement (e.g., 吃完)

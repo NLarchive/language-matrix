@@ -42,6 +42,54 @@ global.caches = {
     match: () => Promise.resolve(null)
 };
 
+// Mock Request and Response classes for Service Worker testing
+global.Request = class {
+    constructor(url, options = {}) {
+        this.url = url;
+        this.method = options.method || 'GET';
+        this.headers = options.headers || {};
+        this.mode = options.mode || 'cors';
+        this.cache = options.cache || 'default';
+    }
+    clone() {
+        return new Request(this.url, {
+            method: this.method,
+            headers: this.headers,
+            mode: this.mode,
+            cache: this.cache
+        });
+    }
+};
+
+global.Response = class {
+    constructor(body, options = {}) {
+        this.body = body;
+        this.ok = options.ok !== false;
+        this.status = options.status || 200;
+        this.statusText = options.statusText || 'OK';
+        this.headers = options.headers || {};
+        this.type = options.type || 'basic';
+    }
+    blob() {
+        return Promise.resolve(new Blob([this.body], { type: 'application/octet-stream' }));
+    }
+    json() {
+        return Promise.resolve(JSON.parse(this.body || '{}'));
+    }
+    text() {
+        return Promise.resolve(this.body || '');
+    }
+    clone() {
+        return new Response(this.body, {
+            ok: this.ok,
+            status: this.status,
+            statusText: this.statusText,
+            headers: this.headers,
+            type: this.type
+        });
+    }
+};
+
 // Mock fetch - basic setup
 global.fetch = () => Promise.resolve({
     ok: true,

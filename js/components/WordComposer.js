@@ -154,7 +154,7 @@ export class WordComposer {
                 <span class="hint-radicals">(${this.currentWord.radicals.length} radicals)</span>
             </div>
             <button class="btn btn-hint" id="highlight-radicals-btn" title="Highlight the radicals needed for this word">
-                💡 Show Hints
+                💡 <span class="btn-label">Show Hints</span>
             </button>
         `;
         composerEl.appendChild(hintSection);
@@ -184,28 +184,28 @@ export class WordComposer {
         }
         
         canvasSection.appendChild(canvas);
+        composerEl.appendChild(canvasSection);
         
-        // Clear and check buttons - different buttons based on state
+        // Clear and check buttons — direct child of composerEl so CSS can
+        // independently position them on a separate row on mobile
         const canvasControls = document.createElement('div');
         canvasControls.className = 'canvas-controls';
         
         if (this.isWordComplete) {
             // Show replay and next buttons after successful completion
             canvasControls.innerHTML = `
-                <button class="btn btn-replay" id="replay-audio-btn">🔊 Replay Audio</button>
-                <button class="btn btn-next" id="next-word-btn">➡️ Next Word</button>
+                <button class="btn btn-replay" id="replay-audio-btn" title="Replay Audio">🔊 <span class="btn-label">Replay</span></button>
+                <button class="btn btn-next" id="next-word-btn" title="Next Word">➡️ <span class="btn-label">Next</span></button>
             `;
         } else {
             // Show normal controls during composition
             canvasControls.innerHTML = `
-                <button class="btn btn-clear" id="clear-canvas-btn">🔄 Clear</button>
-                <button class="btn btn-check" id="check-word-btn">✓ Check</button>
-                <button class="btn btn-skip" id="skip-word-btn">⏭ Skip</button>
+                <button class="btn btn-clear" id="clear-canvas-btn" title="Clear">🔄 <span class="btn-label">Clear</span></button>
+                <button class="btn btn-check" id="check-word-btn" title="Check">✓ <span class="btn-label">Check</span></button>
+                <button class="btn btn-skip" id="skip-word-btn" title="Skip">⏭ <span class="btn-label">Skip</span></button>
             `;
         }
-        canvasSection.appendChild(canvasControls);
-        
-        composerEl.appendChild(canvasSection);
+        composerEl.appendChild(canvasControls);
         
         // Note: Radicals are draggable from the radical-reference-section below
         // No separate palette needed - users drag from the reference cards
@@ -406,49 +406,49 @@ export class WordComposer {
         
         // Find the slot under the touch point
         const touch = e.changedTouches[0];
-        const element = document.elementFromPoint(touch.clientX, touch.clientY);
-        const slot = element?.closest('.radical-slot:not(.filled)');
         
-        if (slot) {
-            const slotIndex = parseInt(slot.dataset.index);
-            this.placeRadical(this.touchDragData.radical, slotIndex);
-        } else if (this.touchDragData && this.touchDragData.ghost) {
-            // If we didn't hit a slot by elementFromPoint, allow fuzzy placement
-            // — accept the slot that contains a large portion of the ghost element
-            // (e.g. 50% overlap). This makes touch drops easier when user doesn't
-            // perfectly center the ghost.
-            try {
-                const ghostRect = this.touchDragData.ghost.getBoundingClientRect();
-                const ghostArea = Math.max(0, ghostRect.width) * Math.max(0, ghostRect.height);
-                if (ghostArea > 0) {
-                    let bestSlot = null;
-                    let bestRatio = 0;
-                    const slots = Array.from(this.container.querySelectorAll('.radical-slot:not(.filled)'));
-                    for (const s of slots) {
-                        const r = s.getBoundingClientRect();
-                        const ix = Math.max(0, Math.min(r.right, ghostRect.right) - Math.max(r.left, ghostRect.left));
-                        const iy = Math.max(0, Math.min(r.bottom, ghostRect.bottom) - Math.max(r.top, ghostRect.top));
-                        const area = ix * iy;
-                        const ratio = area / ghostArea; // fraction of ghost inside slot
-                        if (ratio > bestRatio) {
-                            bestRatio = ratio;
-                            bestSlot = s;
+        // Guard: changedTouches can be empty on touchcancel on some browsers
+        if (touch) {
+            const element = document.elementFromPoint(touch.clientX, touch.clientY);
+            const slot = element?.closest('.radical-slot:not(.filled)');
+            
+            if (slot) {
+                const slotIndex = parseInt(slot.dataset.index);
+                this.placeRadical(this.touchDragData.radical, slotIndex);
+            } else if (this.touchDragData && this.touchDragData.ghost) {
+                // If we didn't hit a slot by elementFromPoint, allow fuzzy placement
+                try {
+                    const ghostRect = this.touchDragData.ghost.getBoundingClientRect();
+                    const ghostArea = Math.max(0, ghostRect.width) * Math.max(0, ghostRect.height);
+                    if (ghostArea > 0) {
+                        let bestSlot = null;
+                        let bestRatio = 0;
+                        const slots = Array.from(this.container.querySelectorAll('.radical-slot:not(.filled)'));
+                        for (const s of slots) {
+                            const r = s.getBoundingClientRect();
+                            const ix = Math.max(0, Math.min(r.right, ghostRect.right) - Math.max(r.left, ghostRect.left));
+                            const iy = Math.max(0, Math.min(r.bottom, ghostRect.bottom) - Math.max(r.top, ghostRect.top));
+                            const area = ix * iy;
+                            const ratio = area / ghostArea;
+                            if (ratio > bestRatio) {
+                                bestRatio = ratio;
+                                bestSlot = s;
+                            }
+                        }
+
+                        const MIN_OVERLAP = 0.45;
+                        if (bestSlot && bestRatio >= MIN_OVERLAP) {
+                            const slotIndex = parseInt(bestSlot.dataset.index);
+                            if (!isNaN(slotIndex)) this.placeRadical(this.touchDragData.radical, slotIndex);
                         }
                     }
-
-                    // threshold: at least 45% of the ghost must overlap the slot
-                    const MIN_OVERLAP = 0.45;
-                    if (bestSlot && bestRatio >= MIN_OVERLAP) {
-                        const slotIndex = parseInt(bestSlot.dataset.index);
-                        if (!isNaN(slotIndex)) this.placeRadical(this.touchDragData.radical, slotIndex);
-                    }
+                } catch (_err) {
+                    // Ignore calculation errors — fallback is no-op
                 }
-            } catch (e) {
-                // Ignore calculation errors — fallback is no-op
             }
         }
         
-        // Cleanup
+        // Cleanup — always runs, even on touchcancel
         if (this.touchDragData.ghost) {
             this.touchDragData.ghost.remove();
         }
@@ -456,6 +456,11 @@ export class WordComposer {
         this.container.querySelectorAll('.radical-slot').forEach(s => {
             s.classList.remove('drag-over');
         });
+        
+        // Blur any focused button so :active/:focus CSS releases on touch devices
+        if (document.activeElement && document.activeElement.tagName === 'BUTTON') {
+            document.activeElement.blur();
+        }
         
         this.touchDragData = null;
     }
