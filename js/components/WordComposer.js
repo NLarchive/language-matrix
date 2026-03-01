@@ -154,7 +154,7 @@ export class WordComposer {
                 <span class="hint-radicals">(${this.currentWord.radicals.length} radicals)</span>
             </div>
             <button class="btn btn-hint" id="highlight-radicals-btn" title="Highlight the radicals needed for this word">
-                💡 Show Hints
+                💡 <span class="btn-label">Show Hints</span>
             </button>
         `;
         composerEl.appendChild(hintSection);
@@ -184,28 +184,28 @@ export class WordComposer {
         }
         
         canvasSection.appendChild(canvas);
+        composerEl.appendChild(canvasSection);
         
-        // Clear and check buttons - different buttons based on state
+        // Clear and check buttons — direct child of composerEl so CSS can
+        // independently position them on a separate row on mobile
         const canvasControls = document.createElement('div');
         canvasControls.className = 'canvas-controls';
         
         if (this.isWordComplete) {
             // Show replay and next buttons after successful completion
             canvasControls.innerHTML = `
-                <button class="btn btn-replay" id="replay-audio-btn">🔊 Replay Audio</button>
-                <button class="btn btn-next" id="next-word-btn">➡️ Next Word</button>
+                <button class="btn btn-replay" id="replay-audio-btn" title="Replay Audio">🔊 <span class="btn-label">Replay</span></button>
+                <button class="btn btn-next" id="next-word-btn" title="Next Word">➡️ <span class="btn-label">Next</span></button>
             `;
         } else {
             // Show normal controls during composition
             canvasControls.innerHTML = `
-                <button class="btn btn-clear" id="clear-canvas-btn">🔄 Clear</button>
-                <button class="btn btn-check" id="check-word-btn">✓ Check</button>
-                <button class="btn btn-skip" id="skip-word-btn">⏭ Skip</button>
+                <button class="btn btn-clear" id="clear-canvas-btn" title="Clear">🔄 <span class="btn-label">Clear</span></button>
+                <button class="btn btn-check" id="check-word-btn" title="Check">✓ <span class="btn-label">Check</span></button>
+                <button class="btn btn-skip" id="skip-word-btn" title="Skip">⏭ <span class="btn-label">Skip</span></button>
             `;
         }
-        canvasSection.appendChild(canvasControls);
-        
-        composerEl.appendChild(canvasSection);
+        composerEl.appendChild(canvasControls);
         
         // Note: Radicals are draggable from the radical-reference-section below
         // No separate palette needed - users drag from the reference cards

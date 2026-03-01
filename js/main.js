@@ -295,6 +295,12 @@ class JanulusMatrixApp {
             tabContent.classList.add('active');
         }
 
+        // Show composer sticky bar only on radicals tab
+        const composerBar = document.getElementById('composer-sticky-bar');
+        if (composerBar) {
+            composerBar.hidden = (tabName !== 'radicals');
+        }
+
         this.activeTab = tabName;
     }
 
@@ -354,8 +360,18 @@ if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
     document.addEventListener('pointerup', clearStuckStates, { passive: true });
 }
 
+// Track header height for the sticky composer bar offset
+function syncHeaderHeight() {
+    const h = document.querySelector('header');
+    if (h) {
+        document.documentElement.style.setProperty('--header-height', h.offsetHeight + 'px');
+    }
+}
+
 // Initialize app when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
+    syncHeaderHeight();
+    window.addEventListener('resize', syncHeaderHeight);
     const app = new JanulusMatrixApp();
     app.init();
 });

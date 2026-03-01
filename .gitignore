@@ -6,3 +6,4 @@ playwright-report
 test-results
 tools
 test_bad\
+resources/

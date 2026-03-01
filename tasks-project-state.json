@@ -1,69 +1,44 @@
 {
   "template_type": "current_project_state",
   "version": "1.6",
-  "last_updated": "2026-02-10",
+  "last_updated": "2026-03-01",
   "project_name": "Janulus Matrix - Language Learning System",
   "description": "Interactive multi-language learning application with vocabulary matrix, radical components, word composer game, and audio support for Chinese, Japanese, and Korean",
   "start_date": "2025-10-01",
-  "end_date": "2025-12-31",
-  "status": "In Progress - Core Features Complete, Mobile UI Fixed, Testing Phase",
-  "overall_progress": 98,
+  "end_date": "2026-04-30",
+  "status": "In Progress - Core Features Complete, Sticky Composer Bar Added, Testing Phase",
+  "overall_progress": 99,
   "next_steps_priority": [
     {
       "priority": 1,
-      "task": "COMPLETED: Mobile UI layout clipping fix",
-      "description": "Fixed the vertical clipping on mobile by disabling the CSS full-bleed hack on viewports <=1024px in matrix_table.css.",
-      "estimated_hours": 4,
-      "actual_hours": 3,
-      "dependencies": [
-        "css/matrix_table.css",
-        "css/style.css"
-      ],
-      "status": "Completed - Feb 10 2026",
-      "notes": "Added @media (max-width: 1024px) to disable full-bleed on mobile. Also added comprehensive touch-device CSS @media (hover: none) block in style.css."
-    },
-    {
-      "priority": 2,
-      "task": "COMPLETED: Stuck pressed button fix on touch devices",
-      "description": "Fixed stuck button states: @media (hover: none) CSS overrides, global touchend/touchcancel/pointerup cleanup in main.js, WordComposer.handleTouchEnd guard.",
+      "task": "COMPLETED: Sticky Composer Navbar (second sticky bar below header)",
+      "description": "Added a second sticky navbar directly below the top header that hosts the entire word-composer UI (hint + canvas + controls). Bar is hidden until the Radicals tab is active, allowing players to scroll the radical reference grid while always having the drop-slots and action buttons in view. composer-hint and composer-canvas are fused into one seamless visual block. CSS variable --header-height is set by JS (ResizeObserver + resize listener) so the bar always stacks flush under the header.",
       "estimated_hours": 3,
       "actual_hours": 2,
       "dependencies": [
-        "js/main.js",
-        "js/components/WordComposer.js",
+        "index.html",
         "css/style.css",
-        "plugins/radical-word-builder/style.css"
+        "js/main.js",
+        "js/components/RadicalDisplay.js"
       ],
-      "status": "Completed - Feb 10 2026",
-      "notes": "Global touch cleanup handles edge cases. CSS prevents visual stuck states on any touch device."
+      "status": "Completed - Mar 1 2026",
+      "notes": "Key changes: (1) #word-composer-container moved from RadicalDisplay tab content to index.html sticky bar. (2) RadicalDisplay.initWordComposer now uses document.getElementById instead of this.container.querySelector. (3) switchTab() shows/hides bar. (4) syncHeaderHeight() runs at DOMContentLoaded + window resize. (5) Full mobile responsive overrides at <=600px breakpoint."
+    },
+    {
+      "priority": 2,
+      "task": "Add E2E test for sticky composer bar scrolling behaviour",
+      "description": "Write a Playwright test that: (1) switches to the Radicals tab, (2) verifies the sticky bar is visible, (3) scrolls the page and asserts the bar remains in the viewport, (4) drags a radical card to a slot via the sticky bar, and (5) verifies the bar hides on Vocabulary tab switch.",
+      "estimated_hours": 3,
+      "dependencies": [
+        "tests/e2e/",
+        "index.html",
+        "css/style.css"
+      ],
+      "status": "Not Started",
+      "notes": "Priority: verify bar stickiness and tab visibility toggle. Use page.evaluate for scroll checks."
     },
     {
       "priority": 3,
-      "task": "COMPLETED: Playwright mobile E2E tests + matrix.spec.js fix",
-      "description": "Created tests/e2e/mobile-ui.spec.js with 15 tests (45 across 3 browsers). Fixed matrix.spec.js strict mode violation. All 93 Playwright tests pass.",
-      "estimated_hours": 4,
-      "actual_hours": 4,
-      "dependencies": [
-        "tests/e2e/mobile-ui.spec.js",
-        "tests/e2e/matrix.spec.js"
-      ],
-      "status": "Completed - Feb 10 2026",
-      "notes": "Tests use page.setViewportSize() instead of device presets. Touch tests use hasTouch: true."
-    },
-    {
-      "priority": 4,
-      "task": "COMPLETED: Service Worker tests failing - Request polyfill added",
-      "description": "Added Request and Response polyfills to jest.setup.js. Service Worker tests now pass. All npm test suite: 149 passing, 28 skipped (with documentation), 0 failing.",
-      "estimated_hours": 2,
-      "dependencies": [
-        "tests/unit/serviceWorker.test.js",
-        "tests/setup/jest.setup.js"
-      ],
-      "status": "Completed - Dec 12 2025",
-      "notes": "Fixed by adding Request and Response class polyfills, updating Japanese CSV test expectations, and documenting skipped ES module tests."
-    },
-    {
-      "priority": 5,
       "task": "Run GitHub Actions CI to verify test suite passes",
       "description": "Push the test fixes to master and verify GitHub Actions CI pipeline succeeds with the new test configuration. All 149 tests should pass in CI.",
       "estimated_hours": 1,
@@ -74,7 +49,7 @@
       "notes": "Ready to push. Tests all pass locally."
     },
     {
-      "priority": 6,
+      "priority": 4,
       "task": "Improve ES module jest.mock() setup or add E2E alternatives",
       "description": "The skipped unit tests (main.test.js, audioCache.test.js, wordComposer.multilang.test.js) use jest.mock() with ES modules. Either configure jest properly for ES mocks, or move these tests to Playwright E2E. Note: functionality is already tested in integration tests.",
       "estimated_hours": 4,
@@ -86,7 +61,7 @@
       "notes": "Lower priority since integration tests provide good coverage. Can defer or implement as test infrastructure hardening."
     },
     {
-      "priority": 7,
+      "priority": 5,
       "task": "Integrate CSV/schema validator into CI as passing step",
       "description": "Verify `tools/validate-csv-schema.js` runs successfully in CI (it currently passes locally). Ensure GitHub Actions workflow has proper error handling so schema violations fail the workflow.",
       "estimated_hours": 2,
@@ -98,7 +73,7 @@
       "notes": "Validator already works locally. Next: ensure CI workflow properly captures exit code and fails on schema errors."
     },
     {
-      "priority": 8,
+      "priority": 6,
       "task": "Add unit tests for CSV schema validator",
       "description": "Create Jest unit tests for `tools/validate-csv-schema.js` covering valid/invalid CSV scenarios. Ensure CI enforces these tests and coverage thresholds.",
       "estimated_hours": 3,
@@ -110,7 +85,7 @@
       "notes": "Adds robustness and prevents regression in data file validation."
     },
     {
-      "priority": 9,
+      "priority": 7,
       "task": "E2E test coverage expansion for UI flows",
       "description": "Expand Playwright E2E tests to cover complete user journeys: matrix filtering, radical display, word composer gameplay, and audio playback across all 3 languages and 3 levels.",
       "estimated_hours": 5,
@@ -123,6 +98,17 @@
     }
   ],
   "recently_completed": [
+    {
+      "task": "Sticky Composer Navbar - second sticky bar below header",
+      "completed_date": "2026-03-01",
+      "description": "Added a second sticky navbar that fuses with the bottom edge of the top header. Contains the entire word-composer UI in compact horizontal layout: title/score pill | hint word fused with drop-slot canvas | action buttons. Visible only on Radicals tab. Allows players to scroll through the radical reference library without losing access to game controls.",
+      "files": [
+        "index.html",
+        "css/style.css",
+        "js/main.js",
+        "js/components/RadicalDisplay.js"
+      ]
+    },
     {
       "task": "Fixed Mobile UI - vertical clipping and stuck buttons on touch devices",
       "completed_date": "2026-02-10",
